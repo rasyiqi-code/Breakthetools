@@ -10,14 +10,10 @@ const nextConfig = {
   outputFileTracingRoot: path.join(__dirname, '../../'),
   // Jangan gunakan output standalone di Windows untuk menghindari error symlink
   // output: 'standalone',
-  // Disable static optimization untuk menghindari masalah dengan IntlProvider saat build
-  // Semua routes akan di-render secara dynamic
   experimental: {
     serverActions: {
       bodySizeLimit: '2mb',
     },
-    // Disable static optimization untuk build
-    isrMemoryCacheSize: 0,
   },
   // External packages yang tidak bisa di-bundle (native modules)
   serverExternalPackages: ['canvas', 'jsdom', '@tobyg74/tiktok-api-dl', 'qrcode'],

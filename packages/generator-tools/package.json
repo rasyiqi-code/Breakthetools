@@ -5,7 +5,8 @@
   "types": "./src/index.ts",
   "dependencies": {
     "lucide-react": "^0.294.0",
-    "qrcode": "^1.5.3"
+    "qrcode": "^1.5.3",
+    "react-intl": "^7.1.14"
   },
   "peerDependencies": {
     "react": "^18.2.0"
