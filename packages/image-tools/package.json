@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "main": "./src/index.ts",
   "dependencies": {
-    "react": "^18.2.0",
-    "lucide-react": "^0.294.0"
+    "@breaktools/generator-tools": "workspace:*",
+    "lucide-react": "^0.294.0",
+    "react-intl": "^7.1.14"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18",
