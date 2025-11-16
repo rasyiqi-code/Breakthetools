@@ -3,10 +3,12 @@
 import { useState, useEffect, useRef } from 'react'
 import QRCode from 'qrcode'
 import { Download } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useIntl } from 'react-intl'
 
 export function QRCodeGenerator() {
-  const t = useTranslations('tools.qrCode')
+  const intl = useIntl()
+  const t = (key: string, params?: Record<string, any>) =>
+    intl.formatMessage({ id: `tools.qrCode.${key}` }, params as any)
   const [text, setText] = useState('')
   const [qrSize, setQrSize] = useState(300)
   const [errorLevel, setErrorLevel] = useState<'L' | 'M' | 'Q' | 'H'>('M')

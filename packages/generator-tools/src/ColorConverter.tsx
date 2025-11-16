@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Palette, Copy, Check } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useIntl } from 'react-intl'
 import {
   hexToRgb,
   rgbToHex,
@@ -23,7 +23,9 @@ interface ColorValues {
 }
 
 export function ColorConverter() {
-  const t = useTranslations('tools.colorConverter')
+  const intl = useIntl()
+  const t = (key: string, params?: Record<string, any>) =>
+    intl.formatMessage({ id: `tools.colorConverter.${key}` }, params as any)
   const [inputType, setInputType] = useState<'hex' | 'rgb' | 'hsl' | 'cmyk'>('hex')
   const [inputValue, setInputValue] = useState('')
   const [colorValues, setColorValues] = useState<ColorValues | null>(null)

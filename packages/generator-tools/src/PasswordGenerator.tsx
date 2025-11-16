@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 import { Copy, Check, RefreshCw } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useIntl } from 'react-intl'
 
 export function PasswordGenerator() {
-  const t = useTranslations('tools.passwordGenerator')
+  const intl = useIntl()
+  const t = (key: string, params?: Record<string, any>) =>
+    intl.formatMessage({ id: `tools.passwordGenerator.${key}` }, params as any)
   const [password, setPassword] = useState('')
   const [length, setLength] = useState(16)
   const [copied, setCopied] = useState(false)
