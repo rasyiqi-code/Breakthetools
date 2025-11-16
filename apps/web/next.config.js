@@ -73,12 +73,6 @@ const nextConfig = {
 
     return config
   },
-  // Fix untuk Next.js 16
-  experimental: {
-    serverActions: {
-      bodySizeLimit: '2mb',
-    },
-  },
 }
 
 module.exports = withNextIntl(nextConfig)
