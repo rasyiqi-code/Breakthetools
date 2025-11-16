@@ -2,10 +2,10 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Image as ImageIcon, FileImage, Brain, Palette, Info } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useIntl } from 'react-intl'
 import { colorPsychology, getColorName } from './utils/colorPsychologyData'
 import { extractDominantColors, resizeImageForAnalysis } from './utils/colorExtraction'
-import { rgbToHsl } from '@breaktools/generator-tools/src/utils/colorUtils'
+import { rgbToHsl } from '@breaktools/generator-tools'
 
 interface ColorInfo {
   hex: string
@@ -20,7 +20,9 @@ interface ColorInfo {
 }
 
 export function ColorPsychology() {
-  const t = useTranslations('tools.colorPsychology')
+  const intl = useIntl()
+  const t = (key: string, params?: Record<string, any>) =>
+    intl.formatMessage({ id: `tools.colorPsychology.${key}` }, params as any)
   const [originalFile, setOriginalFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string>('')
   const [colors, setColors] = useState<ColorInfo[]>([])

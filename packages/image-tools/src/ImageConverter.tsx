@@ -2,11 +2,14 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, Image as ImageIcon, FileImage } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useIntl } from 'react-intl'
 
 export function ImageConverter() {
-  const t = useTranslations('tools.imageConverter')
-  const tCommon = useTranslations('common')
+  const intl = useIntl()
+  const t = (key: string, params?: Record<string, any>) =>
+    intl.formatMessage({ id: `tools.imageConverter.${key}` }, params as any)
+  const tCommon = (key: string, params?: Record<string, any>) =>
+    intl.formatMessage({ id: `common.${key}` }, params as any)
   const [originalFile, setOriginalFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string>('')
   const [targetFormat, setTargetFormat] = useState<'jpeg' | 'png' | 'webp'>('jpeg')

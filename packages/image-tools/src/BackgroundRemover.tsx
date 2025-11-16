@@ -2,12 +2,14 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, Image as ImageIcon, FileImage, Wand2, Loader2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useIntl } from 'react-intl'
 import { removeByColor, removeByEdge, removeAuto } from './utils/backgroundRemovalAlgorithms'
 import { hexToRgb } from './utils/backgroundRemovalUtils'
 
 export function BackgroundRemover() {
-    const t = useTranslations('tools.backgroundRemover')
+    const intl = useIntl()
+    const t = (key: string, params?: Record<string, any>) =>
+        intl.formatMessage({ id: `tools.backgroundRemover.${key}` }, params as any)
     const [originalFile, setOriginalFile] = useState<File | null>(null)
     const [preview, setPreview] = useState<string>('')
     const [processedUrl, setProcessedUrl] = useState<string>('')
