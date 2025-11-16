@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-neutral-800 antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation-fill-mode: both;
+  }
+  
+  .fade-in {
+    animation-name: fadeIn;
+  }
+  
+  .slide-in-from-bottom-4 {
+    animation-name: slideInFromBottom;
+  }
+  
+  .delay-150 {
+    animation-delay: 150ms;
+  }
+  
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .duration-700 {
+    animation-duration: 700ms;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Scrollbar Styles - Ultra Thin & Auto-Hide */
+@layer utilities {
+  /* Webkit browsers (Chrome, Safari, Edge) */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  /* Default: Very subtle, almost invisible */
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: background 0.2s ease, opacity 0.2s ease;
+  }
+  
+  /* More visible on hover */
+  .scrollbar-thin:hover::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:active {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Neutral color variant - even more subtle */
+  .scrollbar-thumb-neutral-300::-webkit-scrollbar-thumb {
+    background: rgba(209, 213, 219, 0.3);
+  }
+  
+  .scrollbar-thumb-neutral-300:hover::-webkit-scrollbar-thumb,
+  .hover\:scrollbar-thumb-neutral-400:hover::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.5);
+  }
+  
+  .scrollbar-track-transparent::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  /* Firefox - thin and subtle */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(209, 213, 219, 0.3) transparent;
+  }
+  
+  .scrollbar-thin:hover {
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  }
+}
+
+@layer components {
+  .tool-card {
+    @apply bg-white rounded-lg shadow-soft hover:shadow-card transition-shadow duration-200;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-medium px-4 py-2 rounded transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-neutral-200 hover:bg-neutral-300 text-neutral-800 font-medium px-4 py-2 rounded transition-colors duration-200;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-2 border border-neutral-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+  }
+  
+  .textarea-field {
+    @apply w-full px-4 py-3 border border-neutral-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent min-h-[200px] font-mono text-sm;
+  }
+}
+

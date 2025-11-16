@@ -1,0 +1,477 @@
+{
+  "common": {
+    "appName": "Breaktools",
+    "tagline": "免费快速的数字工具",
+    "description": "免费实用工具集合，用于文件转换、生成器和其他生产力工具",
+    "loading": "加载中...",
+    "error": "发生错误",
+    "success": "成功",
+    "download": "下载",
+    "copy": "复制",
+    "clear": "清除",
+    "submit": "提交",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "close": "关闭",
+    "open": "打开",
+    "search": "搜索",
+    "filter": "筛选",
+    "select": "选择",
+    "upload": "上传",
+    "process": "处理",
+    "reset": "重置"
+  },
+  "nav": {
+    "home": "首页",
+    "tools": "工具",
+    "about": "关于",
+    "contact": "联系"
+  },
+  "tools": {
+    "wordCounter": {
+      "title": "字数统计",
+      "description": "统计文本中的单词、字符、段落和句子",
+      "words": "单词",
+      "characters": "字符",
+      "charactersNoSpaces": "字符（无空格）",
+      "sentences": "句子",
+      "paragraphs": "段落",
+      "readingTime": "阅读时间",
+      "enterOrPasteText": "输入或粘贴您的文本",
+      "clear": "清除",
+      "placeholder": "在此输入或粘贴您的文本..."
+    },
+    "backgroundRemover": {
+      "title": "背景移除",
+      "description": "轻松从图像中移除背景 - 所有处理都在浏览器中",
+      "uploadAndProcess": "上传和处理",
+      "selectImage": "选择图片",
+      "removalMode": "移除模式",
+      "targetColor": "目标颜色",
+      "tolerance": "容差",
+      "processing": "处理中...",
+      "removeBackground": "移除背景",
+      "tipsLabel": "提示",
+      "tips": "自动模式适用于白色/明亮背景。颜色模式用于移除特定颜色。边缘模式用于自动检测。",
+      "previewAndDownload": "预览和下载",
+      "original": "原始",
+      "backgroundRemoved": "背景已移除",
+      "processed": "已处理",
+      "downloadImage": "下载图片 (PNG)",
+      "selectImageToStart": "选择图片开始",
+      "modes": {
+        "auto": "自动",
+        "color": "颜色",
+        "edge": "边缘"
+      },
+      "errors": {
+        "invalidFileType": "文件必须是图片！",
+        "noFileSelected": "请先选择图片！"
+      }
+    },
+    "imageConverter": {
+      "title": "图片转换器",
+      "description": "转换图片格式 (JPG, PNG, WebP) - 所有处理都在您的浏览器中",
+      "uploadAndConvert": "上传和转换",
+      "selectImage": "选择图片",
+      "targetFormat": "目标格式",
+      "quality": "质量",
+      "convertImage": "转换图片",
+      "previewAndDownload": "预览和下载",
+      "original": "原始",
+      "converted": "已转换",
+      "downloadImage": "下载图片",
+      "selectImageToStart": "选择图片开始",
+      "formats": {
+        "jpeg": "JPEG / JPG",
+        "png": "PNG",
+        "webp": "WebP"
+      },
+      "errors": {
+        "invalidFileType": "文件必须是图片！",
+        "noFileSelected": "请先选择图片！"
+      }
+    },
+    "colorPsychology": {
+      "title": "色彩心理学与构图",
+      "description": "分析图像中的色彩心理学和构图 - 所有处理都在浏览器中",
+      "uploadAndAnalyze": "上传和分析",
+      "selectImage": "选择图片",
+      "numColors": "颜色数量",
+      "analyzeColors": "分析色彩心理学",
+      "preview": "预览",
+      "colorAnalysis": "色彩分析",
+      "emotionsAndFeelings": "情感与感受",
+      "meaning": "含义",
+      "bestUseCases": "最佳用例",
+      "selectImageAndAnalyze": "选择图片并点击\"分析\"",
+      "aboutTitle": "关于色彩心理学",
+      "aboutDescription": "色彩心理学研究颜色如何影响情绪、行为和人类感知。此分析有助于理解通过图像中的调色板传达的信息。",
+      "errors": {
+        "invalidFileType": "文件必须是图片！",
+        "noFileSelected": "请先选择图片！"
+      }
+    },
+    "qrCode": {
+      "title": "二维码生成器",
+      "description": "从URL、文本或其他数据生成二维码",
+      "enterTextOrUrl": "输入文本或URL",
+      "placeholder": "https://example.com 或其他文本...",
+      "settings": "设置",
+      "size": "大小",
+      "errorCorrectionLevel": "纠错级别",
+      "previewAndDownload": "预览和下载",
+      "downloadQRCode": "下载二维码",
+      "enterTextToGenerate": "输入文本或URL以生成二维码",
+      "errorLevels": {
+        "low": "低 (7%)",
+        "medium": "中 (15%)",
+        "quartile": "四分之一 (25%)",
+        "high": "高 (30%)"
+      }
+    },
+    "passwordGenerator": {
+      "title": "密码生成器",
+      "description": "生成强而随机的密码以获得最大安全性",
+      "password": "密码",
+      "passwordStrength": "密码强度",
+      "generatePassword": "生成密码",
+      "generateAgain": "再次生成",
+      "copy": "复制",
+      "copied": "已复制！",
+      "passwordOptions": "密码选项",
+      "passwordLength": "密码长度",
+      "strength": {
+        "weak": "弱",
+        "medium": "中",
+        "strong": "强"
+      },
+      "options": {
+        "uppercase": "大写字母 (A-Z)",
+        "lowercase": "小写字母 (a-z)",
+        "numbers": "数字 (0-9)",
+        "symbols": "符号 (!@#$%^&*)"
+      },
+      "errors": {
+        "selectAtLeastOne": "请至少选择一个选项！"
+      }
+    },
+    "colorConverter": {
+      "title": "颜色转换器",
+      "description": "在 HEX、RGB、HSL 和 CMYK 之间转换颜色",
+      "inputFormat": "输入格式",
+      "enterColor": "输入颜色",
+      "convert": "转换",
+      "colorPreview": "颜色预览",
+      "placeholders": {
+        "hex": "#FF0000 或 FF0000",
+        "rgb": "255, 0, 0",
+        "hsl": "0, 100%, 50%",
+        "cmyk": "0%, 100%, 100%, 0%"
+      },
+      "errors": {
+        "enterColorValue": "请先输入颜色值！",
+        "invalidHex": "无效的 HEX 格式。使用格式 #RRGGBB 或 RRGGBB",
+        "invalidRgb": "无效的 RGB 格式。使用格式: R, G, B (示例: 255, 0, 0)",
+        "invalidHsl": "无效的 HSL 格式。使用格式: H, S%, L% (示例: 0, 100%, 50%)",
+        "invalidCmyk": "无效的 CMYK 格式。使用格式: C%, M%, Y%, K% (示例: 0%, 100%, 100%, 0%)",
+        "invalidColorFormat": "无效的颜色格式"
+      }
+    },
+    "caseConverter": {
+      "title": "大小写转换器",
+      "description": "使用各种样式更改文本格式",
+      "enterText": "输入文本",
+      "placeholder": "在此输入或粘贴您的文本...",
+      "cases": {
+        "uppercase": "大写",
+        "lowercase": "小写",
+        "titlecase": "标题大小写",
+        "sentencecase": "句子大小写",
+        "camelcase": "camelCase",
+        "pascalcase": "PascalCase",
+        "snakecase": "snake_case",
+        "kebabcase": "kebab-case",
+        "toggle": "tOGGLE cASE"
+      }
+    },
+    "textCleaner": {
+      "title": "文本清理器",
+      "description": "清理文本中的多余空格、重复行等",
+      "inputText": "输入文本",
+      "outputText": "输出文本",
+      "inputPlaceholder": "在此粘贴您的文本...",
+      "outputPlaceholder": "结果将显示在这里...",
+      "copy": "复制",
+      "copied": "已复制！",
+      "cleaningOptions": "清理选项",
+      "cleanText": "清理文本",
+      "options": {
+        "removeExtraSpaces": "删除多余空格",
+        "removeDuplicateLines": "删除重复行",
+        "removeEmptyLines": "删除空行",
+        "trimLines": "修剪每行",
+        "sortLines": "排序行 (A-Z)"
+      }
+    },
+    "loremIpsum": {
+      "title": "Lorem Ipsum 生成器",
+      "description": "为您的设计和模型生成占位符文本",
+      "count": "数量",
+      "type": "类型",
+      "generate": "生成 Lorem Ipsum",
+      "result": "结果",
+      "copy": "复制",
+      "copied": "已复制！",
+      "types": {
+        "paragraphs": "段落",
+        "sentences": "句子",
+        "words": "单词"
+      }
+    },
+    "textDiff": {
+      "title": "文本差异检查器",
+      "description": "比较两个文本并查看差异"
+    },
+    "readabilityAnalyzer": {
+      "title": "可读性分析器",
+      "description": "使用 Flesch-Kincaid 分析文本可读性级别"
+    },
+    "keywordDensity": {
+      "title": "关键词密度检查器",
+      "description": "分析文本中的关键词密度以进行 SEO"
+    },
+    "markdownEditor": {
+      "title": "Markdown 编辑器",
+      "description": "带实时预览的 Markdown 编辑器"
+    },
+    "regexTester": {
+      "title": "正则表达式测试器",
+      "description": "使用实时预览测试和调试正则表达式"
+    },
+    "textToSlug": {
+      "title": "文本到 Slug 转换器",
+      "description": "将文本转换为 URL 友好的 slug"
+    },
+    "imageCompressor": {
+      "title": "图片压缩器",
+      "description": "压缩图片而不损失质量"
+    },
+    "imageResizer": {
+      "title": "图片调整器",
+      "description": "轻松调整图片大小"
+    },
+    "imageCropper": {
+      "title": "图片裁剪器",
+      "description": "根据需要裁剪图片"
+    },
+    "colorPalette": {
+      "title": "调色板提取器",
+      "description": "从图片中提取主要调色板"
+    },
+    "placeholderGenerator": {
+      "title": "占位符图片生成器",
+      "description": "为原型设计生成占位符图片"
+    },
+    "imageToAscii": {
+      "title": "图片转 ASCII 艺术",
+      "description": "将图片转换为 ASCII 艺术"
+    },
+    "svgOptimizer": {
+      "title": "SVG 优化器",
+      "description": "优化和清理 SVG 代码"
+    },
+    "uuidGenerator": {
+      "title": "UUID 生成器",
+      "description": "为开发生成 UUID/GUID"
+    },
+    "hashGenerator": {
+      "title": "哈希生成器",
+      "description": "生成 MD5、SHA-256 哈希等"
+    },
+    "colorPicker": {
+      "title": "颜色选择器",
+      "description": "选择颜色并获取 HEX、RGB、HSL 代码"
+    },
+    "gradientGenerator": {
+      "title": "CSS 渐变生成器",
+      "description": "使用可视化编辑器创建 CSS 渐变"
+    },
+    "jsonFormatter": {
+      "title": "JSON 格式化器",
+      "description": "格式化和验证 JSON"
+    },
+    "base64Encoder": {
+      "title": "Base64 编码器/解码器",
+      "description": "编码和解码 Base64"
+    },
+    "urlEncoder": {
+      "title": "URL 编码器/解码器",
+      "description": "编码和解码 URL"
+    },
+    "jwtDecoder": {
+      "title": "JWT 解码器",
+      "description": "解码和检查 JWT 令牌"
+    },
+    "passwordStrength": {
+      "title": "密码强度检查器",
+      "description": "实时检查密码强度 - 100% 客户端"
+    },
+    "aesEncryption": {
+      "title": "AES 加密/解密",
+      "description": "使用 AES-256 加密和解密文本 - 100% 客户端"
+    },
+    "htmlEntityEncoder": {
+      "title": "HTML 实体编码器/解码器",
+      "description": "编码和解码 HTML 实体"
+    },
+    "csvJsonConverter": {
+      "title": "CSV ↔ JSON 转换器",
+      "description": "在 CSV 和 JSON 格式之间转换"
+    },
+    "codeFormatter": {
+      "title": "代码格式化器",
+      "description": "格式化和美化 HTML、CSS、JavaScript 和 JSON 代码"
+    },
+    "kprCalculator": {
+      "title": "KPR / 贷款计算器",
+      "description": "计算 KPR 或贷款的月供"
+    },
+    "bmiCalculator": {
+      "title": "BMI 计算器",
+      "description": "计算身体质量指数以确定体重状况"
+    },
+    "discountCalculator": {
+      "title": "折扣计算器",
+      "description": "计算折扣后的价格和节省的金额"
+    },
+    "compoundInterest": {
+      "title": "复利计算器",
+      "description": "使用复利计算投资增长"
+    },
+    "aspectRatio": {
+      "title": "宽高比计算器",
+      "description": "根据宽高比计算尺寸或反之"
+    },
+    "ipChecker": {
+      "title": "我的 IP 是什么？",
+      "description": "检查公共 IP 地址和浏览器 User Agent"
+    },
+    "metaExtractor": {
+      "title": "Meta 标签提取器",
+      "description": "从网站提取 meta 标签、Open Graph 和 SEO 信息"
+    },
+    "httpHeader": {
+      "title": "HTTP 标头检查器",
+      "description": "检查网站的 HTTP 响应标头"
+    },
+    "dnsChecker": {
+      "title": "DNS 记录检查器",
+      "description": "检查域的 DNS 记录 (A, CNAME, MX, TXT)"
+    },
+    "siteDownChecker": {
+      "title": "网站状态检查器",
+      "description": "检查网站是否关闭或无法访问"
+    },
+    "sslChecker": {
+      "title": "SSL 证书检查器",
+      "description": "检查域的 SSL 证书信息"
+    },
+    "whoisChecker": {
+      "title": "WHOIS 检查器",
+      "description": "检查域名注册信息 (WHOIS 数据)"
+    },
+    "urlParser": {
+      "title": "URL 解析器和构建器",
+      "description": "将 URL 解析为组件或从组件构建 URL"
+    },
+    "fancyText": {
+      "title": "花式文本生成器",
+      "description": "为社交媒体生成具有独特样式的文本"
+    },
+    "randomName": {
+      "title": "随机名称生成器",
+      "description": "为测试或创意生成随机名称"
+    },
+    "coinFlip": {
+      "title": "抛硬币",
+      "description": "翻转虚拟硬币以做出随机决定"
+    },
+    "stopwatchTimer": {
+      "title": "秒表和计时器",
+      "description": "带圈数功能和倒计时器的数字秒表"
+    },
+    "timeZone": {
+      "title": "时区转换器",
+      "description": "在全球时区之间转换时间"
+    },
+    "dateCalculator": {
+      "title": "持续时间计算器",
+      "description": "计算两个日期之间的天数、小时数和分钟数"
+    },
+    "pdfMerger": {
+      "title": "PDF 合并器",
+      "description": "将多个 PDF 文件合并为一个"
+    },
+    "pdfSplitter": {
+      "title": "PDF 拆分器",
+      "description": "拆分或从 PDF 提取页面"
+    },
+    "pdfCompressor": {
+      "title": "PDF 压缩器",
+      "description": "压缩 PDF 文件大小而不会显著损失质量"
+    },
+    "imageToPdf": {
+      "title": "图片转 PDF",
+      "description": "将图片转换为 PDF 文件"
+    },
+    "pdfToImages": {
+      "title": "PDF 转图片",
+      "description": "将 PDF 页面提取为图片"
+    },
+    "youtubeDownloader": {
+      "title": "YouTube 下载器",
+      "description": "以各种质量从 YouTube 下载视频和音频"
+    },
+    "tiktokDownloader": {
+      "title": "TikTok 下载器",
+      "description": "从 TikTok 下载视频和音频"
+    },
+    "instagramDownloader": {
+      "title": "Instagram 下载器",
+      "description": "从 Instagram 下载照片、视频、Reels 和 Stories"
+    },
+    "twitterDownloader": {
+      "title": "Twitter/X 下载器",
+      "description": "从 Twitter/X 下载视频和图片"
+    },
+    "facebookDownloader": {
+      "title": "Facebook 下载器",
+      "description": "从 Facebook 下载视频"
+    }
+  },
+  "categories": {
+    "textTools": "文本工具",
+    "imageTools": "图像工具",
+    "generatorTools": "生成器工具",
+    "developerTools": "开发工具",
+    "calculatorTools": "计算器工具",
+    "seoTools": "SEO 和网络工具",
+    "funTools": "趣味创意工具",
+    "timeTools": "时间和日期工具",
+    "pdfTools": "PDF 工具",
+    "downloaderTools": "下载工具"
+  },
+  "articles": {
+    "defaultTitle": "使用 {toolName} 的完整指南",
+    "defaultContent1": "{toolName} 是帮助您完成各种任务的最佳工具之一。此工具设计有简单易用的界面，任何人都可以在没有专业知识的情况下使用它。",
+    "defaultContent2": "使用 {toolName}，您可以更快、更高效地完成任务。此工具免费提供，可以直接从浏览器访问，无需下载其他软件。",
+    "defaultContent3": "要使用此工具，只需按照页面上提供的步骤操作。每个步骤都旨在简化流程并确保您获得最佳结果。",
+    "defaultContent4": "如果您在使用工具时有疑问或遇到问题，请随时联系我们的支持团队。我们随时准备为您提供帮助。",
+    "tipsLabel": "提示",
+    "defaultTips": "负责任地使用此工具，并确保您尊重您处理的内容的版权和使用政策。"
+  }
+}
+

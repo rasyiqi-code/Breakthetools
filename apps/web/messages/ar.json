@@ -1,0 +1,477 @@
+{
+  "common": {
+    "appName": "Breaktools",
+    "tagline": "أدوات رقمية مجانية وسريعة",
+    "description": "مجموعة من أدوات المساعدة المجانية لتحويل الملفات والمولدات وأدوات الإنتاجية الأخرى",
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ",
+    "success": "نجح",
+    "download": "تحميل",
+    "copy": "نسخ",
+    "clear": "مسح",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "close": "إغلاق",
+    "open": "فتح",
+    "search": "بحث",
+    "filter": "تصفية",
+    "select": "اختر",
+    "upload": "رفع",
+    "process": "معالجة",
+    "reset": "إعادة تعيين"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "tools": "الأدوات",
+    "about": "حول",
+    "contact": "اتصل"
+  },
+  "tools": {
+    "wordCounter": {
+      "title": "عداد الكلمات",
+      "description": "عد الكلمات والأحرف والفقرات والجمل في النص",
+      "words": "كلمات",
+      "characters": "أحرف",
+      "charactersNoSpaces": "أحرف (بدون مسافات)",
+      "sentences": "جمل",
+      "paragraphs": "فقرات",
+      "readingTime": "وقت القراءة",
+      "enterOrPasteText": "أدخل أو الصق النص",
+      "clear": "مسح",
+      "placeholder": "اكتب أو الصق النص هنا..."
+    },
+    "backgroundRemover": {
+      "title": "إزالة الخلفية",
+      "description": "إزالة الخلفية من الصور بسهولة - كل المعالجة في المتصفح",
+      "uploadAndProcess": "رفع ومعالجة",
+      "selectImage": "اختر صورة",
+      "removalMode": "وضع الإزالة",
+      "targetColor": "اللون المستهدف",
+      "tolerance": "التسامح",
+      "processing": "جاري المعالجة...",
+      "removeBackground": "إزالة الخلفية",
+      "tipsLabel": "نصائح",
+      "tips": "يعمل الوضع التلقائي بشكل جيد مع الخلفيات البيضاء/الفاتحة. وضع اللون لإزالة ألوان محددة. وضع الحافة للكشف التلقائي.",
+      "previewAndDownload": "معاينة وتحميل",
+      "original": "الأصلية",
+      "backgroundRemoved": "تمت إزالة الخلفية",
+      "processed": "معالجة",
+      "downloadImage": "تحميل الصورة (PNG)",
+      "selectImageToStart": "اختر صورة للبدء",
+      "modes": {
+        "auto": "تلقائي",
+        "color": "لون",
+        "edge": "حافة"
+      },
+      "errors": {
+        "invalidFileType": "يجب أن يكون الملف صورة!",
+        "noFileSelected": "يرجى اختيار صورة أولاً!"
+      }
+    },
+    "imageConverter": {
+      "title": "محول الصور",
+      "description": "تحويل تنسيقات الصور (JPG, PNG, WebP) - كل المعالجة في متصفحك",
+      "uploadAndConvert": "رفع وتحويل",
+      "selectImage": "اختر صورة",
+      "targetFormat": "التنسيق المستهدف",
+      "quality": "الجودة",
+      "convertImage": "تحويل الصورة",
+      "previewAndDownload": "معاينة وتحميل",
+      "original": "الأصلية",
+      "converted": "المحولة",
+      "downloadImage": "تحميل الصورة",
+      "selectImageToStart": "اختر صورة للبدء",
+      "formats": {
+        "jpeg": "JPEG / JPG",
+        "png": "PNG",
+        "webp": "WebP"
+      },
+      "errors": {
+        "invalidFileType": "يجب أن يكون الملف صورة!",
+        "noFileSelected": "يرجى اختيار صورة أولاً!"
+      }
+    },
+    "colorPsychology": {
+      "title": "علم نفس الألوان والتركيب",
+      "description": "تحليل علم نفس الألوان والتركيب من الصور - كل المعالجة في المتصفح",
+      "uploadAndAnalyze": "رفع وتحليل",
+      "selectImage": "اختر صورة",
+      "numColors": "عدد الألوان",
+      "analyzeColors": "تحليل علم نفس الألوان",
+      "preview": "معاينة",
+      "colorAnalysis": "تحليل الألوان",
+      "emotionsAndFeelings": "العواطف والمشاعر",
+      "meaning": "المعنى",
+      "bestUseCases": "أفضل حالات الاستخدام",
+      "selectImageAndAnalyze": "اختر صورة وانقر على \"تحليل\"",
+      "aboutTitle": "حول علم نفس الألوان",
+      "aboutDescription": "يدرس علم نفس الألوان كيف تؤثر الألوان على العواطف والسلوك والإدراك البشري. يساعد هذا التحليل في فهم الرسالة المنقولة من خلال لوحة الألوان في صورتك.",
+      "errors": {
+        "invalidFileType": "يجب أن يكون الملف صورة!",
+        "noFileSelected": "يرجى اختيار صورة أولاً!"
+      }
+    },
+    "qrCode": {
+      "title": "مولد رمز QR",
+      "description": "إنشاء رمز QR من URL أو النص أو البيانات الأخرى",
+      "enterTextOrUrl": "أدخل النص أو URL",
+      "placeholder": "https://example.com أو نص آخر...",
+      "settings": "الإعدادات",
+      "size": "الحجم",
+      "errorCorrectionLevel": "مستوى تصحيح الخطأ",
+      "previewAndDownload": "معاينة وتحميل",
+      "downloadQRCode": "تحميل رمز QR",
+      "enterTextToGenerate": "أدخل النص أو URL لإنشاء رمز QR",
+      "errorLevels": {
+        "low": "منخفض (7%)",
+        "medium": "متوسط (15%)",
+        "quartile": "ربع (25%)",
+        "high": "عالي (30%)"
+      }
+    },
+    "passwordGenerator": {
+      "title": "مولد كلمة المرور",
+      "description": "إنشاء كلمات مرور قوية وعشوائية لأقصى أمان",
+      "password": "كلمة المرور",
+      "passwordStrength": "قوة كلمة المرور",
+      "generatePassword": "إنشاء كلمة المرور",
+      "generateAgain": "إنشاء مرة أخرى",
+      "copy": "نسخ",
+      "copied": "تم النسخ!",
+      "passwordOptions": "خيارات كلمة المرور",
+      "passwordLength": "طول كلمة المرور",
+      "strength": {
+        "weak": "ضعيف",
+        "medium": "متوسط",
+        "strong": "قوي"
+      },
+      "options": {
+        "uppercase": "أحرف كبيرة (A-Z)",
+        "lowercase": "أحرف صغيرة (a-z)",
+        "numbers": "أرقام (0-9)",
+        "symbols": "رموز (!@#$%^&*)"
+      },
+      "errors": {
+        "selectAtLeastOne": "يرجى اختيار خيار واحد على الأقل!"
+      }
+    },
+    "colorConverter": {
+      "title": "محول الألوان",
+      "description": "تحويل الألوان بين HEX و RGB و HSL و CMYK",
+      "inputFormat": "تنسيق الإدخال",
+      "enterColor": "أدخل اللون",
+      "convert": "تحويل",
+      "colorPreview": "معاينة اللون",
+      "placeholders": {
+        "hex": "#FF0000 أو FF0000",
+        "rgb": "255, 0, 0",
+        "hsl": "0, 100%, 50%",
+        "cmyk": "0%, 100%, 100%, 0%"
+      },
+      "errors": {
+        "enterColorValue": "يرجى إدخال قيمة اللون أولاً!",
+        "invalidHex": "تنسيق HEX غير صالح. استخدم التنسيق #RRGGBB أو RRGGBB",
+        "invalidRgb": "تنسيق RGB غير صالح. استخدم التنسيق: R, G, B (مثال: 255, 0, 0)",
+        "invalidHsl": "تنسيق HSL غير صالح. استخدم التنسيق: H, S%, L% (مثال: 0, 100%, 50%)",
+        "invalidCmyk": "تنسيق CMYK غير صالح. استخدم التنسيق: C%, M%, Y%, K% (مثال: 0%, 100%, 100%, 0%)",
+        "invalidColorFormat": "تنسيق اللون غير صالح"
+      }
+    },
+    "caseConverter": {
+      "title": "محول الحالة",
+      "description": "تغيير تنسيق النص بأساليب مختلفة",
+      "enterText": "أدخل النص",
+      "placeholder": "اكتب أو الصق النص هنا...",
+      "cases": {
+        "uppercase": "أحرف كبيرة",
+        "lowercase": "أحرف صغيرة",
+        "titlecase": "حالة العنوان",
+        "sentencecase": "حالة الجملة",
+        "camelcase": "camelCase",
+        "pascalcase": "PascalCase",
+        "snakecase": "snake_case",
+        "kebabcase": "kebab-case",
+        "toggle": "tOGGLE cASE"
+      }
+    },
+    "textCleaner": {
+      "title": "منظف النص",
+      "description": "تنظيف النص من المسافات الزائدة والخطوط المكررة والمزيد",
+      "inputText": "نص الإدخال",
+      "outputText": "نص الإخراج",
+      "inputPlaceholder": "الصق النص هنا...",
+      "outputPlaceholder": "ستظهر النتائج هنا...",
+      "copy": "نسخ",
+      "copied": "تم النسخ!",
+      "cleaningOptions": "خيارات التنظيف",
+      "cleanText": "تنظيف النص",
+      "options": {
+        "removeExtraSpaces": "إزالة المسافات الزائدة",
+        "removeDuplicateLines": "إزالة الخطوط المكررة",
+        "removeEmptyLines": "إزالة الخطوط الفارغة",
+        "trimLines": "قص كل سطر",
+        "sortLines": "ترتيب الأسطر (A-Z)"
+      }
+    },
+    "loremIpsum": {
+      "title": "مولد Lorem Ipsum",
+      "description": "إنشاء نص placeholder لتصميمك ونماذجك",
+      "count": "العدد",
+      "type": "النوع",
+      "generate": "إنشاء Lorem Ipsum",
+      "result": "النتيجة",
+      "copy": "نسخ",
+      "copied": "تم النسخ!",
+      "types": {
+        "paragraphs": "فقرات",
+        "sentences": "جمل",
+        "words": "كلمات"
+      }
+    },
+    "textDiff": {
+      "title": "مقارن النصوص",
+      "description": "قارن بين نصين واعرض الاختلافات"
+    },
+    "readabilityAnalyzer": {
+      "title": "محلل قابلية القراءة",
+      "description": "تحليل مستوى قابلية قراءة النص باستخدام Flesch-Kincaid"
+    },
+    "keywordDensity": {
+      "title": "متحقق كثافة الكلمات المفتاحية",
+      "description": "تحليل كثافة الكلمات المفتاحية في النص لتحسين محركات البحث"
+    },
+    "markdownEditor": {
+      "title": "محرر Markdown",
+      "description": "محرر Markdown مع معاينة مباشرة"
+    },
+    "regexTester": {
+      "title": "مختبر التعبيرات النمطية",
+      "description": "اختبر واصحح التعبيرات النمطية مع معاينة مباشرة"
+    },
+    "textToSlug": {
+      "title": "محول النص إلى Slug",
+      "description": "تحويل النص إلى slug مناسب للعنوان URL"
+    },
+    "imageCompressor": {
+      "title": "ضاغط الصور",
+      "description": "ضغط الصور دون فقدان الجودة"
+    },
+    "imageResizer": {
+      "title": "مغير حجم الصور",
+      "description": "تغيير حجم الصور بسهولة"
+    },
+    "imageCropper": {
+      "title": "مقص الصور",
+      "description": "قص الصور حسب الحاجة"
+    },
+    "colorPalette": {
+      "title": "مستخرج لوحة الألوان",
+      "description": "استخراج لوحة ألوان مهيمنة من الصور"
+    },
+    "placeholderGenerator": {
+      "title": "مولد صور بديلة",
+      "description": "إنشاء صور بديلة للنماذج الأولية"
+    },
+    "imageToAscii": {
+      "title": "محول الصورة إلى ASCII",
+      "description": "تحويل الصور إلى فن ASCII"
+    },
+    "svgOptimizer": {
+      "title": "محسن SVG",
+      "description": "تحسين وتنظيف كود SVG"
+    },
+    "uuidGenerator": {
+      "title": "مولد UUID",
+      "description": "إنشاء UUID/GUID للتطوير"
+    },
+    "hashGenerator": {
+      "title": "مولد Hash",
+      "description": "إنشاء hash MD5, SHA-256، إلخ"
+    },
+    "colorPicker": {
+      "title": "منتقي الألوان",
+      "description": "اختر الألوان واحصل على رموز HEX, RGB, HSL"
+    },
+    "gradientGenerator": {
+      "title": "مولد التدرج CSS",
+      "description": "إنشاء تدرجات CSS مع محرر مرئي"
+    },
+    "jsonFormatter": {
+      "title": "منسق JSON",
+      "description": "تنسيق والتحقق من JSON"
+    },
+    "base64Encoder": {
+      "title": "مشفّر/فك تشفير Base64",
+      "description": "تشفير وفك تشفير Base64"
+    },
+    "urlEncoder": {
+      "title": "مشفّر/فك تشفير URL",
+      "description": "تشفير وفك تشفير URL"
+    },
+    "jwtDecoder": {
+      "title": "فك تشفير JWT",
+      "description": "فك تشفير وفحص رموز JWT"
+    },
+    "passwordStrength": {
+      "title": "متحقق قوة كلمة المرور",
+      "description": "فحص قوة كلمة المرور في الوقت الفعلي - 100% على جهة العميل"
+    },
+    "aesEncryption": {
+      "title": "تشفير/فك تشفير AES",
+      "description": "تشفير وفك تشفير النص باستخدام AES-256 - 100% على جهة العميل"
+    },
+    "htmlEntityEncoder": {
+      "title": "مشفّر/فك تشفير HTML Entity",
+      "description": "تشفير وفك تشفير HTML entities"
+    },
+    "csvJsonConverter": {
+      "title": "محول CSV ↔ JSON",
+      "description": "التحويل بين تنسيقات CSV و JSON"
+    },
+    "codeFormatter": {
+      "title": "منسق الكود",
+      "description": "تنسيق وتحسين كود HTML, CSS, JavaScript, و JSON"
+    },
+    "kprCalculator": {
+      "title": "حاسبة القرض / التقسيط",
+      "description": "حساب الأقساط الشهرية للقرض"
+    },
+    "bmiCalculator": {
+      "title": "حاسبة مؤشر كتلة الجسم",
+      "description": "حساب مؤشر كتلة الجسم لتحديد حالة الوزن"
+    },
+    "discountCalculator": {
+      "title": "حاسبة الخصم",
+      "description": "حساب السعر بعد الخصم والمبلغ الموفر"
+    },
+    "compoundInterest": {
+      "title": "حاسبة الفائدة المركبة",
+      "description": "حساب نمو الاستثمار مع الفائدة المركبة"
+    },
+    "aspectRatio": {
+      "title": "حاسبة نسبة العرض إلى الارتفاع",
+      "description": "حساب الأبعاد بناءً على نسبة العرض إلى الارتفاع أو العكس"
+    },
+    "ipChecker": {
+      "title": "ما هو عنوان IP الخاص بي؟",
+      "description": "التحقق من عنوان IP العام و User Agent المتصفح"
+    },
+    "metaExtractor": {
+      "title": "مستخرج Meta Tags",
+      "description": "استخراج meta tags و Open Graph ومعلومات SEO من المواقع"
+    },
+    "httpHeader": {
+      "title": "متحقق رؤوس HTTP",
+      "description": "فحص رؤوس استجابة HTTP من المواقع"
+    },
+    "dnsChecker": {
+      "title": "متحقق سجلات DNS",
+      "description": "فحص سجلات DNS (A, CNAME, MX, TXT) من النطاق"
+    },
+    "siteDownChecker": {
+      "title": "متحقق حالة الموقع",
+      "description": "التحقق من كون الموقع متوقفًا أو غير قابل للوصول"
+    },
+    "sslChecker": {
+      "title": "متحقق شهادة SSL",
+      "description": "فحص معلومات شهادة SSL من النطاق"
+    },
+    "whoisChecker": {
+      "title": "متحقق WHOIS",
+      "description": "فحص معلومات تسجيل النطاق (بيانات WHOIS)"
+    },
+    "urlParser": {
+      "title": "محلل ومنشئ URL",
+      "description": "تحليل URL إلى مكونات أو بناء URL من المكونات"
+    },
+    "fancyText": {
+      "title": "مولد النص المزخرف",
+      "description": "إنشاء نص بأنماط فريدة لوسائل التواصل الاجتماعي"
+    },
+    "randomName": {
+      "title": "مولد الأسماء العشوائية",
+      "description": "إنشاء أسماء عشوائية للاختبار أو الإبداع"
+    },
+    "coinFlip": {
+      "title": "رمي العملة",
+      "description": "قلب عملة افتراضية لاتخاذ قرارات عشوائية"
+    },
+    "stopwatchTimer": {
+      "title": "ساعة الإيقاف والعداد",
+      "description": "ساعة إيقاف رقمية مع وظيفة اللفة وعداد تنازلي"
+    },
+    "timeZone": {
+      "title": "محول المنطقة الزمنية",
+      "description": "تحويل الوقت بين المناطق الزمنية في جميع أنحاء العالم"
+    },
+    "dateCalculator": {
+      "title": "حاسبة المدة",
+      "description": "حساب عدد الأيام والساعات والدقائق بين تاريخين"
+    },
+    "pdfMerger": {
+      "title": "دمج PDF",
+      "description": "دمج ملفات PDF متعددة في ملف واحد"
+    },
+    "pdfSplitter": {
+      "title": "تقسيم PDF",
+      "description": "تقسيم أو استخراج صفحات من PDF"
+    },
+    "pdfCompressor": {
+      "title": "ضاغط PDF",
+      "description": "ضغط حجم ملف PDF دون فقدان جودة كبير"
+    },
+    "imageToPdf": {
+      "title": "محول الصورة إلى PDF",
+      "description": "تحويل الصور إلى ملفات PDF"
+    },
+    "pdfToImages": {
+      "title": "محول PDF إلى صور",
+      "description": "استخراج صفحات PDF كصور"
+    },
+    "youtubeDownloader": {
+      "title": "تحميل من YouTube",
+      "description": "تحميل الفيديو والصوت من YouTube بجودات مختلفة"
+    },
+    "tiktokDownloader": {
+      "title": "تحميل من TikTok",
+      "description": "تحميل الفيديو والصوت من TikTok"
+    },
+    "instagramDownloader": {
+      "title": "تحميل من Instagram",
+      "description": "تحميل الصور والفيديو والريلز والستوري من Instagram"
+    },
+    "twitterDownloader": {
+      "title": "تحميل من Twitter/X",
+      "description": "تحميل الفيديو والصور من Twitter/X"
+    },
+    "facebookDownloader": {
+      "title": "تحميل من Facebook",
+      "description": "تحميل الفيديو من Facebook"
+    }
+  },
+  "categories": {
+    "textTools": "أدوات النص",
+    "imageTools": "أدوات الصور",
+    "generatorTools": "أدوات التوليد",
+    "developerTools": "أدوات المطور",
+    "calculatorTools": "الآلات الحاسبة",
+    "seoTools": "أدوات SEO والويب",
+    "funTools": "الإبداع والمرح",
+    "timeTools": "أدوات الوقت والتاريخ",
+    "pdfTools": "أدوات PDF",
+    "downloaderTools": "أدوات التنزيل"
+  },
+  "articles": {
+    "defaultTitle": "دليل شامل لاستخدام {toolName}",
+    "defaultContent1": "{toolName} هو أحد أفضل الأدوات لمساعدتك في المهام المختلفة. تم تصميم هذه الأداة بواجهة بسيطة وسهلة الاستخدام، بحيث يمكن لأي شخص استخدامها دون خبرة خاصة.",
+    "defaultContent2": "باستخدام {toolName}، يمكنك إكمال مهامك بشكل أسرع وأكثر كفاءة. هذه الأداة متاحة مجانًا ويمكن الوصول إليها مباشرة من متصفحك دون الحاجة إلى تنزيل برامج إضافية.",
+    "defaultContent3": "لاستخدام هذه الأداة، ما عليك سوى اتباع الخطوات المتاحة على الصفحة. تم تصميم كل خطوة لتسهيل العملية وضمان حصولك على أفضل النتائج.",
+    "defaultContent4": "إذا كان لديك أسئلة أو واجهت مشاكل أثناء استخدام الأداة، لا تتردد في الاتصال بفريق الدعم لدينا. نحن مستعدون لمساعدتك في أي وقت.",
+    "tipsLabel": "نصائح",
+    "defaultTips": "استخدم هذه الأداة بمسؤولية وتأكد من احترام حقوق النشر وسياسات الاستخدام للمحتوى الذي تعالجه."
+  }
+}
+

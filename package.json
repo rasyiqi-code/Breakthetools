@@ -1,0 +1,19 @@
+{
+  "name": "breaktools-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun --filter @breaktools/web dev",
+    "build": "bun --filter @breaktools/web build",
+    "start": "bun --filter @breaktools/web start",
+    "lint": "bun --filter @breaktools/web lint"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.25",
+    "typescript": "^5.9.3"
+  }
+}

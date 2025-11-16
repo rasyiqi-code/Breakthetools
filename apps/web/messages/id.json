@@ -1,0 +1,477 @@
+{
+  "common": {
+    "appName": "Breaktools",
+    "tagline": "Alat Digital Gratis dan Cepat",
+    "description": "Kumpulan tools utility gratis untuk konversi file, generator, dan alat produktivitas lainnya",
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "success": "Berhasil",
+    "download": "Unduh",
+    "copy": "Salin",
+    "clear": "Hapus",
+    "submit": "Kirim",
+    "cancel": "Batal",
+    "save": "Simpan",
+    "delete": "Hapus",
+    "edit": "Edit",
+    "close": "Tutup",
+    "open": "Buka",
+    "search": "Cari",
+    "filter": "Filter",
+    "select": "Pilih",
+    "upload": "Unggah",
+    "process": "Proses",
+    "reset": "Reset"
+  },
+  "nav": {
+    "home": "Beranda",
+    "tools": "Tools",
+    "about": "Tentang",
+    "contact": "Kontak"
+  },
+  "tools": {
+    "wordCounter": {
+      "title": "Word Counter",
+      "description": "Hitung jumlah kata, karakter, paragraf, dan kalimat dalam teks Anda",
+      "words": "Kata",
+      "characters": "Karakter",
+      "charactersNoSpaces": "Karakter (tanpa spasi)",
+      "sentences": "Kalimat",
+      "paragraphs": "Paragraf",
+      "readingTime": "Menit Baca",
+      "enterOrPasteText": "Masukkan atau Tempel Teks Anda",
+      "clear": "Hapus",
+      "placeholder": "Ketik atau tempel teks Anda di sini..."
+    },
+    "backgroundRemover": {
+      "title": "Background Remover",
+      "description": "Hapus background dari gambar dengan mudah - Semua proses di browser",
+      "uploadAndProcess": "Upload & Proses",
+      "selectImage": "Pilih Gambar",
+      "removalMode": "Mode Penghapusan",
+      "targetColor": "Warna Target",
+      "tolerance": "Toleransi",
+      "processing": "Memproses...",
+      "removeBackground": "Hapus Background",
+      "tipsLabel": "Tips",
+      "tips": "Mode Auto bekerja baik untuk background putih/terang. Mode Color untuk menghapus warna spesifik. Mode Edge untuk deteksi otomatis.",
+      "previewAndDownload": "Preview & Download",
+      "original": "Original",
+      "backgroundRemoved": "Background Terhapus",
+      "processed": "Diproses",
+      "downloadImage": "Download Gambar (PNG)",
+      "selectImageToStart": "Pilih gambar untuk memulai",
+      "modes": {
+        "auto": "Auto",
+        "color": "Color",
+        "edge": "Edge"
+      },
+      "errors": {
+        "invalidFileType": "File harus berupa gambar!",
+        "noFileSelected": "Pilih gambar terlebih dahulu!"
+      }
+    },
+    "imageConverter": {
+      "title": "Image Converter",
+      "description": "Konversi format gambar (JPG, PNG, WebP) - Semua proses di browser Anda",
+      "uploadAndConvert": "Upload & Konversi",
+      "selectImage": "Pilih Gambar",
+      "targetFormat": "Format Target",
+      "quality": "Kualitas",
+      "convertImage": "Konversi Gambar",
+      "previewAndDownload": "Preview & Download",
+      "original": "Original",
+      "converted": "Terkonversi",
+      "downloadImage": "Download Gambar",
+      "selectImageToStart": "Pilih gambar untuk memulai",
+      "formats": {
+        "jpeg": "JPEG / JPG",
+        "png": "PNG",
+        "webp": "WebP"
+      },
+      "errors": {
+        "invalidFileType": "File harus berupa gambar!",
+        "noFileSelected": "Pilih gambar terlebih dahulu!"
+      }
+    },
+    "colorPsychology": {
+      "title": "Color Psychology & Composition",
+      "description": "Analisis psikologi warna dan komposisi dari gambar - Semua proses di browser",
+      "uploadAndAnalyze": "Upload & Analisis",
+      "selectImage": "Pilih Gambar",
+      "numColors": "Jumlah Warna",
+      "analyzeColors": "Analisis Psikologi Warna",
+      "preview": "Preview",
+      "colorAnalysis": "Analisis Warna",
+      "emotionsAndFeelings": "Emosi & Perasaan",
+      "meaning": "Makna",
+      "bestUseCases": "Penggunaan Terbaik",
+      "selectImageAndAnalyze": "Pilih gambar dan klik \"Analisis\"",
+      "aboutTitle": "Tentang Color Psychology",
+      "aboutDescription": "Psikologi warna mempelajari bagaimana warna mempengaruhi emosi, perilaku, dan persepsi manusia. Analisis ini membantu memahami pesan yang disampaikan melalui palet warna dalam gambar Anda.",
+      "errors": {
+        "invalidFileType": "File harus berupa gambar!",
+        "noFileSelected": "Pilih gambar terlebih dahulu!"
+      }
+    },
+    "qrCode": {
+      "title": "QR Code Generator",
+      "description": "Generate QR Code dari URL, teks, atau data lainnya",
+      "enterTextOrUrl": "Masukkan Text atau URL",
+      "placeholder": "https://example.com atau teks lainnya...",
+      "settings": "Pengaturan",
+      "size": "Ukuran",
+      "errorCorrectionLevel": "Error Correction Level",
+      "previewAndDownload": "Preview & Download",
+      "downloadQRCode": "Download QR Code",
+      "enterTextToGenerate": "Masukkan text atau URL untuk generate QR Code",
+      "errorLevels": {
+        "low": "Low (7%)",
+        "medium": "Medium (15%)",
+        "quartile": "Quartile (25%)",
+        "high": "High (30%)"
+      }
+    },
+    "passwordGenerator": {
+      "title": "Password Generator",
+      "description": "Generate password yang kuat dan acak untuk keamanan maksimal",
+      "password": "Password",
+      "passwordStrength": "Kekuatan Password",
+      "generatePassword": "Generate Password",
+      "generateAgain": "Generate Lagi",
+      "copy": "Salin",
+      "copied": "Tersalin!",
+      "passwordOptions": "Opsi Password",
+      "passwordLength": "Panjang Password",
+      "strength": {
+        "weak": "Lemah",
+        "medium": "Sedang",
+        "strong": "Kuat"
+      },
+      "options": {
+        "uppercase": "Huruf Besar (A-Z)",
+        "lowercase": "Huruf Kecil (a-z)",
+        "numbers": "Angka (0-9)",
+        "symbols": "Simbol (!@#$%^&*)"
+      },
+      "errors": {
+        "selectAtLeastOne": "Pilih minimal satu opsi!"
+      }
+    },
+    "colorConverter": {
+      "title": "Color Converter",
+      "description": "Konversi warna antara HEX, RGB, HSL, dan CMYK",
+      "inputFormat": "Input Format",
+      "enterColor": "Masukkan Warna",
+      "convert": "Convert",
+      "colorPreview": "Color Preview",
+      "placeholders": {
+        "hex": "#FF0000 atau FF0000",
+        "rgb": "255, 0, 0",
+        "hsl": "0, 100%, 50%",
+        "cmyk": "0%, 100%, 100%, 0%"
+      },
+      "errors": {
+        "enterColorValue": "Masukkan nilai warna terlebih dahulu!",
+        "invalidHex": "Format HEX tidak valid. Gunakan format #RRGGBB atau RRGGBB",
+        "invalidRgb": "Format RGB tidak valid. Gunakan format: R, G, B (contoh: 255, 0, 0)",
+        "invalidHsl": "Format HSL tidak valid. Gunakan format: H, S%, L% (contoh: 0, 100%, 50%)",
+        "invalidCmyk": "Format CMYK tidak valid. Gunakan format: C%, M%, Y%, K% (contoh: 0%, 100%, 100%, 0%)",
+        "invalidColorFormat": "Format warna tidak valid"
+      }
+    },
+    "caseConverter": {
+      "title": "Case Converter",
+      "description": "Ubah format huruf teks dengan berbagai gaya",
+      "enterText": "Masukkan Text",
+      "placeholder": "Ketik atau tempel teks Anda di sini...",
+      "cases": {
+        "uppercase": "UPPERCASE",
+        "lowercase": "lowercase",
+        "titlecase": "Title Case",
+        "sentencecase": "Sentence case",
+        "camelcase": "camelCase",
+        "pascalcase": "PascalCase",
+        "snakecase": "snake_case",
+        "kebabcase": "kebab-case",
+        "toggle": "tOGGLE cASE"
+      }
+    },
+    "textCleaner": {
+      "title": "Text Cleaner",
+      "description": "Bersihkan teks dari spasi berlebih, baris duplikat, dan lainnya",
+      "inputText": "Input Text",
+      "outputText": "Output Text",
+      "inputPlaceholder": "Tempel teks Anda di sini...",
+      "outputPlaceholder": "Hasil akan muncul di sini...",
+      "copy": "Salin",
+      "copied": "Tersalin!",
+      "cleaningOptions": "Opsi Pembersihan",
+      "cleanText": "Bersihkan Text",
+      "options": {
+        "removeExtraSpaces": "Hapus spasi berlebih",
+        "removeDuplicateLines": "Hapus baris duplikat",
+        "removeEmptyLines": "Hapus baris kosong",
+        "trimLines": "Trim setiap baris",
+        "sortLines": "Urutkan baris (A-Z)"
+      }
+    },
+    "loremIpsum": {
+      "title": "Lorem Ipsum Generator",
+      "description": "Generate teks placeholder untuk desain dan mockup Anda",
+      "count": "Jumlah",
+      "type": "Tipe",
+      "generate": "Generate Lorem Ipsum",
+      "result": "Hasil",
+      "copy": "Salin",
+      "copied": "Tersalin!",
+      "types": {
+        "paragraphs": "Paragraf",
+        "sentences": "Kalimat",
+        "words": "Kata"
+      }
+    },
+    "textDiff": {
+      "title": "Text Diff Checker",
+      "description": "Bandingkan dua teks dan lihat perbedaannya"
+    },
+    "readabilityAnalyzer": {
+      "title": "Readability Analyzer",
+      "description": "Analisis tingkat keterbacaan teks menggunakan Flesch-Kincaid"
+    },
+    "keywordDensity": {
+      "title": "Keyword Density Checker",
+      "description": "Analisis kepadatan kata kunci dalam teks untuk SEO"
+    },
+    "markdownEditor": {
+      "title": "Markdown Editor",
+      "description": "Editor Markdown dengan preview real-time"
+    },
+    "regexTester": {
+      "title": "Regex Tester",
+      "description": "Test dan debug regular expression dengan live preview"
+    },
+    "textToSlug": {
+      "title": "Text to Slug Converter",
+      "description": "Convert text menjadi URL-friendly slug"
+    },
+    "imageCompressor": {
+      "title": "Image Compressor",
+      "description": "Kompres gambar tanpa kehilangan kualitas"
+    },
+    "imageResizer": {
+      "title": "Image Resizer",
+      "description": "Ubah ukuran gambar dengan mudah"
+    },
+    "imageCropper": {
+      "title": "Image Cropper",
+      "description": "Potong gambar sesuai kebutuhan"
+    },
+    "colorPalette": {
+      "title": "Color Palette Extractor",
+      "description": "Ekstrak palet warna dominan dari gambar"
+    },
+    "placeholderGenerator": {
+      "title": "Placeholder Image Generator",
+      "description": "Generate gambar placeholder untuk prototyping"
+    },
+    "imageToAscii": {
+      "title": "Image to ASCII Art",
+      "description": "Konversi gambar menjadi seni ASCII"
+    },
+    "svgOptimizer": {
+      "title": "SVG Optimizer",
+      "description": "Optimalkan dan bersihkan kode SVG"
+    },
+    "uuidGenerator": {
+      "title": "UUID Generator",
+      "description": "Generate UUID/GUID untuk development"
+    },
+    "hashGenerator": {
+      "title": "Hash Generator",
+      "description": "Generate hash MD5, SHA-256, dll"
+    },
+    "colorPicker": {
+      "title": "Color Picker",
+      "description": "Pilih warna dan dapatkan kode HEX, RGB, HSL"
+    },
+    "gradientGenerator": {
+      "title": "CSS Gradient Generator",
+      "description": "Buat gradient CSS dengan visual editor"
+    },
+    "jsonFormatter": {
+      "title": "JSON Formatter",
+      "description": "Format dan validasi JSON"
+    },
+    "base64Encoder": {
+      "title": "Base64 Encoder/Decoder",
+      "description": "Encode dan decode Base64"
+    },
+    "urlEncoder": {
+      "title": "URL Encoder/Decoder",
+      "description": "Encode dan decode URL"
+    },
+    "jwtDecoder": {
+      "title": "JWT Decoder",
+      "description": "Decode dan inspect JWT token"
+    },
+    "passwordStrength": {
+      "title": "Password Strength Checker",
+      "description": "Cek kekuatan password secara real-time - 100% client-side"
+    },
+    "aesEncryption": {
+      "title": "AES Encryption / Decryption",
+      "description": "Enkripsi dan dekripsi teks menggunakan AES-256 - 100% client-side"
+    },
+    "htmlEntityEncoder": {
+      "title": "HTML Entity Encoder/Decoder",
+      "description": "Encode dan decode HTML entities"
+    },
+    "csvJsonConverter": {
+      "title": "CSV ↔ JSON Converter",
+      "description": "Konversi antara format CSV dan JSON"
+    },
+    "codeFormatter": {
+      "title": "Code Formatter",
+      "description": "Format dan beautify kode HTML, CSS, JavaScript, dan JSON"
+    },
+    "kprCalculator": {
+      "title": "Kalkulator KPR / Cicilan",
+      "description": "Hitung cicilan bulanan untuk KPR atau pinjaman"
+    },
+    "bmiCalculator": {
+      "title": "Kalkulator BMI",
+      "description": "Hitung Body Mass Index untuk mengetahui status berat badan"
+    },
+    "discountCalculator": {
+      "title": "Kalkulator Diskon",
+      "description": "Hitung harga setelah diskon dan jumlah yang dihemat"
+    },
+    "compoundInterest": {
+      "title": "Kalkulator Bunga Majemuk",
+      "description": "Hitung pertumbuhan investasi dengan compound interest"
+    },
+    "aspectRatio": {
+      "title": "Kalkulator Aspect Ratio",
+      "description": "Hitung dimensi berdasarkan aspect ratio atau sebaliknya"
+    },
+    "ipChecker": {
+      "title": "What's My IP?",
+      "description": "Cek alamat IP publik dan User Agent browser"
+    },
+    "metaExtractor": {
+      "title": "Meta Tag Extractor",
+      "description": "Ekstrak meta tags, Open Graph, dan informasi SEO dari website"
+    },
+    "httpHeader": {
+      "title": "HTTP Header Checker",
+      "description": "Cek HTTP response headers dari website"
+    },
+    "dnsChecker": {
+      "title": "DNS Record Checker",
+      "description": "Cek catatan DNS (A, CNAME, MX, TXT) dari domain"
+    },
+    "siteDownChecker": {
+      "title": "Site Down Checker",
+      "description": "Cek apakah website down atau tidak dapat diakses"
+    },
+    "sslChecker": {
+      "title": "SSL Certificate Checker",
+      "description": "Cek informasi sertifikat SSL dari domain"
+    },
+    "whoisChecker": {
+      "title": "WHOIS Checker",
+      "description": "Cek informasi registrasi domain (WHOIS data)"
+    },
+    "urlParser": {
+      "title": "URL Parser & Builder",
+      "description": "Parse URL menjadi komponen atau build URL dari komponen"
+    },
+    "fancyText": {
+      "title": "Fancy Text Generator",
+      "description": "Generate teks dengan style unik untuk social media"
+    },
+    "randomName": {
+      "title": "Random Name Generator",
+      "description": "Generate nama acak untuk testing atau kreativitas"
+    },
+    "coinFlip": {
+      "title": "Lempar Koin",
+      "description": "Putar koin virtual untuk mengambil keputusan acak"
+    },
+    "stopwatchTimer": {
+      "title": "Stopwatch & Timer",
+      "description": "Stopwatch digital dengan fungsi lap dan timer countdown"
+    },
+    "timeZone": {
+      "title": "Time Zone Converter",
+      "description": "Konversi waktu antar zona waktu di seluruh dunia"
+    },
+    "dateCalculator": {
+      "title": "Kalkulator Durasi",
+      "description": "Hitung jumlah hari, jam, dan menit antara dua tanggal"
+    },
+    "pdfMerger": {
+      "title": "PDF Merger",
+      "description": "Gabungkan multiple file PDF menjadi satu"
+    },
+    "pdfSplitter": {
+      "title": "PDF Splitter",
+      "description": "Split atau extract halaman dari PDF"
+    },
+    "pdfCompressor": {
+      "title": "PDF Compressor",
+      "description": "Kompres ukuran file PDF tanpa kehilangan kualitas signifikan"
+    },
+    "imageToPdf": {
+      "title": "Image to PDF",
+      "description": "Konversi gambar menjadi file PDF"
+    },
+    "pdfToImages": {
+      "title": "PDF to Images",
+      "description": "Ekstrak halaman PDF menjadi gambar"
+    },
+    "youtubeDownloader": {
+      "title": "YouTube Downloader",
+      "description": "Download video dan audio dari YouTube dengan berbagai kualitas"
+    },
+    "tiktokDownloader": {
+      "title": "TikTok Downloader",
+      "description": "Download video dan audio dari TikTok"
+    },
+    "instagramDownloader": {
+      "title": "Instagram Downloader",
+      "description": "Download foto, video, reels, dan stories dari Instagram"
+    },
+    "twitterDownloader": {
+      "title": "Twitter/X Downloader",
+      "description": "Download video dan gambar dari Twitter/X"
+    },
+    "facebookDownloader": {
+      "title": "Facebook Downloader",
+      "description": "Download video dari Facebook"
+    }
+  },
+  "categories": {
+    "textTools": "Text Tools",
+    "imageTools": "Image Tools",
+    "generatorTools": "Generator Tools",
+    "developerTools": "Developer Tools",
+    "calculatorTools": "Kalkulator",
+    "seoTools": "SEO & Web Tools",
+    "funTools": "Fun & Creative",
+    "timeTools": "Time & Date Tools",
+    "pdfTools": "PDF Tools",
+    "downloaderTools": "Downloader Tools"
+  },
+  "articles": {
+    "defaultTitle": "Panduan Lengkap Menggunakan {toolName}",
+    "defaultContent1": "{toolName} adalah salah satu tool terbaik untuk membantu Anda dalam berbagai tugas. Tool ini dirancang dengan antarmuka yang sederhana dan mudah digunakan, sehingga siapa pun dapat menggunakannya tanpa perlu keahlian khusus.",
+    "defaultContent2": "Dengan {toolName}, Anda dapat menyelesaikan tugas Anda dengan lebih cepat dan efisien. Tool ini tersedia secara gratis dan dapat diakses langsung dari browser Anda tanpa perlu mengunduh software tambahan.",
+    "defaultContent3": "Untuk menggunakan tool ini, cukup ikuti langkah-langkah yang tersedia di halaman. Setiap langkah dirancang untuk memudahkan proses dan memastikan Anda mendapatkan hasil terbaik.",
+    "defaultContent4": "Jika Anda memiliki pertanyaan atau mengalami masalah saat menggunakan tool, jangan ragu untuk menghubungi tim support kami. Kami siap membantu Anda kapan saja.",
+    "tipsLabel": "Tips",
+    "defaultTips": "Gunakan tool ini secara bertanggung jawab dan pastikan Anda menghormati hak cipta dan kebijakan penggunaan dari konten yang Anda proses."
+  }
+}
+

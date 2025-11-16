@@ -1,0 +1,5 @@
+[install]
+# Gunakan isolated linker untuk menghindari phantom dependencies
+# dan membuat install lebih cepat dan predictable
+linker = "isolated"
+

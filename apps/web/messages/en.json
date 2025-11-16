@@ -1,0 +1,477 @@
+{
+  "common": {
+    "appName": "Breaktools",
+    "tagline": "Free and Fast Digital Tools",
+    "description": "Collection of free utility tools for file conversion, generators, and other productivity tools",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "download": "Download",
+    "copy": "Copy",
+    "clear": "Clear",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "open": "Open",
+    "search": "Search",
+    "filter": "Filter",
+    "select": "Select",
+    "upload": "Upload",
+    "process": "Process",
+    "reset": "Reset"
+  },
+  "nav": {
+    "home": "Home",
+    "tools": "Tools",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "tools": {
+    "wordCounter": {
+      "title": "Word Counter",
+      "description": "Count words, characters, paragraphs, and sentences in your text",
+      "words": "Words",
+      "characters": "Characters",
+      "charactersNoSpaces": "Characters (no spaces)",
+      "sentences": "Sentences",
+      "paragraphs": "Paragraphs",
+      "readingTime": "Reading Time",
+      "enterOrPasteText": "Enter or Paste Your Text",
+      "clear": "Clear",
+      "placeholder": "Type or paste your text here..."
+    },
+    "backgroundRemover": {
+      "title": "Background Remover",
+      "description": "Remove background from images easily - All processing in browser",
+      "uploadAndProcess": "Upload & Process",
+      "selectImage": "Select Image",
+      "removalMode": "Removal Mode",
+      "targetColor": "Target Color",
+      "tolerance": "Tolerance",
+      "processing": "Processing...",
+      "removeBackground": "Remove Background",
+      "tipsLabel": "Tips",
+      "tips": "Auto mode works well for white/bright backgrounds. Color mode for removing specific colors. Edge mode for automatic detection.",
+      "previewAndDownload": "Preview & Download",
+      "original": "Original",
+      "backgroundRemoved": "Background Removed",
+      "processed": "Processed",
+      "downloadImage": "Download Image (PNG)",
+      "selectImageToStart": "Select an image to start",
+      "modes": {
+        "auto": "Auto",
+        "color": "Color",
+        "edge": "Edge"
+      },
+      "errors": {
+        "invalidFileType": "File must be an image!",
+        "noFileSelected": "Please select an image first!"
+      }
+    },
+    "imageConverter": {
+      "title": "Image Converter",
+      "description": "Convert image formats (JPG, PNG, WebP) - All processing in your browser",
+      "uploadAndConvert": "Upload & Convert",
+      "selectImage": "Select Image",
+      "targetFormat": "Target Format",
+      "quality": "Quality",
+      "convertImage": "Convert Image",
+      "previewAndDownload": "Preview & Download",
+      "original": "Original",
+      "converted": "Converted",
+      "downloadImage": "Download Image",
+      "selectImageToStart": "Select an image to start",
+      "formats": {
+        "jpeg": "JPEG / JPG",
+        "png": "PNG",
+        "webp": "WebP"
+      },
+      "errors": {
+        "invalidFileType": "File must be an image!",
+        "noFileSelected": "Please select an image first!"
+      }
+    },
+    "colorPsychology": {
+      "title": "Color Psychology & Composition",
+      "description": "Analyze color psychology and composition from images - All processing in browser",
+      "uploadAndAnalyze": "Upload & Analyze",
+      "selectImage": "Select Image",
+      "numColors": "Number of Colors",
+      "analyzeColors": "Analyze Color Psychology",
+      "preview": "Preview",
+      "colorAnalysis": "Color Analysis",
+      "emotionsAndFeelings": "Emotions & Feelings",
+      "meaning": "Meaning",
+      "bestUseCases": "Best Use Cases",
+      "selectImageAndAnalyze": "Select an image and click \"Analyze\"",
+      "aboutTitle": "About Color Psychology",
+      "aboutDescription": "Color psychology studies how colors affect emotions, behavior, and human perception. This analysis helps understand the message conveyed through the color palette in your image.",
+      "errors": {
+        "invalidFileType": "File must be an image!",
+        "noFileSelected": "Please select an image first!"
+      }
+    },
+    "qrCode": {
+      "title": "QR Code Generator",
+      "description": "Generate QR Code from URL, text, or other data",
+      "enterTextOrUrl": "Enter Text or URL",
+      "placeholder": "https://example.com or other text...",
+      "settings": "Settings",
+      "size": "Size",
+      "errorCorrectionLevel": "Error Correction Level",
+      "previewAndDownload": "Preview & Download",
+      "downloadQRCode": "Download QR Code",
+      "enterTextToGenerate": "Enter text or URL to generate QR Code",
+      "errorLevels": {
+        "low": "Low (7%)",
+        "medium": "Medium (15%)",
+        "quartile": "Quartile (25%)",
+        "high": "High (30%)"
+      }
+    },
+    "passwordGenerator": {
+      "title": "Password Generator",
+      "description": "Generate strong and random passwords for maximum security",
+      "password": "Password",
+      "passwordStrength": "Password Strength",
+      "generatePassword": "Generate Password",
+      "generateAgain": "Generate Again",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "passwordOptions": "Password Options",
+      "passwordLength": "Password Length",
+      "strength": {
+        "weak": "Weak",
+        "medium": "Medium",
+        "strong": "Strong"
+      },
+      "options": {
+        "uppercase": "Uppercase (A-Z)",
+        "lowercase": "Lowercase (a-z)",
+        "numbers": "Numbers (0-9)",
+        "symbols": "Symbols (!@#$%^&*)"
+      },
+      "errors": {
+        "selectAtLeastOne": "Please select at least one option!"
+      }
+    },
+    "colorConverter": {
+      "title": "Color Converter",
+      "description": "Convert colors between HEX, RGB, HSL, and CMYK",
+      "inputFormat": "Input Format",
+      "enterColor": "Enter Color",
+      "convert": "Convert",
+      "colorPreview": "Color Preview",
+      "placeholders": {
+        "hex": "#FF0000 or FF0000",
+        "rgb": "255, 0, 0",
+        "hsl": "0, 100%, 50%",
+        "cmyk": "0%, 100%, 100%, 0%"
+      },
+      "errors": {
+        "enterColorValue": "Please enter a color value first!",
+        "invalidHex": "Invalid HEX format. Use format #RRGGBB or RRGGBB",
+        "invalidRgb": "Invalid RGB format. Use format: R, G, B (example: 255, 0, 0)",
+        "invalidHsl": "Invalid HSL format. Use format: H, S%, L% (example: 0, 100%, 50%)",
+        "invalidCmyk": "Invalid CMYK format. Use format: C%, M%, Y%, K% (example: 0%, 100%, 100%, 0%)",
+        "invalidColorFormat": "Invalid color format"
+      }
+    },
+    "caseConverter": {
+      "title": "Case Converter",
+      "description": "Change text format with various styles",
+      "enterText": "Enter Text",
+      "placeholder": "Type or paste your text here...",
+      "cases": {
+        "uppercase": "UPPERCASE",
+        "lowercase": "lowercase",
+        "titlecase": "Title Case",
+        "sentencecase": "Sentence case",
+        "camelcase": "camelCase",
+        "pascalcase": "PascalCase",
+        "snakecase": "snake_case",
+        "kebabcase": "kebab-case",
+        "toggle": "tOGGLE cASE"
+      }
+    },
+    "textCleaner": {
+      "title": "Text Cleaner",
+      "description": "Clean text from extra spaces, duplicate lines, and more",
+      "inputText": "Input Text",
+      "outputText": "Output Text",
+      "inputPlaceholder": "Paste your text here...",
+      "outputPlaceholder": "Results will appear here...",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "cleaningOptions": "Cleaning Options",
+      "cleanText": "Clean Text",
+      "options": {
+        "removeExtraSpaces": "Remove extra spaces",
+        "removeDuplicateLines": "Remove duplicate lines",
+        "removeEmptyLines": "Remove empty lines",
+        "trimLines": "Trim each line",
+        "sortLines": "Sort lines (A-Z)"
+      }
+    },
+    "loremIpsum": {
+      "title": "Lorem Ipsum Generator",
+      "description": "Generate placeholder text for your design and mockups",
+      "count": "Count",
+      "type": "Type",
+      "generate": "Generate Lorem Ipsum",
+      "result": "Result",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "types": {
+        "paragraphs": "Paragraphs",
+        "sentences": "Sentences",
+        "words": "Words"
+      }
+    },
+    "textDiff": {
+      "title": "Text Diff Checker",
+      "description": "Compare two texts and see the differences"
+    },
+    "readabilityAnalyzer": {
+      "title": "Readability Analyzer",
+      "description": "Analyze text readability level using Flesch-Kincaid"
+    },
+    "keywordDensity": {
+      "title": "Keyword Density Checker",
+      "description": "Analyze keyword density in text for SEO"
+    },
+    "markdownEditor": {
+      "title": "Markdown Editor",
+      "description": "Markdown editor with real-time preview"
+    },
+    "regexTester": {
+      "title": "Regex Tester",
+      "description": "Test and debug regular expressions with live preview"
+    },
+    "textToSlug": {
+      "title": "Text to Slug Converter",
+      "description": "Convert text to URL-friendly slug"
+    },
+    "imageCompressor": {
+      "title": "Image Compressor",
+      "description": "Compress images without losing quality"
+    },
+    "imageResizer": {
+      "title": "Image Resizer",
+      "description": "Resize images easily"
+    },
+    "imageCropper": {
+      "title": "Image Cropper",
+      "description": "Crop images as needed"
+    },
+    "colorPalette": {
+      "title": "Color Palette Extractor",
+      "description": "Extract dominant color palette from images"
+    },
+    "placeholderGenerator": {
+      "title": "Placeholder Image Generator",
+      "description": "Generate placeholder images for prototyping"
+    },
+    "imageToAscii": {
+      "title": "Image to ASCII Art",
+      "description": "Convert images to ASCII art"
+    },
+    "svgOptimizer": {
+      "title": "SVG Optimizer",
+      "description": "Optimize and clean SVG code"
+    },
+    "uuidGenerator": {
+      "title": "UUID Generator",
+      "description": "Generate UUID/GUID for development"
+    },
+    "hashGenerator": {
+      "title": "Hash Generator",
+      "description": "Generate MD5, SHA-256 hashes, etc."
+    },
+    "colorPicker": {
+      "title": "Color Picker",
+      "description": "Pick colors and get HEX, RGB, HSL codes"
+    },
+    "gradientGenerator": {
+      "title": "CSS Gradient Generator",
+      "description": "Create CSS gradients with visual editor"
+    },
+    "jsonFormatter": {
+      "title": "JSON Formatter",
+      "description": "Format and validate JSON"
+    },
+    "base64Encoder": {
+      "title": "Base64 Encoder/Decoder",
+      "description": "Encode and decode Base64"
+    },
+    "urlEncoder": {
+      "title": "URL Encoder/Decoder",
+      "description": "Encode and decode URL"
+    },
+    "jwtDecoder": {
+      "title": "JWT Decoder",
+      "description": "Decode and inspect JWT tokens"
+    },
+    "passwordStrength": {
+      "title": "Password Strength Checker",
+      "description": "Check password strength in real-time - 100% client-side"
+    },
+    "aesEncryption": {
+      "title": "AES Encryption / Decryption",
+      "description": "Encrypt and decrypt text using AES-256 - 100% client-side"
+    },
+    "htmlEntityEncoder": {
+      "title": "HTML Entity Encoder/Decoder",
+      "description": "Encode and decode HTML entities"
+    },
+    "csvJsonConverter": {
+      "title": "CSV ↔ JSON Converter",
+      "description": "Convert between CSV and JSON formats"
+    },
+    "codeFormatter": {
+      "title": "Code Formatter",
+      "description": "Format and beautify HTML, CSS, JavaScript, and JSON code"
+    },
+    "kprCalculator": {
+      "title": "KPR / Loan Calculator",
+      "description": "Calculate monthly installments for KPR or loans"
+    },
+    "bmiCalculator": {
+      "title": "BMI Calculator",
+      "description": "Calculate Body Mass Index to determine weight status"
+    },
+    "discountCalculator": {
+      "title": "Discount Calculator",
+      "description": "Calculate price after discount and amount saved"
+    },
+    "compoundInterest": {
+      "title": "Compound Interest Calculator",
+      "description": "Calculate investment growth with compound interest"
+    },
+    "aspectRatio": {
+      "title": "Aspect Ratio Calculator",
+      "description": "Calculate dimensions based on aspect ratio or vice versa"
+    },
+    "ipChecker": {
+      "title": "What's My IP?",
+      "description": "Check public IP address and browser User Agent"
+    },
+    "metaExtractor": {
+      "title": "Meta Tag Extractor",
+      "description": "Extract meta tags, Open Graph, and SEO information from websites"
+    },
+    "httpHeader": {
+      "title": "HTTP Header Checker",
+      "description": "Check HTTP response headers from websites"
+    },
+    "dnsChecker": {
+      "title": "DNS Record Checker",
+      "description": "Check DNS records (A, CNAME, MX, TXT) from domain"
+    },
+    "siteDownChecker": {
+      "title": "Site Down Checker",
+      "description": "Check if website is down or inaccessible"
+    },
+    "sslChecker": {
+      "title": "SSL Certificate Checker",
+      "description": "Check SSL certificate information from domain"
+    },
+    "whoisChecker": {
+      "title": "WHOIS Checker",
+      "description": "Check domain registration information (WHOIS data)"
+    },
+    "urlParser": {
+      "title": "URL Parser & Builder",
+      "description": "Parse URL into components or build URL from components"
+    },
+    "fancyText": {
+      "title": "Fancy Text Generator",
+      "description": "Generate text with unique styles for social media"
+    },
+    "randomName": {
+      "title": "Random Name Generator",
+      "description": "Generate random names for testing or creativity"
+    },
+    "coinFlip": {
+      "title": "Coin Flip",
+      "description": "Flip virtual coin for random decisions"
+    },
+    "stopwatchTimer": {
+      "title": "Stopwatch & Timer",
+      "description": "Digital stopwatch with lap function and countdown timer"
+    },
+    "timeZone": {
+      "title": "Time Zone Converter",
+      "description": "Convert time between time zones worldwide"
+    },
+    "dateCalculator": {
+      "title": "Duration Calculator",
+      "description": "Calculate days, hours, and minutes between two dates"
+    },
+    "pdfMerger": {
+      "title": "PDF Merger",
+      "description": "Merge multiple PDF files into one"
+    },
+    "pdfSplitter": {
+      "title": "PDF Splitter",
+      "description": "Split or extract pages from PDF"
+    },
+    "pdfCompressor": {
+      "title": "PDF Compressor",
+      "description": "Compress PDF file size without significant quality loss"
+    },
+    "imageToPdf": {
+      "title": "Image to PDF",
+      "description": "Convert images to PDF files"
+    },
+    "pdfToImages": {
+      "title": "PDF to Images",
+      "description": "Extract PDF pages as images"
+    },
+    "youtubeDownloader": {
+      "title": "YouTube Downloader",
+      "description": "Download videos and audio from YouTube in various qualities"
+    },
+    "tiktokDownloader": {
+      "title": "TikTok Downloader",
+      "description": "Download videos and audio from TikTok"
+    },
+    "instagramDownloader": {
+      "title": "Instagram Downloader",
+      "description": "Download photos, videos, reels, and stories from Instagram"
+    },
+    "twitterDownloader": {
+      "title": "Twitter/X Downloader",
+      "description": "Download videos and images from Twitter/X"
+    },
+    "facebookDownloader": {
+      "title": "Facebook Downloader",
+      "description": "Download videos from Facebook"
+    }
+  },
+  "categories": {
+    "textTools": "Text Tools",
+    "imageTools": "Image Tools",
+    "generatorTools": "Generator Tools",
+    "developerTools": "Developer Tools",
+    "calculatorTools": "Calculator Tools",
+    "seoTools": "SEO & Web Tools",
+    "funTools": "Fun & Creative",
+    "timeTools": "Time & Date Tools",
+    "pdfTools": "PDF Tools",
+    "downloaderTools": "Downloader Tools"
+  },
+  "articles": {
+    "defaultTitle": "Complete Guide to Using {toolName}",
+    "defaultContent1": "{toolName} is one of the best tools to help you with various tasks. This tool is designed with a simple and easy-to-use interface, so anyone can use it without special expertise.",
+    "defaultContent2": "With {toolName}, you can complete your tasks faster and more efficiently. This tool is available for free and can be accessed directly from your browser without downloading additional software.",
+    "defaultContent3": "To use this tool, simply follow the steps available on the page. Each step is designed to facilitate the process and ensure you get the best results.",
+    "defaultContent4": "If you have questions or experience problems while using the tool, feel free to contact our support team. We are ready to help you anytime.",
+    "tipsLabel": "Tips",
+    "defaultTips": "Use this tool responsibly and make sure you respect copyright and usage policies of the content you process."
+  }
+}
+

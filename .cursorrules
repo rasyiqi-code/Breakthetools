@@ -1,0 +1,163 @@
+# Cursor Rules untuk Breaktools
+
+## 📋 Aturan Umum
+
+### Struktur Kode
+
+- Gunakan TypeScript untuk semua file kode
+- Ikuti struktur monorepo dengan Bun workspaces
+- Setiap package harus memiliki folder `src/` dan `index.ts` untuk export
+
+### Organisasi File
+
+#### Pisahkan Kode Panjang ke File Terpisah
+
+**Jika sebuah file melebihi 300 baris kode, pertimbangkan untuk memisahkannya:**
+
+1. **Komponen React/TSX:**
+
+   - Jika komponen > 300 baris, pisahkan:
+     - Logic/hooks → `hooks/` atau `utils/`
+     - Sub-components → `components/` subfolder
+     - Types/interfaces → `types.ts` atau `types/` folder
+     - Constants → `constants.ts` atau `config.ts`
+
+2. **Utility Functions:**
+
+   - Jika file utils > 300 baris, pisahkan berdasarkan fungsi:
+     - `utils/colorUtils.ts` → pisah jika > 300 baris
+     - `utils/formatUtils.ts` → pisah jika > 300 baris
+     - Buat folder `utils/` dengan file-file spesifik
+
+3. **Konfigurasi:**
+
+   - Jika `config/tools.ts` > 300 baris, pisahkan per kategori:
+     - `config/tools/text.ts`
+     - `config/tools/image.ts`
+     - `config/tools/index.ts` (aggregate)
+
+4. **API Routes:**
+   - Jika route handler > 300 baris, pisahkan:
+     - Business logic → `lib/` atau `services/`
+     - Validation → `lib/validation.ts`
+     - Types → `types.ts`
+
+#### Struktur Folder yang Disarankan
+
+```
+packages/{package-name}/src/
+├── ComponentName.tsx          # Main component (< 300 lines)
+├── components/                # Sub-components jika diperlukan
+│   └── ComponentPart.tsx
+├── hooks/                     # Custom hooks
+│   └── useComponentLogic.ts
+├── utils/                     # Utility functions
+│   ├── helper1.ts
+│   └── helper2.ts
+├── types.ts                   # TypeScript types/interfaces
+├── constants.ts              # Constants
+└── index.ts                  # Exports
+```
+
+### Best Practices
+
+1. **Single Responsibility Principle:**
+
+   - Setiap file harus memiliki satu tanggung jawab utama
+   - Jika file melakukan terlalu banyak hal, pisahkan
+
+2. **Import Organization:**
+
+   - Group imports: external → workspace → relative
+   - Gunakan absolute imports dengan alias `@/` untuk apps/web
+
+3. **Naming Conventions:**
+
+   - Components: PascalCase (e.g., `WordCounter.tsx`)
+   - Utilities: camelCase (e.g., `colorUtils.ts`)
+   - Types: PascalCase (e.g., `ToolConfig`)
+   - Constants: UPPER_SNAKE_CASE (e.g., `MAX_FILE_SIZE`)
+
+4. **Code Splitting:**
+   - Pisahkan logic yang kompleks ke custom hooks
+   - Pisahkan calculations/transformations ke utility functions
+   - Pisahkan constants dan types ke file terpisah
+
+### Contoh Refactoring
+
+**Sebelum (file panjang > 300 lines):**
+
+```tsx
+// WordCounter.tsx (400 lines)
+export function WordCounter() {
+  // 50 lines of state management
+  // 100 lines of calculation logic
+  // 150 lines of UI rendering
+  // 100 lines of helper functions
+}
+```
+
+**Sesudah (dipisah):**
+
+```tsx
+// WordCounter.tsx (150 lines)
+import { useWordCounter } from "./hooks/useWordCounter";
+import { WordStats } from "./components/WordStats";
+import { TextInput } from "./components/TextInput";
+
+export function WordCounter() {
+  const { stats, handleInput } = useWordCounter();
+  // UI rendering only
+}
+
+// hooks/useWordCounter.ts (80 lines)
+// components/WordStats.tsx (50 lines)
+// components/TextInput.tsx (40 lines)
+// utils/textAnalysis.ts (80 lines)
+```
+
+### Kapan Harus Memisahkan?
+
+✅ **Pisahkan jika:**
+
+- File > 300 baris kode (tidak termasuk comments/whitespace)
+- File memiliki multiple responsibilities
+- Ada logic yang bisa digunakan ulang di tempat lain
+- File sulit dibaca dan di-maintain
+
+❌ **Jangan pisahkan jika:**
+
+- File < 300 baris dan sudah jelas strukturnya
+- Memisahkan akan membuat terlalu banyak file kecil (< 50 lines)
+- Logic sangat spesifik dan tidak akan digunakan ulang
+
+### Package Structure
+
+Setiap package di `packages/` harus mengikuti struktur:
+
+- `src/` - Source code
+- `src/index.ts` - Public exports
+- `src/utils/` - Utility functions (pisahkan jika > 300 lines per file)
+- `src/types.ts` atau `src/types/` - TypeScript definitions
+- `package.json` - Package configuration
+- `tsconfig.json` - TypeScript config
+
+### Tools & Components
+
+- Setiap tool component harus < 300 lines
+- Jika tool complex, pisahkan:
+  - Main component → `ToolName.tsx`
+  - Logic → `hooks/useToolName.ts`
+  - Utils → `utils/toolUtils.ts`
+  - Types → `types.ts`
+
+### Testing & Maintenance
+
+- File yang lebih kecil lebih mudah di-test
+- File yang lebih kecil lebih mudah di-review
+- File yang lebih kecil lebih mudah di-debug
+- File yang lebih kecil lebih mudah di-maintain
+
+---
+
+**Catatan:** Aturan 300 baris adalah guideline, bukan hard limit. Gunakan judgment untuk kasus spesifik. Prioritas utama adalah readability dan maintainability.

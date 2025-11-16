@@ -1,0 +1,14 @@
+{
+  "name": "@breaktools/image-tools",
+  "version": "0.1.0",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "react": "^18.2.0",
+    "lucide-react": "^0.294.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18",
+    "typescript": "^5"
+  },
+  "types": "./src/index.ts"
+}

@@ -1,0 +1,47 @@
+{
+  "name": "@breaktools/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@breaktools/calculator-tools": "workspace:*",
+    "@breaktools/downloader-tools": "workspace:*",
+    "@breaktools/fun-tools": "workspace:*",
+    "@breaktools/generator-tools": "workspace:*",
+    "@breaktools/image-tools": "workspace:*",
+    "@breaktools/pdf-tools": "workspace:*",
+    "@breaktools/seo-tools": "workspace:*",
+    "@breaktools/text-tools": "workspace:*",
+    "@breaktools/time-tools": "workspace:*",
+    "@breaktools/ui": "workspace:*",
+    "@tobyg74/tiktok-api-dl": "^1.3.7",
+    "ab-downloader": "^1.0.1",
+    "canvas": "^3.2.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "jsdom": "^26.1.0",
+    "lucide-react": "^0.294.0",
+    "next": "16.0.3",
+    "next-intl": "^4.5.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-intl": "^7.1.14",
+    "tailwind-merge": "^2.1.0",
+    "twitter-downloader": "^1.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "null-loader": "^4.0.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}
