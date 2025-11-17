@@ -1,13 +1,19 @@
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import { Inter } from 'next/font/google'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import '../globals.css'
 import { Header } from '@/components/layout/Header'
 import { Sidebar } from '@/components/layout/Sidebar'
 import { messages } from '@/lib/messages'
 import { IntlProviderWrapper } from '@/components/IntlProviderWrapper'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+    subsets: ['latin'],
+    display: 'swap',
+    fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+    adjustFontFallback: true,
+})
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }))
@@ -33,8 +39,8 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <body className={inter.className}>
-                <IntlProviderWrapper 
-                    locale={locale} 
+                <IntlProviderWrapper
+                    locale={locale}
                     messages={localeMessages}
                 >
                     <div className="min-h-screen bg-neutral-50">
@@ -47,6 +53,7 @@ export default async function LocaleLayout({
                         </div>
                     </div>
                 </IntlProviderWrapper>
+                <SpeedInsights />
             </body>
         </html>
     )
