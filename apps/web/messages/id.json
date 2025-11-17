@@ -71,6 +71,91 @@
         "noFileSelected": "Pilih gambar terlebih dahulu!"
       }
     },
+    "digitalRuler": {
+      "title": "Penggaris Digital",
+      "description": "Ukur objek fisik dengan menempatkannya di layar - Sempurna saat lupa membawa penggaris",
+      "settings": "Pengaturan",
+      "unit": "Satuan",
+      "orientation": "Orientasi",
+      "orientations": {
+        "horizontal": "Horizontal",
+        "vertical": "Vertikal"
+      },
+      "rulerLength": "Panjang Penggaris",
+      "screenDPI": "DPI Layar",
+      "dpiNote": "Sesuaikan DPI berdasarkan layar Anda. Gunakan kalibrasi untuk pengukuran yang akurat.",
+      "calibrate": "Kalibrasi dengan Kartu Kredit",
+      "calibrationInstruction": "Tempatkan kartu kredit (lebar {width} {unit}) di layar dan sesuaikan slider DPI hingga penggaris cocok dengan lebar kartu.",
+      "rulerDisplay": "Penggaris",
+      "instruction": "Tempatkan objek yang ingin diukur di atas penggaris yang ditampilkan di layar Anda. Sesuaikan DPI untuk pengukuran yang akurat.",
+      "currentSize": "Ukuran penggaris saat ini: {length} {unit}",
+      "autoCalibrate": "Kalibrasi Otomatis",
+      "autoCalibrated": "Terkalibrasi otomatis ke {dpi} DPI berdasarkan perangkat Anda. Untuk akurasi lebih baik, gunakan kalibrasi manual dengan kartu kredit.",
+      "enterFullscreen": "Masuk Fullscreen",
+      "exitFullscreen": "Keluar Fullscreen",
+      "fullscreenInfo": "Tekan ESC atau klik Keluar Fullscreen untuk menutup",
+      "tipsLabel": "Tips",
+      "tips": "Gunakan Kalibrasi Otomatis untuk mendeteksi DPI perangkat Anda secara otomatis. Untuk akurasi terbaik, gunakan kalibrasi manual dengan kartu kredit (8.56 cm atau 3.375 in lebar). Mode fullscreen memberikan ukuran penggaris maksimum untuk mengukur objek yang lebih besar."
+    },
+    "watermarkMaker": {
+      "title": "Watermark Maker",
+      "description": "Tambahkan watermark teks ke gambar dengan mudah - Semua proses di browser",
+      "uploadAndSettings": "Upload & Pengaturan",
+      "selectImage": "Pilih Gambar",
+      "watermarkText": "Teks Watermark",
+      "watermarkTextPlaceholder": "Masukkan teks watermark...",
+      "textColor": "Warna Teks",
+      "textSize": "Ukuran Teks",
+      "opacity": "Opacity",
+      "position": "Posisi",
+      "positions": {
+        "top-left": "Kiri Atas",
+        "top-right": "Kanan Atas",
+        "bottom-left": "Kiri Bawah",
+        "bottom-right": "Kanan Bawah",
+        "center": "Tengah"
+      },
+      "rotation": "Rotasi",
+      "processing": "Memproses...",
+      "applyWatermark": "Terapkan Watermark",
+      "tipsLabel": "Tips",
+      "tips": "Sesuaikan opacity dan posisi agar watermark terlihat tetapi tidak terlalu mengganggu. Gunakan rotasi untuk watermark diagonal.",
+      "previewAndDownload": "Preview & Download",
+      "original": "Original",
+      "watermarked": "Dengan Watermark",
+      "processed": "Diproses",
+      "downloadImage": "Download Gambar (PNG)",
+      "selectImageToStart": "Pilih gambar untuk memulai",
+      "errors": {
+        "invalidFileType": "File harus berupa gambar!",
+        "noImageOrText": "Pilih gambar dan masukkan teks watermark!"
+      }
+    },
+    "imageRotatorFlip": {
+      "title": "Image Rotator & Flip",
+      "description": "Putar dan balik gambar dengan mudah - Semua proses di browser",
+      "uploadAndTransform": "Upload & Transform",
+      "selectImage": "Pilih Gambar",
+      "rotation": "Rotasi",
+      "flip": "Balik",
+      "horizontal": "Horizontal",
+      "vertical": "Vertikal",
+      "reset": "Reset",
+      "processing": "Memproses...",
+      "applyTransforms": "Terapkan Transform",
+      "tipsLabel": "Tips",
+      "tips": "Anda dapat memutar 90°, 180°, atau sudut kustom. Balik horizontal untuk efek cermin, balik vertikal untuk membalik.",
+      "previewAndDownload": "Preview & Download",
+      "original": "Original",
+      "transformed": "Ditransform",
+      "processed": "Diproses",
+      "downloadImage": "Download Gambar (PNG)",
+      "selectImageToStart": "Pilih gambar untuk memulai",
+      "errors": {
+        "invalidFileType": "File harus berupa gambar!",
+        "noFileSelected": "Pilih gambar terlebih dahulu!"
+      }
+    },
     "imageConverter": {
       "title": "Image Converter",
       "description": "Konversi format gambar (JPG, PNG, WebP) - Semua proses di browser Anda",
@@ -178,6 +263,39 @@
         "invalidHsl": "Format HSL tidak valid. Gunakan format: H, S%, L% (contoh: 0, 100%, 50%)",
         "invalidCmyk": "Format CMYK tidak valid. Gunakan format: C%, M%, Y%, K% (contoh: 0%, 100%, 100%, 0%)",
         "invalidColorFormat": "Format warna tidak valid"
+      }
+    },
+    "randomNumberGenerator": {
+      "title": "Random Number Generator",
+      "description": "Generate angka acak dengan range dan jumlah yang bisa disesuaikan",
+      "settings": "Pengaturan",
+      "range": "Rentang",
+      "min": "Min",
+      "max": "Max",
+      "count": "Jumlah",
+      "numberType": "Tipe Angka",
+      "numberTypes": {
+        "integer": "Bilangan Bulat",
+        "decimal": "Desimal"
+      },
+      "decimalPlaces": "Desimal",
+      "allowDuplicates": "Izinkan Duplikat",
+      "allowDuplicatesHint": "Jika dinonaktifkan, semua angka akan unik (memerlukan rentang ≥ jumlah)",
+      "generate": "Generate Angka",
+      "results": "Hasil",
+      "copy": "Salin Semua",
+      "copied": "Tersalin!",
+      "clear": "Hapus",
+      "statistics": "Statistik",
+      "average": "Rata-rata",
+      "clickGenerate": "Klik Generate untuk membuat angka acak",
+      "tipsLabel": "Tips",
+      "tips": "Gunakan mode bilangan bulat untuk angka utuh. Gunakan mode desimal untuk angka pecahan. Nonaktifkan duplikat untuk mendapatkan angka unik saja (berguna untuk lotere dan pemilihan).",
+      "errors": {
+        "invalidInput": "Mohon masukkan angka yang valid!",
+        "minMaxError": "Nilai minimum harus kurang dari atau sama dengan nilai maksimum!",
+        "countError": "Jumlah harus antara 1 dan 1000!",
+        "noDuplicateError": "Tidak dapat menghasilkan angka unik. Rentang terlalu kecil untuk jumlah yang diminta!"
       }
     },
     "caseConverter": {
@@ -355,6 +473,79 @@
       "title": "Kalkulator Aspect Ratio",
       "description": "Hitung dimensi berdasarkan aspect ratio atau sebaliknya"
     },
+    "ageCalculator": {
+      "title": "Kalkulator Umur",
+      "description": "Hitung umur tepat Anda dari tanggal lahir dengan rincian lengkap",
+      "input": "Input",
+      "birthDate": "Tanggal Lahir",
+      "dateHint": "Pilih tanggal lahir Anda",
+      "calculate": "Hitung Umur",
+      "result": "Hasil",
+      "yourAge": "Umur Anda",
+      "years": "Tahun",
+      "months": "Bulan",
+      "days": "Hari",
+      "totalDays": "Total Hari",
+      "totalWeeks": "Total Minggu",
+      "totalMonths": "Total Bulan",
+      "nextBirthday": "Ulang Tahun Berikutnya",
+      "daysLeft": "Hari Tersisa",
+      "onDate": "Pada {date}",
+      "dayOfWeek": "Hari Lahir",
+      "zodiacSign": "Zodiak",
+      "enterBirthDate": "Masukkan tanggal lahir untuk menghitung umur",
+      "tipsLabel": "Tips",
+      "tips": "Kalkulator ini menampilkan umur tepat Anda termasuk tahun, bulan, dan hari. Juga menampilkan hitungan mundur ulang tahun berikutnya dan zodiak.",
+      "dayNames": {
+        "sunday": "Minggu",
+        "monday": "Senin",
+        "tuesday": "Selasa",
+        "wednesday": "Rabu",
+        "thursday": "Kamis",
+        "friday": "Jumat",
+        "saturday": "Sabtu"
+      },
+      "errors": {
+        "noBirthDate": "Mohon masukkan tanggal lahir!",
+        "futureDate": "Tanggal lahir tidak boleh di masa depan!"
+      }
+    },
+    "percentageCalculator": {
+      "title": "Kalkulator Persentase",
+      "description": "Hitung persentase, perubahan persentase, dan reverse percentage",
+      "input": "Input",
+      "calculationType": "Jenis Perhitungan",
+      "percentage": "Persentase (%)",
+      "ofNumber": "Dari Angka",
+      "originalValue": "Nilai Awal",
+      "newValue": "Nilai Baru",
+      "resultValue": "Nilai Hasil",
+      "isPercentage": "Adalah (%)",
+      "percentageOf": "Persentase Dari",
+      "percentageOfHint": "Berapa X% dari Y?",
+      "percentageOfDescription": "Hitung berapa persen dari sebuah angka sama dengan nilai lain",
+      "percentageChange": "Perubahan Persentase",
+      "percentageChangeHint": "Hitung persentase naik atau turun",
+      "percentageChangeDescription": "Hitung perubahan persentase dari satu nilai ke nilai lain",
+      "reversePercentage": "Reverse Percentage",
+      "reversePercentageHint": "Cari nilai awal dari persentase",
+      "reversePercentageDescription": "Jika sebuah nilai adalah X% dari sesuatu, cari nilai aslinya",
+      "calculate": "Hitung",
+      "result": "Hasil",
+      "isPercentageOf": "{percentage}% dari {number} adalah {value}",
+      "increase": "Naik",
+      "decrease": "Turun",
+      "difference": "Selisih",
+      "reverseResult": "{value} adalah {percentage}% dari nilai awal",
+      "enterValues": "Masukkan nilai dan klik Hitung",
+      "tipsLabel": "Tips",
+      "tips": "Gunakan Persentase Dari untuk mencari bagian dari sebuah angka. Gunakan Perubahan Persentase untuk menghitung kenaikan atau penurunan. Gunakan Reverse Percentage untuk mencari nilai awal saat Anda tahu hasil dan persentase.",
+      "errors": {
+        "invalidInput": "Mohon masukkan angka yang valid!",
+        "invalidPercentage": "Persentase harus antara 0 dan 100!",
+        "zeroValue": "Nilai awal tidak boleh nol!"
+      }
+    },
     "ipChecker": {
       "title": "What's My IP?",
       "description": "Cek alamat IP publik dan User Agent browser"
@@ -387,6 +578,36 @@
       "title": "URL Parser & Builder",
       "description": "Parse URL menjadi komponen atau build URL dari komponen"
     },
+    "techStackAnalyzer": {
+      "title": "Tech Stack Analyzer & Composer",
+      "description": "Analyze atau compose tech stack dari website - Berguna untuk developer",
+      "analyzeMode": "Analyze",
+      "composeMode": "Compose",
+      "analyze": "Analyze",
+      "analyzing": "Menganalisis...",
+      "analyzingUrl": "Menganalisis tech stack website...",
+      "urlPlaceholder": "https://example.com",
+      "composeDescription": "Pilih teknologi untuk menyusun tech stack Anda. Klik teknologi untuk menambah/menghapusnya.",
+      "techStack": "Tech Stack",
+      "copyBadges": "Salin Badges",
+      "copied": "Tersalin!",
+      "badgesPreview": "Preview Badges",
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "database": "Database",
+        "hosting": "Hosting",
+        "cms": "CMS",
+        "cdn": "CDN"
+      },
+      "tipsLabel": "Tips",
+      "tips": "Gunakan mode Analyze untuk secara otomatis mendeteksi teknologi dari website. Gunakan mode Compose untuk secara manual membangun tech stack dan generate badges untuk README atau dokumentasi.",
+      "errors": {
+        "noUrl": "Mohon masukkan URL!",
+        "fetchFailed": "Gagal mengambil data website. Pastikan URL valid dan dapat diakses.",
+        "analyzeFailed": "Gagal menganalisis tech stack. Mohon coba lagi atau gunakan mode Compose untuk membangun secara manual."
+      }
+    },
     "fancyText": {
       "title": "Fancy Text Generator",
       "description": "Generate teks dengan style unik untuk social media"
@@ -410,6 +631,32 @@
     "dateCalculator": {
       "title": "Kalkulator Durasi",
       "description": "Hitung jumlah hari, jam, dan menit antara dua tanggal"
+    },
+    "unixTimestampConverter": {
+      "title": "Unix Timestamp Converter",
+      "description": "Konversi antara Unix timestamp dan format tanggal - Penting untuk developer",
+      "timestampToDate": "Timestamp ke Date",
+      "dateToTimestamp": "Date ke Timestamp",
+      "enterTimestamp": "Masukkan Unix Timestamp",
+      "enterDate": "Masukkan Tanggal & Waktu",
+      "timestampPlaceholder": "contoh: 1609459200",
+      "useCurrentTimestamp": "Gunakan Timestamp Saat Ini",
+      "useCurrentDate": "Gunakan Tanggal Saat Ini",
+      "unixTimestamp": "Unix Timestamp",
+      "localDate": "Tanggal Lokal",
+      "utcDate": "Tanggal UTC",
+      "isoDate": "Tanggal ISO",
+      "readableFormat": "Format yang Mudah Dibaca",
+      "copy": "Salin",
+      "copied": "Tersalin!",
+      "result": "Hasil",
+      "tipsLabel": "Tips",
+      "tips": "Unix timestamp adalah jumlah detik sejak 1 Januari 1970 (UTC). Anda dapat memasukkan timestamp dalam detik (10 digit) atau milidetik (13 digit). Tool ini secara otomatis mendeteksi dan mengonversi kedua format.",
+      "errors": {
+        "invalidTimestamp": "Timestamp tidak valid! Mohon masukkan Unix timestamp yang valid (detik sejak 1970).",
+        "timestampTooLarge": "Timestamp terlalu besar! Tahun maksimum yang didukung adalah 2100.",
+        "invalidDate": "Format tanggal tidak valid! Mohon masukkan tanggal dan waktu yang valid."
+      }
     },
     "pdfMerger": {
       "title": "PDF Merger",

@@ -1,14 +1,14 @@
-import { 
-  FileText, 
-  Image, 
-  Wand2, 
+import {
+  FileText,
+  Image,
+  Wand2,
   FileCode,
   Calculator,
   Globe,
   Clock,
   Sparkles,
   Download,
-  LucideIcon 
+  LucideIcon
 } from 'lucide-react'
 
 export interface Tool {
@@ -140,6 +140,21 @@ export const toolCategories: ToolCategory[] = [
         id: 'color-psychology',
         name: 'Color Psychology & Composition',
         description: 'Analisis psikologi warna dan komposisi dari gambar'
+      },
+      {
+        id: 'digital-ruler',
+        name: 'Digital Ruler',
+        description: 'Penggaris digital untuk mengukur di layar dengan presisi'
+      },
+      {
+        id: 'watermark-maker',
+        name: 'Watermark Maker',
+        description: 'Tambahkan watermark ke gambar dengan mudah'
+      },
+      {
+        id: 'image-rotator-flip',
+        name: 'Image Rotator & Flip',
+        description: 'Putar dan balik gambar dengan mudah'
       }
     ]
   },
@@ -183,6 +198,11 @@ export const toolCategories: ToolCategory[] = [
         id: 'color-converter',
         name: 'Color Converter',
         description: 'Konversi warna antara HEX, RGB, HSL, dan CMYK'
+      },
+      {
+        id: 'random-number-generator',
+        name: 'Random Number Generator',
+        description: 'Generate angka acak dengan range dan jumlah yang bisa disesuaikan'
       }
     ]
   },
@@ -269,6 +289,16 @@ export const toolCategories: ToolCategory[] = [
         id: 'aspect-ratio',
         name: 'Kalkulator Aspect Ratio',
         description: 'Hitung dimensi berdasarkan aspect ratio atau sebaliknya'
+      },
+      {
+        id: 'age-calculator',
+        name: 'Kalkulator Umur',
+        description: 'Hitung umur dari tanggal lahir dengan detail lengkap'
+      },
+      {
+        id: 'percentage-calculator',
+        name: 'Kalkulator Persentase',
+        description: 'Hitung persentase, perubahan persentase, dan reverse percentage'
       }
     ]
   },
@@ -317,120 +347,130 @@ export const toolCategories: ToolCategory[] = [
         id: 'url-parser',
         name: 'URL Parser & Builder',
         description: 'Parse URL menjadi komponen atau build URL dari komponen'
+      },
+      {
+        id: 'tech-stack-analyzer',
+        name: 'Tech Stack Analyzer & Composer',
+        description: 'Analyze atau compose tech stack dari website - Berguna untuk developer'
       }
     ]
   },
+  {
+    id: 'fun-tools',
+    name: 'Fun & Creative',
+    description: 'Generator kreatif dan tools menyenangkan',
+    icon: Sparkles,
+    tools: [
       {
-        id: 'fun-tools',
-        name: 'Fun & Creative',
-        description: 'Generator kreatif dan tools menyenangkan',
-        icon: Sparkles,
-        tools: [
-          {
-            id: 'fancy-text',
-            name: 'Fancy Text Generator',
-            description: 'Generate teks dengan style unik untuk social media'
-          },
-          {
-            id: 'random-name',
-            name: 'Random Name Generator',
-            description: 'Generate nama acak untuk testing atau kreativitas'
-          },
-          {
-            id: 'coin-flip',
-            name: 'Lempar Koin',
-            description: 'Putar koin virtual untuk mengambil keputusan acak'
-          }
-        ]
+        id: 'fancy-text',
+        name: 'Fancy Text Generator',
+        description: 'Generate teks dengan style unik untuk social media'
       },
       {
-        id: 'time-tools',
-        name: 'Time & Date Tools',
-        description: 'Tools untuk waktu, tanggal, dan zona waktu',
-        icon: Clock,
-        tools: [
-          {
-            id: 'stopwatch-timer',
-            name: 'Stopwatch & Timer',
-            description: 'Stopwatch digital dengan fungsi lap dan timer countdown'
-          },
-          {
-            id: 'time-zone',
-            name: 'Time Zone Converter',
-            description: 'Konversi waktu antar zona waktu di seluruh dunia'
-          },
-          {
-            id: 'date-calculator',
-            name: 'Kalkulator Durasi',
-            description: 'Hitung jumlah hari, jam, dan menit antara dua tanggal'
-          }
-        ]
+        id: 'random-name',
+        name: 'Random Name Generator',
+        description: 'Generate nama acak untuk testing atau kreativitas'
       },
       {
-        id: 'pdf-tools',
-        name: 'PDF Tools',
-        description: 'Alat untuk memproses dan memanipulasi file PDF',
-        icon: FileText,
-        tools: [
-          {
-            id: 'pdf-merger',
-            name: 'PDF Merger',
-            description: 'Gabungkan multiple file PDF menjadi satu'
-          },
-          {
-            id: 'pdf-splitter',
-            name: 'PDF Splitter',
-            description: 'Split atau extract halaman dari PDF'
-          },
-          {
-            id: 'pdf-compressor',
-            name: 'PDF Compressor',
-            description: 'Kompres ukuran file PDF tanpa kehilangan kualitas signifikan'
-          },
-          {
-            id: 'image-to-pdf',
-            name: 'Image to PDF',
-            description: 'Konversi gambar menjadi file PDF'
-          },
-          {
-            id: 'pdf-to-images',
-            name: 'PDF to Images',
-            description: 'Ekstrak halaman PDF menjadi gambar'
-          }
-        ]
-      },
-      {
-        id: 'downloader-tools',
-        name: 'Downloader Tools',
-        description: 'Download media dari berbagai platform social media',
-        icon: Download,
-        tools: [
-          {
-            id: 'youtube-downloader',
-            name: 'YouTube Downloader',
-            description: 'Download video dan audio dari YouTube dengan berbagai kualitas'
-          },
-          {
-            id: 'tiktok-downloader',
-            name: 'TikTok Downloader',
-            description: 'Download video dan audio dari TikTok'
-          },
-          {
-            id: 'instagram-downloader',
-            name: 'Instagram Downloader',
-            description: 'Download foto, video, reels, dan stories dari Instagram'
-          },
-          {
-            id: 'twitter-downloader',
-            name: 'Twitter/X Downloader',
-            description: 'Download video dan gambar dari Twitter/X'
-          },
-          {
-            id: 'facebook-downloader',
-            name: 'Facebook Downloader',
-            description: 'Download video dari Facebook'
-          }
-        ]
+        id: 'coin-flip',
+        name: 'Lempar Koin',
+        description: 'Putar koin virtual untuk mengambil keputusan acak'
       }
+    ]
+  },
+  {
+    id: 'time-tools',
+    name: 'Time & Date Tools',
+    description: 'Tools untuk waktu, tanggal, dan zona waktu',
+    icon: Clock,
+    tools: [
+      {
+        id: 'stopwatch-timer',
+        name: 'Stopwatch & Timer',
+        description: 'Stopwatch digital dengan fungsi lap dan timer countdown'
+      },
+      {
+        id: 'time-zone',
+        name: 'Time Zone Converter',
+        description: 'Konversi waktu antar zona waktu di seluruh dunia'
+      },
+      {
+        id: 'date-calculator',
+        name: 'Kalkulator Durasi',
+        description: 'Hitung jumlah hari, jam, dan menit antara dua tanggal'
+      },
+      {
+        id: 'unix-timestamp-converter',
+        name: 'Unix Timestamp Converter',
+        description: 'Konversi antara Unix timestamp dan format tanggal - Penting untuk developer'
+      }
+    ]
+  },
+  {
+    id: 'pdf-tools',
+    name: 'PDF Tools',
+    description: 'Alat untuk memproses dan memanipulasi file PDF',
+    icon: FileText,
+    tools: [
+      {
+        id: 'pdf-merger',
+        name: 'PDF Merger',
+        description: 'Gabungkan multiple file PDF menjadi satu'
+      },
+      {
+        id: 'pdf-splitter',
+        name: 'PDF Splitter',
+        description: 'Split atau extract halaman dari PDF'
+      },
+      {
+        id: 'pdf-compressor',
+        name: 'PDF Compressor',
+        description: 'Kompres ukuran file PDF tanpa kehilangan kualitas signifikan'
+      },
+      {
+        id: 'image-to-pdf',
+        name: 'Image to PDF',
+        description: 'Konversi gambar menjadi file PDF'
+      },
+      {
+        id: 'pdf-to-images',
+        name: 'PDF to Images',
+        description: 'Ekstrak halaman PDF menjadi gambar'
+      }
+    ]
+  },
+  {
+    id: 'downloader-tools',
+    name: 'Downloader Tools',
+    description: 'Download media dari berbagai platform social media',
+    icon: Download,
+    tools: [
+      {
+        id: 'youtube-downloader',
+        name: 'YouTube Downloader',
+        description: 'Download video dan audio dari YouTube dengan berbagai kualitas'
+      },
+      {
+        id: 'tiktok-downloader',
+        name: 'TikTok Downloader',
+        description: 'Download video dan audio dari TikTok'
+      },
+      {
+        id: 'instagram-downloader',
+        name: 'Instagram Downloader',
+        description: 'Download foto, video, reels, dan stories dari Instagram'
+      },
+      {
+        id: 'twitter-downloader',
+        name: 'Twitter/X Downloader',
+        description: 'Download video dan gambar dari Twitter/X'
+      },
+      {
+        id: 'facebook-downloader',
+        name: 'Facebook Downloader',
+        description: 'Download video dari Facebook'
+      }
+    ]
+  }
 ]
 

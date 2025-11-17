@@ -6,4 +6,5 @@ export { SiteDownChecker } from './SiteDownChecker'
 export { SSLChecker } from './SSLChecker'
 export { WHOISChecker } from './WHOISChecker'
 export { URLParser } from './URLParser'
+export { TechStackAnalyzer } from './TechStackAnalyzer'
 

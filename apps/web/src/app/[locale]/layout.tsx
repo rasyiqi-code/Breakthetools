@@ -8,12 +8,7 @@ import { Sidebar } from '@/components/layout/Sidebar'
 import { messages } from '@/lib/messages'
 import { IntlProviderWrapper } from '@/components/IntlProviderWrapper'
 
-const inter = Inter({
-    subsets: ['latin'],
-    display: 'swap',
-    fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-    adjustFontFallback: true,
-})
+const inter = Inter({ subsets: ['latin'] })
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }))

@@ -2,14 +2,12 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, Image as ImageIcon, FileImage, Wand2, Loader2 } from 'lucide-react'
-import { useIntl } from 'react-intl'
+import { useTranslations } from 'next-intl'
 import { removeByColor, removeByEdge, removeAuto } from './utils/backgroundRemovalAlgorithms'
 import { hexToRgb } from './utils/backgroundRemovalUtils'
 
 export function BackgroundRemover() {
-    const intl = useIntl()
-    const t = (key: string, params?: Record<string, any>) =>
-        intl.formatMessage({ id: `tools.backgroundRemover.${key}` }, params as any)
+    const t = useTranslations('tools.backgroundRemover')
     const [originalFile, setOriginalFile] = useState<File | null>(null)
     const [preview, setPreview] = useState<string>('')
     const [processedUrl, setProcessedUrl] = useState<string>('')
@@ -150,8 +148,8 @@ export function BackgroundRemover() {
                                         key={mode}
                                         onClick={() => setRemovalMode(mode)}
                                         className={`flex-1 px-3 sm:px-4 py-2 rounded-lg font-medium transition-colors min-h-[44px] text-xs sm:text-sm ${removalMode === mode
-                                                ? 'bg-primary-600 text-white'
-                                                : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                                            ? 'bg-primary-600 text-white'
+                                            : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                                             }`}
                                     >
                                         {t(`modes.${mode}`)}

@@ -71,6 +71,91 @@
         "noFileSelected": "Please select an image first!"
       }
     },
+    "digitalRuler": {
+      "title": "Digital Ruler",
+      "description": "Measure physical objects by placing them on your screen - Perfect for when you forget to bring a ruler",
+      "settings": "Settings",
+      "unit": "Unit",
+      "orientation": "Orientation",
+      "orientations": {
+        "horizontal": "Horizontal",
+        "vertical": "Vertical"
+      },
+      "rulerLength": "Ruler Length",
+      "screenDPI": "Screen DPI",
+      "dpiNote": "Adjust DPI based on your screen. Use calibration for accurate measurements.",
+      "calibrate": "Calibrate with Credit Card",
+      "calibrationInstruction": "Place a credit card ({width} {unit} wide) on your screen and adjust the DPI slider until the ruler matches the card width exactly.",
+      "rulerDisplay": "Ruler",
+      "instruction": "Place the object you want to measure on top of the ruler displayed on your screen. Adjust DPI for accurate measurements.",
+      "currentSize": "Current ruler size: {length} {unit}",
+      "autoCalibrate": "Auto Calibrate",
+      "autoCalibrated": "Auto-calibrated to {dpi} DPI based on your device. For more accuracy, use manual calibration with a credit card.",
+      "enterFullscreen": "Enter Fullscreen",
+      "exitFullscreen": "Exit Fullscreen",
+      "fullscreenInfo": "Press ESC or click Exit Fullscreen to close",
+      "tipsLabel": "Tips",
+      "tips": "Use Auto Calibrate to automatically detect your device DPI. For best accuracy, use manual calibration with a credit card (8.56 cm or 3.375 in wide). Fullscreen mode gives you maximum ruler size for measuring larger objects."
+    },
+    "watermarkMaker": {
+      "title": "Watermark Maker",
+      "description": "Add text watermark to images easily - All processing in browser",
+      "uploadAndSettings": "Upload & Settings",
+      "selectImage": "Select Image",
+      "watermarkText": "Watermark Text",
+      "watermarkTextPlaceholder": "Enter watermark text...",
+      "textColor": "Text Color",
+      "textSize": "Text Size",
+      "opacity": "Opacity",
+      "position": "Position",
+      "positions": {
+        "top-left": "Top Left",
+        "top-right": "Top Right",
+        "bottom-left": "Bottom Left",
+        "bottom-right": "Bottom Right",
+        "center": "Center"
+      },
+      "rotation": "Rotation",
+      "processing": "Processing...",
+      "applyWatermark": "Apply Watermark",
+      "tipsLabel": "Tips",
+      "tips": "Adjust opacity and position to make watermark visible but not too intrusive. Use rotation for diagonal watermarks.",
+      "previewAndDownload": "Preview & Download",
+      "original": "Original",
+      "watermarked": "Watermarked",
+      "processed": "Processed",
+      "downloadImage": "Download Image (PNG)",
+      "selectImageToStart": "Select an image to start",
+      "errors": {
+        "invalidFileType": "File must be an image!",
+        "noImageOrText": "Please select an image and enter watermark text!"
+      }
+    },
+    "imageRotatorFlip": {
+      "title": "Image Rotator & Flip",
+      "description": "Rotate and flip images easily - All processing in browser",
+      "uploadAndTransform": "Upload & Transform",
+      "selectImage": "Select Image",
+      "rotation": "Rotation",
+      "flip": "Flip",
+      "horizontal": "Horizontal",
+      "vertical": "Vertical",
+      "reset": "Reset",
+      "processing": "Processing...",
+      "applyTransforms": "Apply Transforms",
+      "tipsLabel": "Tips",
+      "tips": "You can rotate by 90°, 180°, or any custom angle. Flip horizontal for mirror effect, flip vertical to invert.",
+      "previewAndDownload": "Preview & Download",
+      "original": "Original",
+      "transformed": "Transformed",
+      "processed": "Processed",
+      "downloadImage": "Download Image (PNG)",
+      "selectImageToStart": "Select an image to start",
+      "errors": {
+        "invalidFileType": "File must be an image!",
+        "noFileSelected": "Please select an image first!"
+      }
+    },
     "imageConverter": {
       "title": "Image Converter",
       "description": "Convert image formats (JPG, PNG, WebP) - All processing in your browser",
@@ -178,6 +263,39 @@
         "invalidHsl": "Invalid HSL format. Use format: H, S%, L% (example: 0, 100%, 50%)",
         "invalidCmyk": "Invalid CMYK format. Use format: C%, M%, Y%, K% (example: 0%, 100%, 100%, 0%)",
         "invalidColorFormat": "Invalid color format"
+      }
+    },
+    "randomNumberGenerator": {
+      "title": "Random Number Generator",
+      "description": "Generate random numbers with customizable range and count",
+      "settings": "Settings",
+      "range": "Range",
+      "min": "Min",
+      "max": "Max",
+      "count": "Count",
+      "numberType": "Number Type",
+      "numberTypes": {
+        "integer": "Integer",
+        "decimal": "Decimal"
+      },
+      "decimalPlaces": "Decimal Places",
+      "allowDuplicates": "Allow Duplicates",
+      "allowDuplicatesHint": "If disabled, all numbers will be unique (requires range ≥ count)",
+      "generate": "Generate Numbers",
+      "results": "Results",
+      "copy": "Copy All",
+      "copied": "Copied!",
+      "clear": "Clear",
+      "statistics": "Statistics",
+      "average": "Average",
+      "clickGenerate": "Click Generate to create random numbers",
+      "tipsLabel": "Tips",
+      "tips": "Use integer mode for whole numbers. Use decimal mode for floating point numbers. Disable duplicates to get unique numbers only (useful for lotteries and selections).",
+      "errors": {
+        "invalidInput": "Please enter valid numbers!",
+        "minMaxError": "Minimum value must be less than or equal to maximum value!",
+        "countError": "Count must be between 1 and 1000!",
+        "noDuplicateError": "Cannot generate unique numbers. Range is too small for the count!"
       }
     },
     "caseConverter": {
@@ -355,6 +473,79 @@
       "title": "Aspect Ratio Calculator",
       "description": "Calculate dimensions based on aspect ratio or vice versa"
     },
+    "ageCalculator": {
+      "title": "Age Calculator",
+      "description": "Calculate your exact age from birth date with detailed breakdown",
+      "input": "Input",
+      "birthDate": "Birth Date",
+      "dateHint": "Select your date of birth",
+      "calculate": "Calculate Age",
+      "result": "Result",
+      "yourAge": "Your Age",
+      "years": "Years",
+      "months": "Months",
+      "days": "Days",
+      "totalDays": "Total Days",
+      "totalWeeks": "Total Weeks",
+      "totalMonths": "Total Months",
+      "nextBirthday": "Next Birthday",
+      "daysLeft": "Days Left",
+      "onDate": "On {date}",
+      "dayOfWeek": "Day of Week",
+      "zodiacSign": "Zodiac Sign",
+      "enterBirthDate": "Enter your birth date to calculate age",
+      "tipsLabel": "Tips",
+      "tips": "This calculator shows your exact age including years, months, and days. It also displays your next birthday countdown and zodiac sign.",
+      "dayNames": {
+        "sunday": "Sunday",
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday"
+      },
+      "errors": {
+        "noBirthDate": "Please enter your birth date!",
+        "futureDate": "Birth date cannot be in the future!"
+      }
+    },
+    "percentageCalculator": {
+      "title": "Percentage Calculator",
+      "description": "Calculate percentages, percentage changes, and reverse percentage calculations",
+      "input": "Input",
+      "calculationType": "Calculation Type",
+      "percentage": "Percentage (%)",
+      "ofNumber": "Of Number",
+      "originalValue": "Original Value",
+      "newValue": "New Value",
+      "resultValue": "Result Value",
+      "isPercentage": "Is (%)",
+      "percentageOf": "Percentage Of",
+      "percentageOfHint": "What is X% of Y?",
+      "percentageOfDescription": "Calculate what percentage of a number equals another value",
+      "percentageChange": "Percentage Change",
+      "percentageChangeHint": "Calculate percentage increase or decrease",
+      "percentageChangeDescription": "Calculate the percentage change from one value to another",
+      "reversePercentage": "Reverse Percentage",
+      "reversePercentageHint": "Find original value from percentage",
+      "reversePercentageDescription": "If a value is X% of something, find the original value",
+      "calculate": "Calculate",
+      "result": "Result",
+      "isPercentageOf": "{percentage}% of {number} is {value}",
+      "increase": "Increase",
+      "decrease": "Decrease",
+      "difference": "Difference",
+      "reverseResult": "{value} is {percentage}% of the original value",
+      "enterValues": "Enter values and click Calculate",
+      "tipsLabel": "Tips",
+      "tips": "Use Percentage Of to find a portion of a number. Use Percentage Change to calculate increases or decreases. Use Reverse Percentage to find the original value when you know the result and percentage.",
+      "errors": {
+        "invalidInput": "Please enter valid numbers!",
+        "invalidPercentage": "Percentage must be between 0 and 100!",
+        "zeroValue": "Original value cannot be zero!"
+      }
+    },
     "ipChecker": {
       "title": "What's My IP?",
       "description": "Check public IP address and browser User Agent"
@@ -387,6 +578,36 @@
       "title": "URL Parser & Builder",
       "description": "Parse URL into components or build URL from components"
     },
+    "techStackAnalyzer": {
+      "title": "Tech Stack Analyzer & Composer",
+      "description": "Analyze or compose tech stack from website - Useful for developers",
+      "analyzeMode": "Analyze",
+      "composeMode": "Compose",
+      "analyze": "Analyze",
+      "analyzing": "Analyzing...",
+      "analyzingUrl": "Analyzing website tech stack...",
+      "urlPlaceholder": "https://example.com",
+      "composeDescription": "Select technologies to compose your tech stack. Click technologies to add/remove them.",
+      "techStack": "Tech Stack",
+      "copyBadges": "Copy Badges",
+      "copied": "Copied!",
+      "badgesPreview": "Badges Preview",
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "database": "Database",
+        "hosting": "Hosting",
+        "cms": "CMS",
+        "cdn": "CDN"
+      },
+      "tipsLabel": "Tips",
+      "tips": "Use Analyze mode to automatically detect technologies from a website. Use Compose mode to manually build your tech stack and generate badges for README or documentation.",
+      "errors": {
+        "noUrl": "Please enter a URL!",
+        "fetchFailed": "Failed to fetch website data. Make sure the URL is valid and accessible.",
+        "analyzeFailed": "Failed to analyze tech stack. Please try again or use Compose mode to build manually."
+      }
+    },
     "fancyText": {
       "title": "Fancy Text Generator",
       "description": "Generate text with unique styles for social media"
@@ -410,6 +631,32 @@
     "dateCalculator": {
       "title": "Duration Calculator",
       "description": "Calculate days, hours, and minutes between two dates"
+    },
+    "unixTimestampConverter": {
+      "title": "Unix Timestamp Converter",
+      "description": "Convert between Unix timestamp and date format - Essential for developers",
+      "timestampToDate": "Timestamp to Date",
+      "dateToTimestamp": "Date to Timestamp",
+      "enterTimestamp": "Enter Unix Timestamp",
+      "enterDate": "Enter Date & Time",
+      "timestampPlaceholder": "e.g., 1609459200",
+      "useCurrentTimestamp": "Use Current Timestamp",
+      "useCurrentDate": "Use Current Date",
+      "unixTimestamp": "Unix Timestamp",
+      "localDate": "Local Date",
+      "utcDate": "UTC Date",
+      "isoDate": "ISO Date",
+      "readableFormat": "Readable Format",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "result": "Result",
+      "tipsLabel": "Tips",
+      "tips": "Unix timestamp is the number of seconds since January 1, 1970 (UTC). You can enter timestamp in seconds (10 digits) or milliseconds (13 digits). The tool automatically detects and converts both formats.",
+      "errors": {
+        "invalidTimestamp": "Invalid timestamp! Please enter a valid Unix timestamp (seconds since 1970).",
+        "timestampTooLarge": "Timestamp is too large! Maximum supported year is 2100.",
+        "invalidDate": "Invalid date format! Please enter a valid date and time."
+      }
     },
     "pdfMerger": {
       "title": "PDF Merger",

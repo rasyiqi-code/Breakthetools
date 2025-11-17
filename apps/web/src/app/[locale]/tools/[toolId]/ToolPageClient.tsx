@@ -28,7 +28,8 @@ import {
   HashGenerator,
   ColorPicker,
   GradientGenerator,
-  ColorConverter
+  ColorConverter,
+  RandomNumberGenerator
 } from '@breaktools/generator-tools'
 // Dynamic import untuk QRCodeGenerator karena menggunakan qrcode package yang memerlukan canvas
 const QRCodeGenerator = dynamicImport(
@@ -55,7 +56,9 @@ import {
   BMICalculator,
   DiscountCalculator,
   CompoundInterestCalculator,
-  AspectRatioCalculator
+  AspectRatioCalculator,
+  AgeCalculator,
+  PercentageCalculator
 } from '@breaktools/calculator-tools'
 
 // SEO Tools
@@ -67,7 +70,8 @@ import {
   SiteDownChecker,
   SSLChecker,
   WHOISChecker,
-  URLParser
+  URLParser,
+  TechStackAnalyzer
 } from '@breaktools/seo-tools'
 
 // Fun Tools
@@ -81,7 +85,8 @@ import {
 import {
   StopwatchTimer,
   TimeZoneConverter,
-  DateCalculator
+  DateCalculator,
+  UnixTimestampConverter
 } from '@breaktools/time-tools'
 
 // PDF Tools
@@ -104,7 +109,10 @@ import {
   ImageToASCII,
   SVGOptimizer,
   BackgroundRemover,
-  ColorPsychology
+  ColorPsychology,
+  DigitalRuler,
+  WatermarkMaker,
+  ImageRotatorFlip
 } from '@breaktools/image-tools'
 
 // Downloader Tools
@@ -138,6 +146,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'color-picker': ColorPicker,
   'gradient-generator': GradientGenerator,
   'color-converter': ColorConverter,
+  'random-number-generator': RandomNumberGenerator,
 
   // Developer Tools
   'json-formatter': JSONFormatter,
@@ -156,6 +165,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   'discount-calculator': DiscountCalculator,
   'compound-interest': CompoundInterestCalculator,
   'aspect-ratio': AspectRatioCalculator,
+  'age-calculator': AgeCalculator,
+  'percentage-calculator': PercentageCalculator,
 
   // SEO Tools
   'ip-checker': IPChecker,
@@ -166,6 +177,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'ssl-checker': SSLChecker,
   'whois-checker': WHOISChecker,
   'url-parser': URLParser,
+  'tech-stack-analyzer': TechStackAnalyzer,
 
   // Fun Tools
   'fancy-text': FancyTextGenerator,
@@ -176,6 +188,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'stopwatch-timer': StopwatchTimer,
   'time-zone': TimeZoneConverter,
   'date-calculator': DateCalculator,
+  'unix-timestamp-converter': UnixTimestampConverter,
 
   // Image Tools
   'image-converter': ImageConverter,
@@ -188,6 +201,9 @@ const toolComponents: Record<string, React.ComponentType> = {
   'svg-optimizer': SVGOptimizer,
   'background-remover': BackgroundRemover,
   'color-psychology': ColorPsychology,
+  'digital-ruler': DigitalRuler,
+  'watermark-maker': WatermarkMaker,
+  'image-rotator-flip': ImageRotatorFlip,
 
   // PDF Tools
   'pdf-merger': PDFMerger,

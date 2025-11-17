@@ -8,4 +8,7 @@ export { ImageToASCII } from './ImageToASCII'
 export { SVGOptimizer } from './SVGOptimizer'
 export { BackgroundRemover } from './BackgroundRemover'
 export { ColorPsychology } from './ColorPsychology'
+export { DigitalRuler } from './DigitalRuler'
+export { WatermarkMaker } from './WatermarkMaker'
+export { ImageRotatorFlip } from './ImageRotatorFlip'
 

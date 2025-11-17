@@ -41,9 +41,11 @@ export const fullArticles: Record<string, ArticleContent> = {
 
 // i18n articles (multi-language support)
 import { youtubeDownloaderArticleI18n } from './youtube-downloader-i18n'
+import { backgroundRemoverArticleI18n } from './background-remover-i18n'
 import { ArticleI18n } from './i18n'
 
 export const i18nArticles: Record<string, ArticleI18n> = {
     'youtube-downloader': youtubeDownloaderArticleI18n,
+    'background-remover': backgroundRemoverArticleI18n,
 }
 
