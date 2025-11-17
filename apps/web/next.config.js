@@ -48,10 +48,12 @@ const nextConfig = {
       }
 
       // Ignore @tobyg74/tiktok-api-dl di client-side (hanya digunakan di API routes)
+      // Pastikan alias next-intl tetap ada untuk packages
       config.resolve.alias = {
         ...config.resolve.alias,
         '@tobyg74/tiktok-api-dl': false,
         canvas: false,
+        'next-intl$': path.resolve(__dirname, './src/lib/react-intl-wrapper.tsx'),
       }
     }
 
