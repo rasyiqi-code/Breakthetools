@@ -14,6 +14,7 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
+    // Removed serverComponentsExternalPackages - moved to serverExternalPackages at root level
   },
   // Optimasi kompresi
   compress: true,
