@@ -18,6 +18,7 @@ import { Sidebar } from '@/components/layout/Sidebar'
 import { messages } from '@/lib/messages'
 import { IntlProviderWrapper } from '@/components/IntlProviderWrapper'
 import { generateWebsiteStructuredData, generateOrganizationStructuredData } from '@/lib/structuredData'
+import { ErrorBoundaryWrapper } from '@/components/ErrorBoundaryWrapper'
 
 // Base metadata untuk SEO - akan di-override di page level
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -146,20 +147,22 @@ export default async function LocaleLayout({
             __html: JSON.stringify(organizationStructuredData),
           }}
         />
-        <IntlProviderWrapper
-          locale={locale}
-          messages={localeMessages}
-        >
-          <div className="min-h-screen bg-neutral-50">
-            <Header />
-            <div className="flex">
-              <Sidebar />
-              <main className="flex-1 px-[5px] sm:px-[5px] py-4 sm:py-6 lg:py-8 w-full lg:w-auto">
-                {children}
-              </main>
+        <ErrorBoundaryWrapper>
+          <IntlProviderWrapper
+            locale={locale}
+            messages={localeMessages}
+          >
+            <div className="min-h-screen bg-neutral-50">
+              <Header />
+              <div className="flex">
+                <Sidebar />
+                <main className="flex-1 px-[5px] sm:px-[5px] py-4 sm:py-6 lg:py-8 w-full lg:w-auto">
+                  {children}
+                </main>
+              </div>
             </div>
-          </div>
-        </IntlProviderWrapper>
+          </IntlProviderWrapper>
+        </ErrorBoundaryWrapper>
         <SpeedInsights />
       </body>
     </html>

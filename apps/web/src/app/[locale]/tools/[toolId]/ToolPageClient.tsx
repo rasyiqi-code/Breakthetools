@@ -5,9 +5,10 @@ import { useParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { toolCategories } from '@/config/tools'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 
 // Lazy load ToolArticle untuk mengurangi initial bundle size
-const ToolArticle = dynamic(() => import('@/components/seo/ToolArticle').then(mod => ({ default: mod.ToolArticle })), {
+const ToolArticle = dynamic(() => import('@/components/seo/ToolArticle').then(mod => ({ default: mod.ToolArticle })).catch(() => ({ default: () => null })), {
   ssr: false,
 })
 
@@ -271,7 +272,10 @@ const PDFToExcel = dynamic(() => import('@breaktools/converter-tools').then(mod 
   ssr: false,
   loading: () => <ToolLoading />
 })
-const PDFToEPUB = dynamic(() => import('@breaktools/converter-tools').then(mod => ({ default: mod.PDFToEPUB })), {
+const PDFToEPUB = dynamic(() => import('@breaktools/converter-tools').then(mod => ({ default: mod.PDFToEPUB })).catch((err) => {
+  console.error('Failed to load PDFToEPUB:', err)
+  return { default: () => <div className="p-4 text-red-600">Failed to load PDF to EPUB converter. Please refresh the page.</div> }
+}), {
   ssr: false,
   loading: () => <ToolLoading />
 })
@@ -529,12 +533,14 @@ export function ToolPageClient() {
   // 2. IntlProvider tersedia di parent layout setelah mount
   // 3. Client Component dalam tree yang sama dengan provider bisa akses context
   return (
-    <div className="animate-in fade-in duration-300">
-      <ToolComponent />
-      {tool && (
-        <ToolArticle toolId={toolId} toolName={tool.name} />
-      )}
-    </div>
+    <ErrorBoundary>
+      <div className="animate-in fade-in duration-300">
+        <ToolComponent />
+        {tool && (
+          <ToolArticle toolId={toolId} toolName={tool.name} />
+        )}
+      </div>
+    </ErrorBoundary>
   )
 }
 
