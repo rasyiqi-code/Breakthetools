@@ -1,18 +1,8 @@
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
-import { Inter } from 'next/font/google'
 import { Metadata } from 'next'
 import Script from 'next/script'
-
-// Optimasi font loading dengan display swap dan preload
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  variable: '--font-inter',
-})
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import '../globals.css'
 import { Header } from '@/components/layout/Header'
 import { Sidebar } from '@/components/layout/Sidebar'
 import { messages } from '@/lib/messages'
@@ -128,43 +118,41 @@ export default async function LocaleLayout({
   const organizationStructuredData = generateOrganizationStructuredData({ baseUrl, locale })
 
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <body className={`${inter.className} ${inter.variable}`}>
-        {/* Structured Data */}
-        <Script
-          id="website-structured-data"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteStructuredData),
-          }}
-        />
-        <Script
-          id="organization-structured-data"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationStructuredData),
-          }}
-        />
-        <ErrorBoundaryWrapper>
-          <IntlProviderWrapper
-            locale={locale}
-            messages={localeMessages}
-          >
-            <div className="min-h-screen bg-neutral-50">
-              <Header />
-              <div className="flex">
-                <Sidebar />
-                <main className="flex-1 px-[5px] sm:px-[5px] py-4 sm:py-6 lg:py-8 w-full lg:w-auto">
-                  {children}
-                </main>
-              </div>
+    <>
+      {/* Structured Data */}
+      <Script
+        id="website-structured-data"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteStructuredData),
+        }}
+      />
+      <Script
+        id="organization-structured-data"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationStructuredData),
+        }}
+      />
+      <ErrorBoundaryWrapper>
+        <IntlProviderWrapper
+          locale={locale}
+          messages={localeMessages}
+        >
+          <div className="min-h-screen bg-neutral-50">
+            <Header />
+            <div className="flex">
+              <Sidebar />
+              <main className="flex-1 px-[5px] sm:px-[5px] py-4 sm:py-6 lg:py-8 w-full lg:w-auto">
+                {children}
+              </main>
             </div>
-          </IntlProviderWrapper>
-        </ErrorBoundaryWrapper>
-        <SpeedInsights />
-      </body>
-    </html>
+          </div>
+        </IntlProviderWrapper>
+      </ErrorBoundaryWrapper>
+      <SpeedInsights />
+    </>
   )
 }
