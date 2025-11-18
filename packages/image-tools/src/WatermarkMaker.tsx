@@ -49,8 +49,8 @@ export function WatermarkMaker() {
             const img = new Image()
             img.crossOrigin = 'anonymous'
             img.onload = () => {
-                const canvas = document.createElement('watermarkMaker.canvas')
-                const ctx = canvas.getContext('watermarkMaker.2d')
+                const canvas = document.createElement('canvas') as HTMLCanvasElement
+                const ctx = canvas.getContext('2d')
                 if (!ctx) {
                     setIsProcessing(false)
                     return
@@ -128,7 +128,7 @@ export function WatermarkMaker() {
                     ctx.strokeText(watermarkText, x, y)
                 }
 
-                canvas.toBlob((blob) => {
+                canvas.toBlob((blob: Blob | null) => {
                     if (blob) {
                         const url = URL.createObjectURL(blob)
                         setProcessedUrl(url)
@@ -143,7 +143,7 @@ export function WatermarkMaker() {
     const handleDownload = () => {
         if (!processedUrl) return
 
-        const link = document.createElement('watermarkMaker.a')
+        const link = document.createElement('a') as HTMLAnchorElement
         link.href = processedUrl
         link.download = `watermarked-${Date.now()}.png`
         document.body.appendChild(link)

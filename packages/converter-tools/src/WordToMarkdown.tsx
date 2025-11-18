@@ -101,8 +101,11 @@ export function WordToMarkdown() {
 
       // Add custom rules for better conversion
       turndownService.addRule('strikethrough', {
-        filter: ['del', 's', 'strike'],
-        replacement: function (content) {
+        filter: (node: HTMLElement) => {
+          return node.tagName === 'DEL' || node.tagName === 'S' || 
+                 (node.tagName === 'STRIKE' || node.style.textDecoration === 'line-through')
+        },
+        replacement: function (content: string) {
           return '~~' + content + '~~'
         }
       })

@@ -210,7 +210,7 @@ export function UnixTimestampConverter() {
             setTimeout(() => setCopied(null), 2000)
         } catch (err) {
             // Fallback for older browsers
-            const textarea = document.createElement('unixTimestampConverter.textarea')
+            const textarea = document.createElement('textarea') as HTMLTextAreaElement
             textarea.value = text
             document.body.appendChild(textarea)
             textarea.select()

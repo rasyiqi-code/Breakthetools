@@ -54,8 +54,8 @@ export function ColorPsychology() {
     const img = new Image()
     img.crossOrigin = 'anonymous'
     img.onload = () => {
-      const canvas = document.createElement('colorPsychology.canvas')
-      const ctx = canvas.getContext('colorPsychology.2d')
+      const canvas = document.createElement('canvas') as HTMLCanvasElement
+      const ctx = canvas.getContext('2d')
       if (!ctx) return
 
       // Resize untuk performa

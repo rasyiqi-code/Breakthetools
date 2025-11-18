@@ -23,10 +23,12 @@ export async function POST(request: NextRequest) {
 
     // Convert Excel file to Buffer
     const arrayBuffer = await excelFile.arrayBuffer()
-    const buffer = Buffer.from(arrayBuffer)
+    const uint8Array = new Uint8Array(arrayBuffer)
+    const buffer = Buffer.from(uint8Array)
 
     // Load Excel workbook
     const workbook = new ExcelJS.Workbook()
+    // @ts-expect-error - Buffer type mismatch between Node.js Buffer and ExcelJS expected type
     await workbook.xlsx.load(buffer)
 
     // Get the specified worksheet
@@ -54,7 +56,7 @@ export async function POST(request: NextRequest) {
               value = cell.value.richText.map((rt: any) => rt.text).join('')
             } else if ('formula' in cell.value) {
               // Formula - use calculated value if available, otherwise formula
-              value = cell.value.result?.toString() || cell.value.formula
+              value = cell.value.result?.toString() || cell.value.formula || ''
             } else if ('text' in cell.value) {
               // Text
               value = cell.value.text

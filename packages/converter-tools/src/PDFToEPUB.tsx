@@ -281,32 +281,13 @@ export function PDFToEPUB() {
                 content: chapters,
             }
 
-            // Generate EPUB - epub-gen is not compatible with webpack (uses require.extensions)
-            // Use dynamic import as fallback, but primarily use manual EPUB generation
-            // For now, create a simplified EPUB structure manually
-            const epubContent = await new Promise<Blob>(async (resolve, reject) => {
+            // Generate EPUB - epub-gen is not compatible with webpack/browser (uses Node.js fs)
+            // Always use manual EPUB generation for client-side compatibility
+            const epubContent = await new Promise<Blob>((resolve, reject) => {
                 try {
-                    // Try to use epub-gen via dynamic import (may fail in browser/webpack)
-                    try {
-                        // @ts-ignore - epub-gen doesn't have types
-                        const Epub = (await import('epub-gen')).default
-                        const epub = new Epub(epubOptions)
-
-                        epub.pipe()
-                            .then((data: any) => {
-                                // epub-gen returns a stream, we need to convert it
-                                const blob = new Blob([JSON.stringify(epubOptions)], { type: 'application/epub+zip' })
-                                resolve(blob)
-                            })
-                            .catch(() => {
-                                // If epub-gen fails, use manual EPUB generation
-                                generateManualEPUB()
-                            })
-                    } catch (importErr) {
-                        // epub-gen not available (webpack incompatibility or browser environment)
-                        // Use manual EPUB generation instead
-                        generateManualEPUB()
-                    }
+                    // Skip epub-gen import entirely - it's server-only and causes webpack errors
+                    // Directly use manual EPUB generation
+                    generateManualEPUB()
 
                     function generateManualEPUB() {
                         // Create a simplified EPUB structure manually

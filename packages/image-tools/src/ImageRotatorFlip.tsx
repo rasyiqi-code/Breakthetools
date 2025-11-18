@@ -50,8 +50,8 @@ export function ImageRotatorFlip() {
             const img = new Image()
             img.crossOrigin = 'anonymous'
             img.onload = () => {
-                const canvas = document.createElement('imageRotatorFlip.canvas')
-                const ctx = canvas.getContext('imageRotatorFlip.2d')
+                const canvas = document.createElement('canvas') as HTMLCanvasElement
+                const ctx = canvas.getContext('2d')
                 if (!ctx) {
                     setIsProcessing(false)
                     return
@@ -99,7 +99,7 @@ export function ImageRotatorFlip() {
                     img.height
                 )
 
-                canvas.toBlob((blob) => {
+                canvas.toBlob((blob: Blob | null) => {
                     if (blob) {
                         const url = URL.createObjectURL(blob)
                         setProcessedUrl(url)
@@ -125,7 +125,7 @@ export function ImageRotatorFlip() {
     const handleDownload = () => {
         if (!processedUrl) return
 
-        const link = document.createElement('imageRotatorFlip.a')
+        const link = document.createElement('a') as HTMLAnchorElement
         link.href = processedUrl
         link.download = `rotated-${Date.now()}.png`
         document.body.appendChild(link)

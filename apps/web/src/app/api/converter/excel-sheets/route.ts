@@ -15,10 +15,12 @@ export async function POST(request: NextRequest) {
 
     // Convert Excel file to Buffer
     const arrayBuffer = await excelFile.arrayBuffer()
-    const buffer = Buffer.from(arrayBuffer)
+    const uint8Array = new Uint8Array(arrayBuffer)
+    const buffer = Buffer.from(uint8Array)
 
     // Load Excel workbook
     const workbook = new ExcelJS.Workbook()
+    // @ts-expect-error - Buffer type mismatch between Node.js Buffer and ExcelJS expected type
     await workbook.xlsx.load(buffer)
 
     // Get all sheet names

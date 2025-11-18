@@ -106,7 +106,7 @@ export function CSVToExcel() {
             setIsProcessing(false)
           }
         },
-        error: (error) => {
+        error: (error: Error) => {
           console.error('CSV parsing error:', error)
           setError(t('csvToExcel.errors.parseFailed') + (error.message ? ': ' + error.message : ''))
           setIsProcessing(false)

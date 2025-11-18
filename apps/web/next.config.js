@@ -49,8 +49,21 @@ const nextConfig = {
       },
     ]
   },
-  // External packages yang tidak bisa di-bundle (native modules)
-  serverExternalPackages: ['canvas', 'jsdom', '@tobyg74/tiktok-api-dl', 'qrcode'],
+  // External packages yang tidak bisa di-bundle (native modules atau server-only)
+  serverExternalPackages: [
+    'canvas', 
+    'jsdom', 
+    '@tobyg74/tiktok-api-dl', 
+    'qrcode',
+    'exceljs',
+    'jszip',
+    '@xmldom/xmldom',
+    'epub-gen',
+    'ejs',
+    'mammoth',
+    'archiver',
+    'fs-extra',
+  ],
   transpilePackages: [
     '@breaktools/text-tools',
     '@breaktools/image-tools',
@@ -98,13 +111,29 @@ const nextConfig = {
       config.resolve.alias['@tobyg74/tiktok-api-dl'] = false
       config.resolve.alias['canvas'] = false
 
-      // Ignore epub-gen, ejs, mammoth, jszip, dan exceljs di client-side (tidak kompatibel dengan webpack)
-      // epub-gen, mammoth, dan exceljs menggunakan require.extensions/nodejsUtils yang tidak didukung webpack
-      config.resolve.alias['epub-gen'] = false
-      config.resolve.alias['ejs'] = false
-      config.resolve.alias['mammoth'] = false
-      config.resolve.alias['jszip'] = false
-      config.resolve.alias['exceljs'] = false
+      // Ignore server-only packages di client-side (tidak kompatibel dengan webpack/browser)
+      // Package-package ini menggunakan Node.js APIs yang tidak tersedia di browser
+      const serverOnlyPackages = [
+        'epub-gen',
+        'ejs',
+        'mammoth',
+        'jszip',
+        'exceljs',
+        '@xmldom/xmldom',
+        'archiver',
+        'fs-extra',
+        'graceful-fs',
+        'fs.realpath',
+        'glob',
+        'rimraf',
+        'jsonfile',
+      ]
+      
+      serverOnlyPackages.forEach(pkg => {
+        config.resolve.alias[pkg] = false
+      })
+      
+      // jspdf dan jspdf-autotable bisa digunakan di client-side, jadi jangan di-ignore
 
       // Ensure next-intl is bundled for client-side
       // This allows all packages to share the same context instance
@@ -116,28 +145,44 @@ const nextConfig = {
     // Tapi JANGAN externalize next-intl untuk memastikan context tersedia untuk transpiled packages
     if (isServer) {
       config.externals = config.externals || []
-      // Pastikan canvas, qrcode, epub-gen, ejs, mammoth, jszip, dan exceljs tidak di-bundle di server-side
+      // Externalize server-only packages untuk server-side
+      const serverOnlyPatterns = [
+        'canvas',
+        'qrcode',
+        'epub-gen',
+        'ejs',
+        'mammoth',
+        'jszip',
+        'exceljs',
+        '@xmldom/xmldom',
+        'archiver',
+        'fs-extra',
+        'graceful-fs',
+        'fs.realpath',
+        'glob',
+        'rimraf',
+        'jsonfile',
+      ]
+      
       config.externals.push(({ request }, callback) => {
-        if (request && (
-          request.includes('canvas') ||
-          request === 'qrcode' ||
-          request === 'epub-gen' ||
-          request === 'ejs' ||
-          request === 'mammoth' ||
-          request === 'jszip' ||
-          request === 'exceljs' ||
-          request.includes('epub-gen') ||
-          request.includes('ejs') ||
-          request.includes('mammoth') ||
-          request.includes('jszip') ||
-          request.includes('exceljs')
-        )) {
+        if (!request) {
+          return callback()
+        }
+        
+        // Check if request matches any server-only pattern
+        const isServerOnly = serverOnlyPatterns.some(pattern => 
+          request === pattern || request.includes(pattern)
+        )
+        
+        if (isServerOnly) {
           return callback(null, `commonjs ${request}`)
         }
+        
         // Jangan externalize next-intl untuk memastikan context tersedia
         if (request === 'next-intl') {
           return callback()
         }
+        
         callback()
       })
     }
