@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname as useNextPathname } from 'next/navigation'
-import { useLocale } from '@/lib/react-intl-wrapper'
-import { useIntl } from 'react-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { toolCategories } from '@/config/tools'
 import { Search, ChevronDown, ChevronRight, Home, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -14,7 +13,8 @@ export function Sidebar() {
   // Use Next.js standard hooks to avoid routing context issues
   const fullPathname = useNextPathname() // This includes locale: /en/tools/...
   const locale = useLocale()
-  const intl = useIntl()
+  const tTools = useTranslations('tools')
+  const tCategories = useTranslations('categories')
   
   // Extract pathname without locale prefix (same as createNavigation usePathname)
   // fullPathname format: /en/tools/word-counter or /en/ or /en
@@ -152,7 +152,7 @@ export function Sidebar() {
                   >
                     <div className="flex items-center space-x-2">
                       <category.icon className="w-4 h-4" />
-                      <span>{getCategoryName(category.id, intl)}</span>
+                      <span>{getCategoryName(category.id, tCategories)}</span>
                     </div>
                     {isExpanded ? (
                       <ChevronDown className="w-4 h-4" />
@@ -178,7 +178,7 @@ export function Sidebar() {
                                 : 'text-neutral-600 hover:bg-neutral-100'
                             )}
                           >
-                            {getToolName(tool.id, intl)}
+                            {getToolName(tool.id, tTools)}
                           </Link>
                         )
                       })}

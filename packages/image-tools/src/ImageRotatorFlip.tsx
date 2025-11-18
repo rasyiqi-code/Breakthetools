@@ -5,7 +5,7 @@ import { Upload, Download, Image as ImageIcon, FileImage, RotateCw, FlipVertical
 import { useTranslations } from 'next-intl'
 
 export function ImageRotatorFlip() {
-    const t = useTranslations('tools.imageRotatorFlip')
+    const t = useTranslations('tools')
     
     const [originalFile, setOriginalFile] = useState<File | null>(null)
     const [preview, setPreview] = useState<string>('')
@@ -21,7 +21,7 @@ export function ImageRotatorFlip() {
         if (!file) return
 
         if (!file.type.startsWith('image/')) {
-            alert(t('errors.invalidFileType'))
+            alert(t('imageRotatorFlip.errors.invalidFileType'))
             return
         }
 
@@ -40,7 +40,7 @@ export function ImageRotatorFlip() {
 
     const applyTransforms = () => {
         if (!preview) {
-            alert(t('errors.noFileSelected'))
+            alert(t('imageRotatorFlip.errors.noFileSelected'))
             return
         }
 
@@ -50,8 +50,8 @@ export function ImageRotatorFlip() {
             const img = new Image()
             img.crossOrigin = 'anonymous'
             img.onload = () => {
-                const canvas = document.createElement('canvas')
-                const ctx = canvas.getContext('2d')
+                const canvas = document.createElement('imageRotatorFlip.canvas')
+                const ctx = canvas.getContext('imageRotatorFlip.2d')
                 if (!ctx) {
                     setIsProcessing(false)
                     return
@@ -125,7 +125,7 @@ export function ImageRotatorFlip() {
     const handleDownload = () => {
         if (!processedUrl) return
 
-        const link = document.createElement('a')
+        const link = document.createElement('imageRotatorFlip.a')
         link.href = processedUrl
         link.download = `rotated-${Date.now()}.png`
         document.body.appendChild(link)
@@ -136,21 +136,21 @@ export function ImageRotatorFlip() {
     return (
         <div className="max-w-full sm:max-w-6xl mx-auto px-4">
             <div className="mb-4 sm:mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('title')}</h1>
-                <p className="text-sm sm:text-base text-neutral-600">{t('description')}</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('imageRotatorFlip.title')}</h1>
+                <p className="text-sm sm:text-base text-neutral-600">{t('imageRotatorFlip.description')}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="tool-card p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                         <Upload className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                        {t('uploadAndTransform')}
+                        {t('imageRotatorFlip.uploadAndTransform')}
                     </h3>
 
                     <div className="space-y-4">
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('selectImage')}
+                                {t('imageRotatorFlip.selectImage')}
                             </label>
                             <input
                                 ref={fileInputRef}
@@ -164,7 +164,7 @@ export function ImageRotatorFlip() {
                                 className="btn-secondary w-full flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
                             >
                                 <FileImage className="w-4 h-4" />
-                                {t('selectImage')}
+                                {t('imageRotatorFlip.selectImage')}
                             </button>
                             {originalFile && (
                                 <div className="mt-2 text-xs sm:text-sm text-neutral-600 break-words">
@@ -175,7 +175,7 @@ export function ImageRotatorFlip() {
 
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('rotation')}: {rotation}°
+                                {t('imageRotatorFlip.rotation')}: {rotation}°
                             </label>
                             <div className="flex gap-2 mb-2">
                                 <button
@@ -212,7 +212,7 @@ export function ImageRotatorFlip() {
 
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('flip')}
+                                {t('imageRotatorFlip.flip')}
                             </label>
                             <div className="flex gap-2">
                                 <button
@@ -224,7 +224,7 @@ export function ImageRotatorFlip() {
                                     }`}
                                 >
                                     <FlipHorizontal className="w-4 h-4 mx-auto mb-1" />
-                                    {t('horizontal')}
+                                    {t('imageRotatorFlip.horizontal')}
                                 </button>
                                 <button
                                     onClick={() => setFlipVertical(!flipVertical)}
@@ -235,7 +235,7 @@ export function ImageRotatorFlip() {
                                     }`}
                                 >
                                     <FlipVertical className="w-4 h-4 mx-auto mb-1" />
-                                    {t('vertical')}
+                                    {t('imageRotatorFlip.vertical')}
                                 </button>
                             </div>
                         </div>
@@ -245,7 +245,7 @@ export function ImageRotatorFlip() {
                                 onClick={handleReset}
                                 className="flex-1 px-3 sm:px-4 py-2 rounded-lg font-medium transition-colors min-h-[44px] text-xs sm:text-sm bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
                             >
-                                {t('reset')}
+                                {t('imageRotatorFlip.reset')}
                             </button>
                             <button
                                 onClick={applyTransforms}
@@ -255,19 +255,19 @@ export function ImageRotatorFlip() {
                                 {isProcessing ? (
                                     <>
                                         <Loader2 className="w-4 h-4 animate-spin" />
-                                        {t('processing')}
+                                        {t('imageRotatorFlip.processing')}
                                     </>
                                 ) : (
                                     <>
                                         <RotateCw className="w-4 h-4" />
-                                        {t('applyTransforms')}
+                                        {t('imageRotatorFlip.applyTransforms')}
                                     </>
                                 )}
                             </button>
                         </div>
 
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 sm:p-3 text-xs sm:text-sm text-blue-800">
-                            💡 <strong>{t('tipsLabel')}:</strong> {t('tips')}
+                            💡 <strong>{t('imageRotatorFlip.tipsLabel')}:</strong> {t('imageRotatorFlip.tips')}
                         </div>
                     </div>
                 </div>
@@ -275,28 +275,28 @@ export function ImageRotatorFlip() {
                 <div className="tool-card p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                         <ImageIcon className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                        {t('previewAndDownload')}
+                        {t('imageRotatorFlip.previewAndDownload')}
                     </h3>
 
                     {preview ? (
                         <div className="space-y-4">
                             <div className="bg-neutral-50 p-3 sm:p-4 rounded-lg border border-neutral-200">
-                                <div className="text-xs text-neutral-600 mb-2">{t('original')}</div>
-                                <img src={preview} alt={t('original')} className="max-w-full h-auto rounded" />
+                                <div className="text-xs text-neutral-600 mb-2">{t('imageRotatorFlip.original')}</div>
+                                <img src={preview} alt={t('imageRotatorFlip.original')} className="max-w-full h-auto rounded" />
                             </div>
 
                             {processedUrl && (
                                 <>
                                     <div className="bg-primary-50 p-3 sm:p-4 rounded-lg border border-primary-200">
-                                        <div className="text-xs text-neutral-600 mb-2">{t('transformed')}</div>
-                                        <img src={processedUrl} alt={t('processed')} className="max-w-full h-auto rounded" />
+                                        <div className="text-xs text-neutral-600 mb-2">{t('imageRotatorFlip.transformed')}</div>
+                                        <img src={processedUrl} alt={t('imageRotatorFlip.processed')} className="max-w-full h-auto rounded" />
                                     </div>
                                     <button
                                         onClick={handleDownload}
                                         className="btn-primary w-full flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
                                     >
                                         <Download className="w-4 h-4" />
-                                        {t('downloadImage')}
+                                        {t('imageRotatorFlip.downloadImage')}
                                     </button>
                                 </>
                             )}
@@ -305,7 +305,7 @@ export function ImageRotatorFlip() {
                         <div className="flex items-center justify-center h-full min-h-[250px] sm:min-h-[300px] text-neutral-400">
                             <div className="text-center">
                                 <ImageIcon className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 opacity-50" />
-                                <p className="text-xs sm:text-sm">{t('selectImageToStart')}</p>
+                                <p className="text-xs sm:text-sm">{t('imageRotatorFlip.selectImageToStart')}</p>
                             </div>
                         </div>
                     )}

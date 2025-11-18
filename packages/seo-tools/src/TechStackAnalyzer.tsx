@@ -56,7 +56,7 @@ const techCategories: TechCategory[] = [
 ]
 
 export function TechStackAnalyzer() {
-    const t = useTranslations('tools.techStackAnalyzer')
+    const t = useTranslations('tools')
 
     const [mode, setMode] = useState<TechStackMode>('analyze')
     const [url, setUrl] = useState('')
@@ -160,7 +160,7 @@ export function TechStackAnalyzer() {
 
     const analyzeTechStack = async () => {
         if (!url) {
-            setError(t('errors.noUrl'))
+            setError(t('techStackAnalyzer.errors.noUrl'))
             return
         }
 
@@ -180,22 +180,22 @@ export function TechStackAnalyzer() {
             const data = await response.json()
 
             if (!data.contents) {
-                throw new Error(t('errors.fetchFailed'))
+                throw new Error(t('techStackAnalyzer.errors.fetchFailed'))
             }
 
             // Try to get headers (limited due to CORS)
             const headers: Record<string, string> = {
-                'server': response.headers.get('server') || '',
-                'x-powered-by': response.headers.get('x-powered-by') || '',
-                'cf-ray': response.headers.get('cf-ray') || '',
-                'x-vercel-id': response.headers.get('x-vercel-id') || '',
-                'x-nf-request-id': response.headers.get('x-nf-request-id') || '',
+                'server': response.headers.get('techStackAnalyzer.server') || '',
+                'x-powered-by': response.headers.get('techStackAnalyzer.x-powered-by') || '',
+                'cf-ray': response.headers.get('techStackAnalyzer.cf-ray') || '',
+                'x-vercel-id': response.headers.get('techStackAnalyzer.x-vercel-id') || '',
+                'x-nf-request-id': response.headers.get('techStackAnalyzer.x-nf-request-id') || '',
             }
 
             const detected = detectTechStack(data.contents, headers)
             setAnalyzedStack(detected)
         } catch (err: any) {
-            setError(err.message || t('errors.analyzeFailed'))
+            setError(err.message || t('techStackAnalyzer.errors.analyzeFailed'))
         } finally {
             setLoading(false)
         }
@@ -244,7 +244,7 @@ export function TechStackAnalyzer() {
             setTimeout(() => setCopied(false), 2000)
         } catch (err) {
             // Fallback
-            const textarea = document.createElement('textarea')
+            const textarea = document.createElement('textarea') as HTMLTextAreaElement
             textarea.value = badges
             document.body.appendChild(textarea)
             textarea.select()
@@ -266,11 +266,11 @@ export function TechStackAnalyzer() {
                     <div className="flex items-center justify-center gap-2">
                         <Layers className="w-6 h-6 text-primary-600" />
                         <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900">
-                            {t('title')}
+                            {t('techStackAnalyzer.title')}
                         </h1>
                     </div>
                     <p className="text-sm sm:text-base text-neutral-600">
-                        {t('description')}
+                        {t('techStackAnalyzer.description')}
                     </p>
                 </div>
 
@@ -283,7 +283,7 @@ export function TechStackAnalyzer() {
                             : 'text-neutral-600 hover:text-neutral-900'
                             }`}
                     >
-                        {t('analyzeMode')}
+                        {t('techStackAnalyzer.analyzeMode')}
                     </button>
                     <button
                         onClick={() => setMode('compose')}
@@ -292,7 +292,7 @@ export function TechStackAnalyzer() {
                             : 'text-neutral-600 hover:text-neutral-900'
                             }`}
                     >
-                        {t('composeMode')}
+                        {t('techStackAnalyzer.composeMode')}
                     </button>
                 </div>
 
@@ -304,7 +304,7 @@ export function TechStackAnalyzer() {
                                 type="text"
                                 value={url}
                                 onChange={(e) => setUrl(e.target.value)}
-                                placeholder={t('urlPlaceholder')}
+                                placeholder={t('techStackAnalyzer.urlPlaceholder')}
                                 className="flex-1 px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                                 onKeyPress={(e) => e.key === 'Enter' && analyzeTechStack()}
                             />
@@ -314,7 +314,7 @@ export function TechStackAnalyzer() {
                                 className="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                             >
                                 <Search className="w-4 h-4" />
-                                {loading ? t('analyzing') : t('analyze')}
+                                {loading ? t('techStackAnalyzer.analyzing') : t('techStackAnalyzer.analyze')}
                             </button>
                         </div>
 
@@ -326,7 +326,7 @@ export function TechStackAnalyzer() {
 
                         {loading && (
                             <div className="text-center py-8 text-neutral-500">
-                                {t('analyzingUrl')}
+                                {t('techStackAnalyzer.analyzingUrl')}
                             </div>
                         )}
                     </div>
@@ -336,7 +336,7 @@ export function TechStackAnalyzer() {
                 {mode === 'compose' && (
                     <div className="space-y-6">
                         <p className="text-sm text-neutral-600">
-                            {t('composeDescription')}
+                            {t('techStackAnalyzer.composeDescription')}
                         </p>
 
                         <div className="space-y-4">
@@ -377,7 +377,7 @@ export function TechStackAnalyzer() {
                         <div className="flex items-center justify-between">
                             <h2 className="text-lg font-semibold text-primary-900 flex items-center gap-2">
                                 <Palette className="w-5 h-5" />
-                                {t('techStack')}
+                                {t('techStackAnalyzer.techStack')}
                             </h2>
                             <button
                                 onClick={() => handleCopyBadges(currentStack!)}
@@ -386,12 +386,12 @@ export function TechStackAnalyzer() {
                                 {copied ? (
                                     <>
                                         <Check className="w-4 h-4" />
-                                        {t('copied')}
+                                        {t('techStackAnalyzer.copied')}
                                     </>
                                 ) : (
                                     <>
                                         <Copy className="w-4 h-4" />
-                                        {t('copyBadges')}
+                                        {t('techStackAnalyzer.copyBadges')}
                                     </>
                                 )}
                             </button>
@@ -427,7 +427,7 @@ export function TechStackAnalyzer() {
                         {/* Badges Preview */}
                         <div className="mt-4 p-3 bg-white rounded border border-neutral-200">
                             <label className="block text-xs font-medium text-neutral-500 mb-2">
-                                {t('badgesPreview')}
+                                {t('techStackAnalyzer.badgesPreview')}
                             </label>
                             <div className="flex flex-wrap gap-2">
                                 {Object.values(currentStack!).flat().map(tech => (
@@ -446,10 +446,10 @@ export function TechStackAnalyzer() {
                 {/* Tips */}
                 <div className="p-4 bg-neutral-50 rounded-lg border border-neutral-200">
                     <h3 className="text-sm font-semibold text-neutral-900 mb-2">
-                        {t('tipsLabel')}
+                        {t('techStackAnalyzer.tipsLabel')}
                     </h3>
                     <p className="text-sm text-neutral-600">
-                        {t('tips')}
+                        {t('techStackAnalyzer.tips')}
                     </p>
                 </div>
             </div>

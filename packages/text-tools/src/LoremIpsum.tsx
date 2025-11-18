@@ -16,7 +16,7 @@ const loremWords = [
 ]
 
 export function LoremIpsum() {
-  const t = useTranslations('tools.loremIpsum')
+  const t = useTranslations('tools')
   const [count, setCount] = useState(3)
   const [type, setType] = useState<'paragraphs' | 'sentences' | 'words'>('paragraphs')
   const [output, setOutput] = useState('')
@@ -75,14 +75,14 @@ export function LoremIpsum() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('title')}</h1>
-        <p className="text-sm sm:text-base text-neutral-600">{t('description')}</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('loremIpsum.title')}</h1>
+        <p className="text-sm sm:text-base text-neutral-600">{t('loremIpsum.description')}</p>
       </div>
 
       <div className="tool-card p-4 sm:p-6 mb-4 sm:mb-6">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 sm:mb-6">
           <div>
-            <label className="text-sm font-medium text-neutral-700 mb-2 block">{t('count')}</label>
+            <label className="text-sm font-medium text-neutral-700 mb-2 block">{t('loremIpsum.count')}</label>
             <input
               type="number"
               value={count}
@@ -93,7 +93,7 @@ export function LoremIpsum() {
             />
           </div>
           <div className="sm:col-span-2">
-            <label className="text-sm font-medium text-neutral-700 mb-2 block">{t('type')}</label>
+            <label className="text-sm font-medium text-neutral-700 mb-2 block">{t('loremIpsum.type')}</label>
             <div className="flex gap-2">
               <button
                 onClick={() => setType('paragraphs')}
@@ -102,7 +102,7 @@ export function LoremIpsum() {
                   : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
                   }`}
               >
-                {t('types.paragraphs')}
+                {t('loremIpsum.types.paragraphs')}
               </button>
               <button
                 onClick={() => setType('sentences')}
@@ -111,7 +111,7 @@ export function LoremIpsum() {
                   : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
                   }`}
               >
-                {t('types.sentences')}
+                {t('loremIpsum.types.sentences')}
               </button>
               <button
                 onClick={() => setType('words')}
@@ -120,21 +120,21 @@ export function LoremIpsum() {
                   : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
                   }`}
               >
-                {t('types.words')}
+                {t('loremIpsum.types.words')}
               </button>
             </div>
           </div>
         </div>
 
         <button onClick={generateLorem} className="btn-primary w-full sm:w-auto min-h-[44px] text-sm sm:text-base">
-          {t('generate')}
+          {t('loremIpsum.generate')}
         </button>
       </div>
 
       {output && (
         <div className="tool-card p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0 mb-3">
-            <label className="text-sm font-medium text-neutral-700">{t('result')}</label>
+            <label className="text-sm font-medium text-neutral-700">{t('loremIpsum.result')}</label>
             <button
               onClick={handleCopy}
               className="btn-secondary text-sm flex items-center space-x-2 min-h-[44px] px-4"
@@ -142,12 +142,12 @@ export function LoremIpsum() {
               {copied ? (
                 <>
                   <Check className="w-4 h-4" />
-                  <span>{t('copied')}</span>
+                  <span>{t('loremIpsum.copied')}</span>
                 </>
               ) : (
                 <>
                   <Copy className="w-4 h-4" />
-                  <span>{t('copy')}</span>
+                  <span>{t('loremIpsum.copy')}</span>
                 </>
               )}
             </button>

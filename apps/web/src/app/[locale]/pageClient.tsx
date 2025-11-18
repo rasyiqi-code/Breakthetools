@@ -1,18 +1,32 @@
 'use client'
 
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { Link } from '@/i18n/routing-client'
-import { useTranslations } from '@/lib/react-intl-wrapper'
-import { useIntl } from 'react-intl'
+import { useTranslations } from 'next-intl'
 import { toolCategories } from '@/config/tools'
 import { Sparkles, Zap, Shield, TrendingUp } from 'lucide-react'
-import { CommandPalette } from '@/components/CommandPalette'
 import { getToolName } from '@/lib/toolTranslations'
+
+// Lazy load CommandPalette untuk mengurangi initial bundle size
+const CommandPalette = dynamic(() => import('@/components/CommandPalette').then(mod => ({ default: mod.CommandPalette })), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full max-w-4xl mx-auto relative">
+      <div className="relative bg-white rounded-full border-2 border-neutral-300 shadow-lg">
+        <div className="flex items-center px-6 py-5">
+          <div className="w-6 h-6 mr-4 bg-neutral-200 rounded animate-pulse"></div>
+          <div className="flex-1 h-6 bg-neutral-200 rounded animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  )
+})
 
 export default function HomePageClient() {
     const t = useTranslations('common')
     const tNav = useTranslations('nav')
-    const intl = useIntl()
+    const tTools = useTranslations('tools')
     const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
 
     return (
@@ -85,7 +99,7 @@ export default function HomePageClient() {
                                         <span className="text-xs text-neutral-400">#{index + 1}</span>
                                     </div>
                                     <h3 className="font-semibold text-neutral-900 mb-1 group-hover:text-primary-600 transition-colors">
-                                        {getToolName(tool.id, intl)}
+                                        {getToolName(tool.id, tTools)}
                                     </h3>
                                     <p className="text-sm text-neutral-600 line-clamp-2">
                                         {tool.description}

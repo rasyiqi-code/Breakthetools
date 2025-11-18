@@ -8,7 +8,7 @@
 
 import NextLink from 'next/link'
 import { usePathname as useNextPathname, useRouter as useNextRouter } from 'next/navigation'
-import { useLocale } from '@/lib/react-intl-wrapper'
+import { useLocale } from 'next-intl'
 import { routing } from './routing'
 import { ComponentProps } from 'react'
 

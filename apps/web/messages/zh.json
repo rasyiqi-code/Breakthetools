@@ -301,7 +301,16 @@
     },
     "jsonFormatter": {
       "title": "JSON 格式化器",
-      "description": "格式化和验证 JSON"
+      "description": "格式化和验证 JSON",
+      "inputJSON": "输入 JSON",
+      "placeholder": "在此粘贴您的 JSON...",
+      "formatAndValidate": "格式化与验证",
+      "minify": "压缩",
+      "output": "输出",
+      "outputPlaceholder": "格式化后的 JSON 将显示在这里...",
+      "copy": "复制",
+      "copied": "已复制！",
+      "error": "错误"
     },
     "base64Encoder": {
       "title": "Base64 编码器/解码器",
@@ -413,7 +422,22 @@
     },
     "pdfMerger": {
       "title": "PDF 合并器",
-      "description": "将多个 PDF 文件合并为一个"
+      "description": "将多个 PDF 文件合并为一个",
+      "uploadPDFFiles": "上传 PDF 文件",
+      "selectPDFFiles": "选择 PDF 文件",
+      "mergePDFs": "合并 PDF",
+      "processing": "处理中...",
+      "mergeSuccess": "合并成功",
+      "downloadMergedPDF": "下载合并的 PDF",
+      "preview": "预览",
+      "dragToReorder": "拖拽重新排序",
+      "fileList": "{count, plural, =0 {没有文件} =1 {1 个文件} other {# 个文件}}",
+      "errors": {
+        "selectPDFFirst": "请先选择 PDF 文件！",
+        "selectAtLeastOne": "请至少选择一个 PDF 文件！",
+        "mergeFailed": "合并 PDF 失败",
+        "ensureValidPDF": "请确保所有文件都是有效的 PDF"
+      }
     },
     "pdfSplitter": {
       "title": "PDF 拆分器",
@@ -433,7 +457,28 @@
     },
     "youtubeDownloader": {
       "title": "YouTube 下载器",
-      "description": "以各种质量从 YouTube 下载视频和音频"
+      "description": "以各种质量从 YouTube 下载视频和音频",
+      "placeholder": "在此粘贴 YouTube URL...",
+      "loading": "加载中...",
+      "searchVideo": "搜索视频",
+      "channel": "频道",
+      "audioFormats": "音频格式",
+      "videoFormats": "视频格式",
+      "download": "下载",
+      "close": "关闭",
+      "preparingDownload": "正在准备下载 {format}...",
+      "downloadReady": "下载 {format} 已准备就绪",
+      "downloadReadyHint": "点击上方的下载按钮开始下载",
+      "downloadTroubleshoot": "如果下载未开始，请检查弹出窗口阻止程序或尝试其他格式",
+      "serviceInfo": "下载由我们的安全服务处理。不存储任何数据。",
+      "emptyState": {
+        "title": "输入 YouTube URL",
+        "description": "在上方粘贴 YouTube 视频 URL 开始使用"
+      },
+      "errors": {
+        "fetchFailed": "获取视频信息失败。请检查 URL 并重试。",
+        "invalidUrl": "无效的 YouTube URL。请输入有效的 YouTube 视频 URL。"
+      }
     },
     "tiktokDownloader": {
       "title": "TikTok 下载器",

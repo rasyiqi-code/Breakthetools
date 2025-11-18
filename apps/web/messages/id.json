@@ -419,7 +419,16 @@
     },
     "jsonFormatter": {
       "title": "JSON Formatter",
-      "description": "Format dan validasi JSON"
+      "description": "Format dan validasi JSON",
+      "inputJSON": "Input JSON",
+      "placeholder": "Tempel JSON Anda di sini...",
+      "formatAndValidate": "Format & Validasi",
+      "minify": "Minify",
+      "output": "Output",
+      "outputPlaceholder": "JSON yang diformat akan muncul di sini...",
+      "copy": "Salin",
+      "copied": "Tersalin!",
+      "error": "Error"
     },
     "base64Encoder": {
       "title": "Base64 Encoder/Decoder",
@@ -660,7 +669,22 @@
     },
     "pdfMerger": {
       "title": "PDF Merger",
-      "description": "Gabungkan multiple file PDF menjadi satu"
+      "description": "Gabungkan multiple file PDF menjadi satu",
+      "uploadPDFFiles": "Upload File PDF",
+      "selectPDFFiles": "Pilih File PDF",
+      "mergePDFs": "Gabungkan PDF",
+      "processing": "Memproses...",
+      "mergeSuccess": "Penggabungan Berhasil",
+      "downloadMergedPDF": "Download PDF yang Digabungkan",
+      "preview": "Preview",
+      "dragToReorder": "Seret untuk mengubah urutan",
+      "fileList": "{count, plural, =0 {Tidak ada file} =1 {1 file} other {# file}}",
+      "errors": {
+        "selectPDFFirst": "Pilih file PDF terlebih dahulu!",
+        "selectAtLeastOne": "Pilih minimal satu file PDF!",
+        "mergeFailed": "Gagal menggabungkan PDF",
+        "ensureValidPDF": "Pastikan semua file adalah PDF yang valid"
+      }
     },
     "pdfSplitter": {
       "title": "PDF Splitter",
@@ -678,9 +702,276 @@
       "title": "PDF to Images",
       "description": "Ekstrak halaman PDF menjadi gambar"
     },
+    "pdfToText": {
+      "title": "PDF ke Teks",
+      "description": "Extract teks dari PDF ke file .txt",
+      "selectPDF": "Pilih File PDF",
+      "chooseFile": "Pilih File PDF",
+      "page": "Halaman",
+      "pages": "Halaman",
+      "selectPages": "Pilih Halaman untuk Diekstrak",
+      "allPages": "Semua Halaman",
+      "selectedPages": "Halaman Terpilih",
+      "extractText": "Extract Teks",
+      "processing": "Memproses...",
+      "extractedText": "Teks yang Diekstrak",
+      "download": "Download",
+      "extractedTextPlaceholder": "Teks yang diekstrak akan muncul di sini...",
+      "characters": "karakter",
+      "errors": {
+        "invalidFile": "Harap pilih file PDF yang valid!",
+        "readFailed": "Gagal membaca PDF",
+        "noFile": "Harap pilih file PDF terlebih dahulu!",
+        "noPages": "Harap pilih minimal satu halaman!",
+        "extractionFailed": "Gagal mengekstrak teks dari PDF"
+      }
+    },
+    "pdfToHtml": {
+      "title": "PDF ke HTML",
+      "description": "Convert halaman PDF ke format HTML",
+      "selectPDF": "Pilih File PDF",
+      "chooseFile": "Pilih File PDF",
+      "page": "Halaman",
+      "pages": "Halaman",
+      "selectPages": "Pilih Halaman untuk Dikonversi",
+      "allPages": "Semua Halaman",
+      "selectedPages": "Halaman Terpilih",
+      "convert": "Convert ke HTML",
+      "processing": "Memproses...",
+      "htmlOutput": "Output HTML",
+      "download": "Download",
+      "htmlOutputPlaceholder": "Output HTML akan muncul di sini...",
+      "characters": "karakter",
+      "errors": {
+        "invalidFile": "Harap pilih file PDF yang valid!",
+        "readFailed": "Gagal membaca PDF",
+        "noFile": "Harap pilih file PDF terlebih dahulu!",
+        "noPages": "Harap pilih minimal satu halaman!",
+        "conversionFailed": "Gagal mengonversi PDF ke HTML"
+      }
+    },
+    "pdfToExcel": {
+      "title": "PDF ke Excel",
+      "description": "Extract tabel dari PDF ke Excel (terbatas untuk PDF dengan tabel terstruktur)",
+      "limitedNote": "Tool ini bekerja paling baik dengan PDF yang berisi tabel terstruktur. Layout kompleks mungkin tidak terkonversi sempurna.",
+      "selectPDF": "Pilih File PDF",
+      "chooseFile": "Pilih File PDF",
+      "page": "Halaman",
+      "pages": "Halaman",
+      "selectPages": "Pilih Halaman untuk Diekstrak",
+      "allPages": "Semua Halaman",
+      "selectedPages": "Halaman Terpilih",
+      "convert": "Convert ke Excel",
+      "processing": "Memproses...",
+      "excelReady": "File Excel Siap",
+      "download": "Download",
+      "downloadDescription": "File Excel Anda siap untuk didownload.",
+      "warnings": {
+        "noTables": "Tidak ada tabel yang terdeteksi pada halaman yang dipilih. Pastikan PDF Anda berisi tabel terstruktur."
+      },
+      "errors": {
+        "invalidFile": "Harap pilih file PDF yang valid!",
+        "readFailed": "Gagal membaca PDF",
+        "noFile": "Harap pilih file PDF terlebih dahulu!",
+        "noPages": "Harap pilih minimal satu halaman!",
+        "conversionFailed": "Gagal mengonversi PDF ke Excel"
+      }
+    },
+    "pdfToEpub": {
+      "title": "PDF ke EPUB",
+      "description": "Convert PDF ke format EPUB untuk e-reader",
+      "selectPDF": "Pilih File PDF",
+      "chooseFile": "Pilih File PDF",
+      "page": "Halaman",
+      "pages": "Halaman",
+      "metadata": "Metadata EPUB",
+      "metadataTitle": "Judul",
+      "titlePlaceholder": "Masukkan judul buku",
+      "metadataAuthor": "Penulis",
+      "authorPlaceholder": "Masukkan nama penulis",
+      "selectPages": "Pilih Halaman untuk Dikonversi",
+      "allPages": "Semua Halaman",
+      "selectedPages": "Halaman Terpilih",
+      "convert": "Convert ke EPUB",
+      "processing": "Memproses...",
+      "epubReady": "File EPUB Siap",
+      "download": "Download",
+      "downloadDescription": "File EPUB Anda siap untuk didownload.",
+      "errors": {
+        "invalidFile": "Harap pilih file PDF yang valid!",
+        "readFailed": "Gagal membaca PDF",
+        "noFile": "Harap pilih file PDF terlebih dahulu!",
+        "noTitle": "Harap masukkan judul untuk EPUB!",
+        "noPages": "Harap pilih minimal satu halaman!",
+        "noText": "Tidak ada teks ditemukan pada halaman yang dipilih!",
+        "conversionFailed": "Gagal mengonversi PDF ke EPUB"
+      }
+    },
+    "pdfToWord": {
+      "title": "PDF ke Word",
+      "description": "Convert PDF ke dokumen Word (.docx)",
+      "serverSideNote": "Konversi ini memerlukan pemrosesan server-side. Pastikan API endpoint dikonfigurasi.",
+      "selectPDF": "Pilih File PDF",
+      "chooseFile": "Pilih File PDF",
+      "convert": "Convert ke Word",
+      "processing": "Memproses...",
+      "errors": {
+        "invalidFile": "Harap pilih file PDF yang valid!",
+        "noFile": "Harap pilih file PDF terlebih dahulu!",
+        "noTextFound": "Tidak ada konten teks yang ditemukan di PDF. PDF mungkin hanya berisi gambar atau halaman yang di-scan. Harap gunakan PDF dengan teks yang dapat dipilih.",
+        "serverError": "Terjadi kesalahan server. Silakan coba lagi nanti.",
+        "conversionFailed": "Gagal mengonversi PDF ke Word"
+      }
+    },
+    "wordToPdf": {
+      "title": "Word ke PDF",
+      "description": "Convert dokumen Word (.docx) ke PDF",
+      "selectFile": "Pilih File Word",
+      "chooseFile": "Pilih File Word",
+      "convert": "Convert ke PDF",
+      "processing": "Memproses...",
+      "pdfReady": "File PDF Siap",
+      "download": "Download",
+      "downloadDescription": "File PDF Anda siap untuk didownload.",
+      "errors": {
+        "invalidFile": "Harap pilih file Word yang valid (.docx atau .doc)!",
+        "noFile": "Harap pilih file Word terlebih dahulu!",
+        "conversionFailed": "Gagal mengonversi Word ke PDF"
+      }
+    },
+    "wordToHtml": {
+      "title": "Word ke HTML",
+      "description": "Convert dokumen Word (.docx) ke HTML",
+      "selectFile": "Pilih File Word",
+      "chooseFile": "Pilih File Word",
+      "convert": "Convert ke HTML",
+      "processing": "Memproses...",
+      "htmlOutput": "Output HTML",
+      "download": "Download",
+      "htmlOutputPlaceholder": "Output HTML akan muncul di sini...",
+      "characters": "karakter",
+      "errors": {
+        "invalidFile": "Harap pilih file Word yang valid (.docx atau .doc)!",
+        "noFile": "Harap pilih file Word terlebih dahulu!",
+        "conversionFailed": "Gagal mengonversi Word ke HTML"
+      }
+    },
+    "wordToMarkdown": {
+      "title": "Word ke Markdown",
+      "description": "Convert dokumen Word (.docx) ke Markdown",
+      "selectFile": "Pilih File Word",
+      "chooseFile": "Pilih File Word",
+      "convert": "Convert ke Markdown",
+      "processing": "Memproses...",
+      "markdownOutput": "Output Markdown",
+      "download": "Download",
+      "markdownOutputPlaceholder": "Output Markdown akan muncul di sini...",
+      "characters": "karakter",
+      "errors": {
+        "invalidFile": "Harap pilih file Word yang valid (.docx atau .doc)!",
+        "noFile": "Harap pilih file Word terlebih dahulu!",
+        "conversionFailed": "Gagal mengonversi Word ke Markdown"
+      }
+    },
+    "excelToPdf": {
+      "title": "Excel ke PDF",
+      "description": "Convert spreadsheet Excel ke PDF",
+      "selectFile": "Pilih File Excel",
+      "chooseFile": "Pilih File Excel",
+      "selectSheet": "Pilih Sheet",
+      "convert": "Convert ke PDF",
+      "processing": "Memproses...",
+      "pdfReady": "File PDF Siap",
+      "download": "Download",
+      "downloadDescription": "File PDF Anda siap untuk didownload.",
+      "errors": {
+        "invalidFile": "Harap pilih file Excel yang valid (.xlsx atau .xls)!",
+        "readFailed": "Gagal membaca file Excel",
+        "noFileOrSheet": "Harap pilih file dan sheet!",
+        "sheetNotFound": "Sheet tidak ditemukan!",
+        "noData": "Tidak ada data ditemukan pada sheet yang dipilih!",
+        "conversionFailed": "Gagal mengonversi Excel ke PDF"
+      }
+    },
+    "excelToCsv": {
+      "title": "Excel ke CSV",
+      "description": "Convert spreadsheet Excel ke CSV",
+      "selectFile": "Pilih File Excel",
+      "chooseFile": "Pilih File Excel",
+      "selectSheet": "Pilih Sheet",
+      "convert": "Convert ke CSV",
+      "processing": "Memproses...",
+      "csvOutput": "Output CSV",
+      "download": "Download",
+      "csvOutputPlaceholder": "Output CSV akan muncul di sini...",
+      "characters": "karakter",
+      "errors": {
+        "invalidFile": "Harap pilih file Excel yang valid (.xlsx atau .xls)!",
+        "readFailed": "Gagal membaca file Excel",
+        "noFileOrSheet": "Harap pilih file dan sheet!",
+        "sheetNotFound": "Sheet tidak ditemukan!",
+        "conversionFailed": "Gagal mengonversi Excel ke CSV"
+      }
+    },
+    "csvToExcel": {
+      "title": "CSV ke Excel",
+      "description": "Convert file CSV ke spreadsheet Excel",
+      "selectFile": "Pilih File CSV",
+      "chooseFile": "Pilih File CSV",
+      "sheetName": "Nama Sheet",
+      "sheetNamePlaceholder": "Masukkan nama sheet",
+      "convert": "Convert ke Excel",
+      "processing": "Memproses...",
+      "excelReady": "File Excel Siap",
+      "download": "Download",
+      "downloadDescription": "File Excel Anda siap untuk didownload.",
+      "errors": {
+        "invalidFile": "Harap pilih file CSV yang valid!",
+        "noFile": "Harap pilih file CSV terlebih dahulu!",
+        "noSheetName": "Harap masukkan nama sheet!",
+        "parseFailed": "Gagal memparse file CSV",
+        "conversionFailed": "Gagal mengonversi CSV ke Excel"
+      }
+    },
+    "powerpointToPdf": {
+      "title": "PowerPoint ke PDF",
+      "description": "Convert presentasi PowerPoint ke PDF",
+      "serverSideNote": "Konversi ini memerlukan pemrosesan server-side. Pastikan API endpoint dikonfigurasi.",
+      "selectFile": "Pilih File PowerPoint",
+      "chooseFile": "Pilih File PowerPoint",
+      "convert": "Convert ke PDF",
+      "processing": "Memproses...",
+      "errors": {
+        "invalidFile": "Harap pilih file PowerPoint yang valid (.pptx atau .ppt)!",
+        "noFile": "Harap pilih file PowerPoint terlebih dahulu!",
+        "serverError": "Terjadi kesalahan server. Silakan coba lagi nanti.",
+        "conversionFailed": "Gagal mengonversi PowerPoint ke PDF"
+      }
+    },
     "youtubeDownloader": {
       "title": "YouTube Downloader",
-      "description": "Download video dan audio dari YouTube dengan berbagai kualitas"
+      "description": "Download video dan audio dari YouTube dengan berbagai kualitas",
+      "placeholder": "Tempel URL YouTube di sini...",
+      "loading": "Memuat...",
+      "searchVideo": "Cari Video",
+      "channel": "Channel",
+      "audioFormats": "Format Audio",
+      "videoFormats": "Format Video",
+      "download": "Download",
+      "close": "Tutup",
+      "preparingDownload": "Mempersiapkan download {format}...",
+      "downloadReady": "Download {format} siap",
+      "downloadReadyHint": "Klik tombol download di atas untuk memulai download",
+      "downloadTroubleshoot": "Jika download tidak dimulai, periksa popup blocker atau coba format lain",
+      "serviceInfo": "Download ditangani oleh layanan aman kami. Tidak ada data yang disimpan.",
+      "emptyState": {
+        "title": "Masukkan URL YouTube",
+        "description": "Tempel URL video YouTube di atas untuk memulai"
+      },
+      "errors": {
+        "fetchFailed": "Gagal mengambil informasi video. Periksa URL dan coba lagi.",
+        "invalidUrl": "URL YouTube tidak valid. Masukkan URL video YouTube yang valid."
+      }
     },
     "tiktokDownloader": {
       "title": "TikTok Downloader",

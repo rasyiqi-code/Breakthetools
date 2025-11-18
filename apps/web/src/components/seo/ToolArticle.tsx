@@ -3,7 +3,7 @@
 import { articles, fullArticles, i18nArticles } from '@/content/articles'
 import { ArticleContent, LegacyArticle } from '@/content/articles/types'
 import { Link } from '@/i18n/routing-client'
-import { useLocale, useTranslations } from '@/lib/react-intl-wrapper'
+import { useLocale, useTranslations } from 'next-intl'
 import { getArticleByLocale } from '@/content/articles/i18n'
 
 interface ToolArticleProps {

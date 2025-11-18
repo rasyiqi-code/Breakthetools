@@ -419,7 +419,16 @@
     },
     "jsonFormatter": {
       "title": "JSON Formatter",
-      "description": "Format and validate JSON"
+      "description": "Format and validate JSON",
+      "inputJSON": "Input JSON",
+      "placeholder": "Paste your JSON here...",
+      "formatAndValidate": "Format & Validate",
+      "minify": "Minify",
+      "output": "Output",
+      "outputPlaceholder": "Formatted JSON will appear here...",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "error": "Error"
     },
     "base64Encoder": {
       "title": "Base64 Encoder/Decoder",
@@ -660,7 +669,22 @@
     },
     "pdfMerger": {
       "title": "PDF Merger",
-      "description": "Merge multiple PDF files into one"
+      "description": "Merge multiple PDF files into one",
+      "uploadPDFFiles": "Upload PDF Files",
+      "selectPDFFiles": "Select PDF Files",
+      "mergePDFs": "Merge PDFs",
+      "processing": "Processing...",
+      "mergeSuccess": "Merge Successful",
+      "downloadMergedPDF": "Download Merged PDF",
+      "preview": "Preview",
+      "dragToReorder": "Drag to reorder",
+      "fileList": "{count, plural, =0 {No files} =1 {1 file} other {# files}}",
+      "errors": {
+        "selectPDFFirst": "Please select PDF files first!",
+        "selectAtLeastOne": "Please select at least one PDF file!",
+        "mergeFailed": "Failed to merge PDFs",
+        "ensureValidPDF": "Please ensure all files are valid PDFs"
+      }
     },
     "pdfSplitter": {
       "title": "PDF Splitter",
@@ -678,9 +702,276 @@
       "title": "PDF to Images",
       "description": "Extract PDF pages as images"
     },
+    "pdfToText": {
+      "title": "PDF to Text",
+      "description": "Extract text from PDF to .txt file",
+      "selectPDF": "Select PDF File",
+      "chooseFile": "Choose PDF File",
+      "page": "Page",
+      "pages": "Pages",
+      "selectPages": "Select Pages to Extract",
+      "allPages": "All Pages",
+      "selectedPages": "Selected Pages",
+      "extractText": "Extract Text",
+      "processing": "Processing...",
+      "extractedText": "Extracted Text",
+      "download": "Download",
+      "extractedTextPlaceholder": "Extracted text will appear here...",
+      "characters": "characters",
+      "errors": {
+        "invalidFile": "Please select a valid PDF file!",
+        "readFailed": "Failed to read PDF",
+        "noFile": "Please select a PDF file first!",
+        "noPages": "Please select at least one page!",
+        "extractionFailed": "Failed to extract text from PDF"
+      }
+    },
+    "pdfToHtml": {
+      "title": "PDF to HTML",
+      "description": "Convert PDF pages to HTML format",
+      "selectPDF": "Select PDF File",
+      "chooseFile": "Choose PDF File",
+      "page": "Page",
+      "pages": "Pages",
+      "selectPages": "Select Pages to Convert",
+      "allPages": "All Pages",
+      "selectedPages": "Selected Pages",
+      "convert": "Convert to HTML",
+      "processing": "Processing...",
+      "htmlOutput": "HTML Output",
+      "download": "Download",
+      "htmlOutputPlaceholder": "HTML output will appear here...",
+      "characters": "characters",
+      "errors": {
+        "invalidFile": "Please select a valid PDF file!",
+        "readFailed": "Failed to read PDF",
+        "noFile": "Please select a PDF file first!",
+        "noPages": "Please select at least one page!",
+        "conversionFailed": "Failed to convert PDF to HTML"
+      }
+    },
+    "pdfToExcel": {
+      "title": "PDF to Excel",
+      "description": "Extract tables from PDF to Excel (limited to PDFs with structured tables)",
+      "limitedNote": "This tool works best with PDFs that contain well-structured tables. Complex layouts may not convert perfectly.",
+      "selectPDF": "Select PDF File",
+      "chooseFile": "Choose PDF File",
+      "page": "Page",
+      "pages": "Pages",
+      "selectPages": "Select Pages to Extract",
+      "allPages": "All Pages",
+      "selectedPages": "Selected Pages",
+      "convert": "Convert to Excel",
+      "processing": "Processing...",
+      "excelReady": "Excel File Ready",
+      "download": "Download",
+      "downloadDescription": "Your Excel file is ready for download.",
+      "warnings": {
+        "noTables": "No tables detected in the selected pages. Please ensure your PDF contains structured tables."
+      },
+      "errors": {
+        "invalidFile": "Please select a valid PDF file!",
+        "readFailed": "Failed to read PDF",
+        "noFile": "Please select a PDF file first!",
+        "noPages": "Please select at least one page!",
+        "conversionFailed": "Failed to convert PDF to Excel"
+      }
+    },
+    "pdfToEpub": {
+      "title": "PDF to EPUB",
+      "description": "Convert PDF to EPUB format for e-readers",
+      "selectPDF": "Select PDF File",
+      "chooseFile": "Choose PDF File",
+      "page": "Page",
+      "pages": "Pages",
+      "metadata": "EPUB Metadata",
+      "metadataTitle": "Title",
+      "titlePlaceholder": "Enter book title",
+      "metadataAuthor": "Author",
+      "authorPlaceholder": "Enter author name",
+      "selectPages": "Select Pages to Convert",
+      "allPages": "All Pages",
+      "selectedPages": "Selected Pages",
+      "convert": "Convert to EPUB",
+      "processing": "Processing...",
+      "epubReady": "EPUB File Ready",
+      "download": "Download",
+      "downloadDescription": "Your EPUB file is ready for download.",
+      "errors": {
+        "invalidFile": "Please select a valid PDF file!",
+        "readFailed": "Failed to read PDF",
+        "noFile": "Please select a PDF file first!",
+        "noTitle": "Please enter a title for the EPUB!",
+        "noPages": "Please select at least one page!",
+        "noText": "No text found in the selected pages!",
+        "conversionFailed": "Failed to convert PDF to EPUB"
+      }
+    },
+    "pdfToWord": {
+      "title": "PDF to Word",
+      "description": "Convert PDF to Word document (.docx)",
+      "serverSideNote": "This conversion requires server-side processing. Please ensure the API endpoint is configured.",
+      "selectPDF": "Select PDF File",
+      "chooseFile": "Choose PDF File",
+      "convert": "Convert to Word",
+      "processing": "Processing...",
+      "errors": {
+        "invalidFile": "Please select a valid PDF file!",
+        "noFile": "Please select a PDF file first!",
+        "noTextFound": "No text content found in the PDF. The PDF may contain only images or scanned pages. Please use a PDF with selectable text.",
+        "serverError": "Server error occurred. Please try again later.",
+        "conversionFailed": "Failed to convert PDF to Word"
+      }
+    },
+    "wordToPdf": {
+      "title": "Word to PDF",
+      "description": "Convert Word document (.docx) to PDF",
+      "selectFile": "Select Word File",
+      "chooseFile": "Choose Word File",
+      "convert": "Convert to PDF",
+      "processing": "Processing...",
+      "pdfReady": "PDF File Ready",
+      "download": "Download",
+      "downloadDescription": "Your PDF file is ready for download.",
+      "errors": {
+        "invalidFile": "Please select a valid Word file (.docx or .doc)!",
+        "noFile": "Please select a Word file first!",
+        "conversionFailed": "Failed to convert Word to PDF"
+      }
+    },
+    "wordToHtml": {
+      "title": "Word to HTML",
+      "description": "Convert Word document (.docx) to HTML",
+      "selectFile": "Select Word File",
+      "chooseFile": "Choose Word File",
+      "convert": "Convert to HTML",
+      "processing": "Processing...",
+      "htmlOutput": "HTML Output",
+      "download": "Download",
+      "htmlOutputPlaceholder": "HTML output will appear here...",
+      "characters": "characters",
+      "errors": {
+        "invalidFile": "Please select a valid Word file (.docx or .doc)!",
+        "noFile": "Please select a Word file first!",
+        "conversionFailed": "Failed to convert Word to HTML"
+      }
+    },
+    "wordToMarkdown": {
+      "title": "Word to Markdown",
+      "description": "Convert Word document (.docx) to Markdown",
+      "selectFile": "Select Word File",
+      "chooseFile": "Choose Word File",
+      "convert": "Convert to Markdown",
+      "processing": "Processing...",
+      "markdownOutput": "Markdown Output",
+      "download": "Download",
+      "markdownOutputPlaceholder": "Markdown output will appear here...",
+      "characters": "characters",
+      "errors": {
+        "invalidFile": "Please select a valid Word file (.docx or .doc)!",
+        "noFile": "Please select a Word file first!",
+        "conversionFailed": "Failed to convert Word to Markdown"
+      }
+    },
+    "excelToPdf": {
+      "title": "Excel to PDF",
+      "description": "Convert Excel spreadsheet to PDF",
+      "selectFile": "Select Excel File",
+      "chooseFile": "Choose Excel File",
+      "selectSheet": "Select Sheet",
+      "convert": "Convert to PDF",
+      "processing": "Processing...",
+      "pdfReady": "PDF File Ready",
+      "download": "Download",
+      "downloadDescription": "Your PDF file is ready for download.",
+      "errors": {
+        "invalidFile": "Please select a valid Excel file (.xlsx or .xls)!",
+        "readFailed": "Failed to read Excel file",
+        "noFileOrSheet": "Please select a file and sheet!",
+        "sheetNotFound": "Sheet not found!",
+        "noData": "No data found in the selected sheet!",
+        "conversionFailed": "Failed to convert Excel to PDF"
+      }
+    },
+    "excelToCsv": {
+      "title": "Excel to CSV",
+      "description": "Convert Excel spreadsheet to CSV",
+      "selectFile": "Select Excel File",
+      "chooseFile": "Choose Excel File",
+      "selectSheet": "Select Sheet",
+      "convert": "Convert to CSV",
+      "processing": "Processing...",
+      "csvOutput": "CSV Output",
+      "download": "Download",
+      "csvOutputPlaceholder": "CSV output will appear here...",
+      "characters": "characters",
+      "errors": {
+        "invalidFile": "Please select a valid Excel file (.xlsx or .xls)!",
+        "readFailed": "Failed to read Excel file",
+        "noFileOrSheet": "Please select a file and sheet!",
+        "sheetNotFound": "Sheet not found!",
+        "conversionFailed": "Failed to convert Excel to CSV"
+      }
+    },
+    "csvToExcel": {
+      "title": "CSV to Excel",
+      "description": "Convert CSV file to Excel spreadsheet",
+      "selectFile": "Select CSV File",
+      "chooseFile": "Choose CSV File",
+      "sheetName": "Sheet Name",
+      "sheetNamePlaceholder": "Enter sheet name",
+      "convert": "Convert to Excel",
+      "processing": "Processing...",
+      "excelReady": "Excel File Ready",
+      "download": "Download",
+      "downloadDescription": "Your Excel file is ready for download.",
+      "errors": {
+        "invalidFile": "Please select a valid CSV file!",
+        "noFile": "Please select a CSV file first!",
+        "noSheetName": "Please enter a sheet name!",
+        "parseFailed": "Failed to parse CSV file",
+        "conversionFailed": "Failed to convert CSV to Excel"
+      }
+    },
+    "powerpointToPdf": {
+      "title": "PowerPoint to PDF",
+      "description": "Convert PowerPoint presentation to PDF",
+      "serverSideNote": "This conversion requires server-side processing. Please ensure the API endpoint is configured.",
+      "selectFile": "Select PowerPoint File",
+      "chooseFile": "Choose PowerPoint File",
+      "convert": "Convert to PDF",
+      "processing": "Processing...",
+      "errors": {
+        "invalidFile": "Please select a valid PowerPoint file (.pptx or .ppt)!",
+        "noFile": "Please select a PowerPoint file first!",
+        "serverError": "Server error occurred. Please try again later.",
+        "conversionFailed": "Failed to convert PowerPoint to PDF"
+      }
+    },
     "youtubeDownloader": {
       "title": "YouTube Downloader",
-      "description": "Download videos and audio from YouTube in various qualities"
+      "description": "Download videos and audio from YouTube in various qualities",
+      "placeholder": "Paste YouTube URL here...",
+      "loading": "Loading...",
+      "searchVideo": "Search Video",
+      "channel": "Channel",
+      "audioFormats": "Audio Formats",
+      "videoFormats": "Video Formats",
+      "download": "Download",
+      "close": "Close",
+      "preparingDownload": "Preparing download {format}...",
+      "downloadReady": "Download {format} ready",
+      "downloadReadyHint": "Click the download button above to start downloading",
+      "downloadTroubleshoot": "If download doesn't start, check popup blockers or try a different format",
+      "serviceInfo": "Downloads are handled by our secure service. No data is stored.",
+      "emptyState": {
+        "title": "Enter a YouTube URL",
+        "description": "Paste a YouTube video URL above to get started"
+      },
+      "errors": {
+        "fetchFailed": "Failed to fetch video information. Please check the URL and try again.",
+        "invalidUrl": "Invalid YouTube URL. Please enter a valid YouTube video URL."
+      }
     },
     "tiktokDownloader": {
       "title": "TikTok Downloader",

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useTranslations, useLocale } from '@/lib/react-intl-wrapper'
+import { useTranslations, useLocale } from 'next-intl'
 import { usePathname as useNextPathname, useRouter } from 'next/navigation'
 import { Wrench, Github, Menu, X, Globe, Check } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'

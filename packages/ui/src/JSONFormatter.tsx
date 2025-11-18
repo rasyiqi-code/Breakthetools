@@ -5,7 +5,7 @@ import { Copy, Check } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 export function JSONFormatter() {
-  const t = useTranslations('tools.jsonFormatter')
+  const t = useTranslations('tools')
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
   const [error, setError] = useState('')
@@ -44,17 +44,17 @@ export function JSONFormatter() {
   return (
     <div className="max-w-full sm:max-w-4xl lg:max-w-6xl mx-auto px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('title')}</h1>
-        <p className="text-sm sm:text-base text-neutral-600">{t('description')}</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('jsonFormatter.title')}</h1>
+        <p className="text-sm sm:text-base text-neutral-600">{t('jsonFormatter.description')}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div className="tool-card p-4 sm:p-6">
-          <label className="text-sm font-medium text-neutral-700 mb-3 block">{t('inputJSON')}</label>
+          <label className="text-sm font-medium text-neutral-700 mb-3 block">{t('jsonFormatter.inputJSON')}</label>
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={t('placeholder')}
+            placeholder={t('jsonFormatter.placeholder')}
             className="textarea-field font-mono text-sm sm:text-base"
             rows={15}
           />
@@ -64,21 +64,21 @@ export function JSONFormatter() {
               className="btn-primary flex-1 min-h-[44px] text-sm sm:text-base"
               disabled={!input}
             >
-              {t('formatAndValidate')}
+              {t('jsonFormatter.formatAndValidate')}
             </button>
             <button
               onClick={minifyJSON}
               className="btn-secondary flex-1 min-h-[44px] text-sm sm:text-base"
               disabled={!input}
             >
-              {t('minify')}
+              {t('jsonFormatter.minify')}
             </button>
           </div>
         </div>
 
         <div className="tool-card p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0 mb-3">
-            <label className="text-sm font-medium text-neutral-700">{t('output')}</label>
+            <label className="text-sm font-medium text-neutral-700">{t('jsonFormatter.output')}</label>
             {output && (
               <button
                 onClick={handleCopy}
@@ -87,12 +87,12 @@ export function JSONFormatter() {
                 {copied ? (
                   <>
                     <Check className="w-4 h-4" />
-                    <span>{t('copied')}</span>
+                    <span>{t('jsonFormatter.copied')}</span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-4 h-4" />
-                    <span>{t('copy')}</span>
+                    <span>{t('jsonFormatter.copy')}</span>
                   </>
                 )}
               </button>
@@ -101,7 +101,7 @@ export function JSONFormatter() {
 
           {error && (
             <div className="bg-red-50 border border-red-200 rounded p-3 sm:p-4 mb-4">
-              <div className="text-xs sm:text-sm font-semibold text-red-900 mb-1">{t('error')}:</div>
+              <div className="text-xs sm:text-sm font-semibold text-red-900 mb-1">{t('jsonFormatter.error')}:</div>
               <code className="text-xs text-red-700 break-all">{error}</code>
             </div>
           )}
@@ -109,7 +109,7 @@ export function JSONFormatter() {
           <textarea
             value={output}
             readOnly
-            placeholder={t('outputPlaceholder')}
+            placeholder={t('jsonFormatter.outputPlaceholder')}
             className="textarea-field font-mono bg-neutral-50 text-sm sm:text-base"
             rows={error ? 12 : 15}
           />

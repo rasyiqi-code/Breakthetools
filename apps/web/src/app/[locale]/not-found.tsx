@@ -1,5 +1,7 @@
+'use client'
+
 import { Link } from '@/i18n/routing-client'
-import { useTranslations } from '@/lib/react-intl-wrapper'
+import { useTranslations } from 'next-intl'
 import { Home } from 'lucide-react'
 
 export default function NotFound() {

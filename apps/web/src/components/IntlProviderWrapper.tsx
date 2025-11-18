@@ -1,27 +1,27 @@
 'use client'
 
-import { IntlProvider } from 'react-intl'
+import { NextIntlClientProvider } from 'next-intl'
 import { ReactNode } from 'react'
 
 interface IntlProviderWrapperProps {
   locale: string
-  messages: Record<string, string>
+  messages: Record<string, any>  // next-intl menggunakan nested structure
   children: ReactNode
 }
 
 /**
- * Client Component wrapper untuk IntlProvider
- * react-intl's IntlProvider memerlukan Client Component karena menggunakan React Context
+ * Client Component wrapper untuk NextIntlClientProvider
+ * next-intl's NextIntlClientProvider memerlukan Client Component karena menggunakan React Context
  */
 export function IntlProviderWrapper({ locale, messages, children }: IntlProviderWrapperProps) {
   return (
-    <IntlProvider 
+    <NextIntlClientProvider 
       locale={locale} 
       messages={messages}
-      defaultLocale="en"
+      timeZone="UTC"
     >
       {children}
-    </IntlProvider>
+    </NextIntlClientProvider>
   )
 }
 

@@ -301,7 +301,16 @@
     },
     "jsonFormatter": {
       "title": "منسق JSON",
-      "description": "تنسيق والتحقق من JSON"
+      "description": "تنسيق والتحقق من JSON",
+      "inputJSON": "إدخال JSON",
+      "placeholder": "الصق JSON هنا...",
+      "formatAndValidate": "تنسيق والتحقق",
+      "minify": "تصغير",
+      "output": "المخرجات",
+      "outputPlaceholder": "سيظهر JSON المنسق هنا...",
+      "copy": "نسخ",
+      "copied": "تم النسخ!",
+      "error": "خطأ"
     },
     "base64Encoder": {
       "title": "مشفّر/فك تشفير Base64",
@@ -413,7 +422,22 @@
     },
     "pdfMerger": {
       "title": "دمج PDF",
-      "description": "دمج ملفات PDF متعددة في ملف واحد"
+      "description": "دمج ملفات PDF متعددة في ملف واحد",
+      "uploadPDFFiles": "رفع ملفات PDF",
+      "selectPDFFiles": "اختر ملفات PDF",
+      "mergePDFs": "دمج PDF",
+      "processing": "جاري المعالجة...",
+      "mergeSuccess": "تم الدمج بنجاح",
+      "downloadMergedPDF": "تحميل PDF المدمج",
+      "preview": "معاينة",
+      "dragToReorder": "اسحب لإعادة الترتيب",
+      "fileList": "{count, plural, =0 {لا توجد ملفات} =1 {ملف واحد} other {# ملفات}}",
+      "errors": {
+        "selectPDFFirst": "يرجى اختيار ملفات PDF أولاً!",
+        "selectAtLeastOne": "يرجى اختيار ملف PDF واحد على الأقل!",
+        "mergeFailed": "فشل دمج ملفات PDF",
+        "ensureValidPDF": "يرجى التأكد من أن جميع الملفات هي ملفات PDF صالحة"
+      }
     },
     "pdfSplitter": {
       "title": "تقسيم PDF",
@@ -433,7 +457,28 @@
     },
     "youtubeDownloader": {
       "title": "تحميل من YouTube",
-      "description": "تحميل الفيديو والصوت من YouTube بجودات مختلفة"
+      "description": "تحميل الفيديو والصوت من YouTube بجودات مختلفة",
+      "placeholder": "الصق رابط YouTube هنا...",
+      "loading": "جاري التحميل...",
+      "searchVideo": "البحث عن الفيديو",
+      "channel": "القناة",
+      "audioFormats": "تنسيقات الصوت",
+      "videoFormats": "تنسيقات الفيديو",
+      "download": "تحميل",
+      "close": "إغلاق",
+      "preparingDownload": "جارٍ إعداد التحميل {format}...",
+      "downloadReady": "التحميل {format} جاهز",
+      "downloadReadyHint": "انقر فوق زر التحميل أعلاه لبدء التحميل",
+      "downloadTroubleshoot": "إذا لم يبدأ التحميل، تحقق من مانعات النوافذ المنبثقة أو جرب تنسيقًا آخر",
+      "serviceInfo": "يتم التعامل مع التحميلات بواسطة خدمتنا الآمنة. لا يتم تخزين أي بيانات.",
+      "emptyState": {
+        "title": "أدخل رابط YouTube",
+        "description": "الصق رابط فيديو YouTube أعلاه للبدء"
+      },
+      "errors": {
+        "fetchFailed": "فشل في جلب معلومات الفيديو. يرجى التحقق من الرابط والمحاولة مرة أخرى.",
+        "invalidUrl": "رابط YouTube غير صالح. يرجى إدخال رابط فيديو YouTube صالح."
+      }
     },
     "tiktokDownloader": {
       "title": "تحميل من TikTok",

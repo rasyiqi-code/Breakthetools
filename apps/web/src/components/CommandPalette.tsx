@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { Search, ArrowRight, Clock, Star, Zap } from 'lucide-react'
 import { toolCategories } from '@/config/tools'
-import { useIntl } from 'react-intl'
+import { useTranslations } from 'next-intl'
 import { getToolName, getCategoryName } from '@/lib/toolTranslations'
 
 type ToolItem = {
@@ -25,15 +25,16 @@ export function CommandPalette({ onOpenChange }: CommandPaletteProps) {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
-  const intl = useIntl()
+  const tTools = useTranslations('tools')
+  const tCategories = useTranslations('categories')
 
   // Flatten all tools dengan translations
   const allTools: ToolItem[] = toolCategories.flatMap(category =>
     category.tools.map(tool => ({
       ...tool,
-      name: getToolName(tool.id, intl),
+      name: getToolName(tool.id, tTools),
       description: tool.description, // TODO: bisa di-translate juga jika perlu
-      category: getCategoryName(category.id, intl),
+      category: getCategoryName(category.id, tCategories),
       categoryIcon: category.icon
     }))
   )
@@ -47,14 +48,24 @@ export function CommandPalette({ onOpenChange }: CommandPaletteProps) {
       )
     : allTools.slice(0, 8) // Show first 8 by default
 
-  // Get recent tools from localStorage
+  // Get recent tools from localStorage - defer untuk menghindari blocking
   const [recentTools, setRecentTools] = useState<string[]>([])
   
   useEffect(() => {
-    const recent = localStorage.getItem('recentTools')
-    if (recent) {
-      setRecentTools(JSON.parse(recent))
-    }
+    // Defer localStorage access untuk menghindari blocking render
+    const timeoutId = setTimeout(() => {
+      try {
+        const recent = localStorage.getItem('recentTools')
+        if (recent) {
+          setRecentTools(JSON.parse(recent))
+        }
+      } catch (error) {
+        // Silently fail jika localStorage tidak tersedia
+        console.warn('Failed to read recentTools from localStorage', error)
+      }
+    }, 0)
+    
+    return () => clearTimeout(timeoutId)
   }, [])
 
   // Focus input on mount and Cmd/Ctrl+K
@@ -91,12 +102,23 @@ export function CommandPalette({ onOpenChange }: CommandPaletteProps) {
   }
 
   const handleSelectTool = (tool: ToolItem) => {
-    // Save to recent tools
-    const updated = [tool.id, ...recentTools.filter(id => id !== tool.id)].slice(0, 5)
-    localStorage.setItem('recentTools', JSON.stringify(updated))
-    setRecentTools(updated)
+    // Save to recent tools - defer untuk menghindari blocking navigation
+    try {
+      const updated = [tool.id, ...recentTools.filter(id => id !== tool.id)].slice(0, 5)
+      // Defer localStorage write untuk tidak block navigation
+      setTimeout(() => {
+        try {
+          localStorage.setItem('recentTools', JSON.stringify(updated))
+          setRecentTools(updated)
+        } catch (error) {
+          console.warn('Failed to save recentTools to localStorage', error)
+        }
+      }, 0)
+    } catch (error) {
+      console.warn('Failed to update recentTools', error)
+    }
     
-    // Navigate
+    // Navigate immediately
     router.push(`/tools/${tool.id}`)
   }
 

@@ -436,6 +436,66 @@ export const toolCategories: ToolCategory[] = [
         id: 'pdf-to-images',
         name: 'PDF to Images',
         description: 'Ekstrak halaman PDF menjadi gambar'
+      },
+      {
+        id: 'pdf-to-text',
+        name: 'PDF to Text',
+        description: 'Extract text dari PDF ke file .txt'
+      },
+      {
+        id: 'pdf-to-html',
+        name: 'PDF to HTML',
+        description: 'Convert PDF pages ke format HTML'
+      },
+      {
+        id: 'pdf-to-excel',
+        name: 'PDF to Excel',
+        description: 'Extract tables dari PDF ke Excel (terbatas untuk PDF dengan tabel terstruktur)'
+      },
+      {
+        id: 'pdf-to-epub',
+        name: 'PDF to EPUB',
+        description: 'Convert PDF ke format EPUB untuk e-reader'
+      },
+      {
+        id: 'pdf-to-word',
+        name: 'PDF to Word',
+        description: 'Convert PDF ke dokumen Word (.docx)'
+      },
+      {
+        id: 'word-to-pdf',
+        name: 'Word to PDF',
+        description: 'Convert dokumen Word (.docx) ke PDF'
+      },
+      {
+        id: 'word-to-html',
+        name: 'Word to HTML',
+        description: 'Convert dokumen Word (.docx) ke HTML'
+      },
+      {
+        id: 'word-to-markdown',
+        name: 'Word to Markdown',
+        description: 'Convert dokumen Word (.docx) ke Markdown'
+      },
+      {
+        id: 'excel-to-pdf',
+        name: 'Excel to PDF',
+        description: 'Convert spreadsheet Excel ke PDF'
+      },
+      {
+        id: 'excel-to-csv',
+        name: 'Excel to CSV',
+        description: 'Convert Excel spreadsheet ke CSV'
+      },
+      {
+        id: 'csv-to-excel',
+        name: 'CSV to Excel',
+        description: 'Convert file CSV ke Excel spreadsheet'
+      },
+      {
+        id: 'powerpoint-to-pdf',
+        name: 'PowerPoint to PDF',
+        description: 'Convert presentasi PowerPoint ke PDF'
       }
     ]
   },

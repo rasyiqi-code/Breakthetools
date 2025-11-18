@@ -13,7 +13,7 @@ interface PDFFile {
 }
 
 export function PDFMerger() {
-  const t = useTranslations('tools.pdfMerger')
+  const t = useTranslations('tools')
   const [pdfFiles, setPdfFiles] = useState<PDFFile[]>([])
   const [isProcessing, setIsProcessing] = useState(false)
   const [mergedUrl, setMergedUrl] = useState<string>('')
@@ -34,7 +34,7 @@ export function PDFMerger() {
     const pdfFiles = files.filter(file => file.type === 'application/pdf')
     
     if (pdfFiles.length === 0) {
-      setError(t('errors.selectPDFFirst'))
+      setError(t('pdfMerger.errors.selectPDFFirst'))
       return
     }
 
@@ -87,7 +87,7 @@ export function PDFMerger() {
 
   const mergePDFs = async () => {
     if (pdfFiles.length === 0) {
-      setError(t('errors.selectAtLeastOne'))
+      setError(t('pdfMerger.errors.selectAtLeastOne'))
       return
     }
 
@@ -114,7 +114,7 @@ export function PDFMerger() {
       
       setMergedUrl(url)
     } catch (err: any) {
-      setError(t('errors.mergeFailed') + ' ' + (err.message || t('errors.ensureValidPDF')))
+      setError(t('pdfMerger.errors.mergeFailed') + ' ' + (err.message || t('pdfMerger.errors.ensureValidPDF')))
     } finally {
       setIsProcessing(false)
     }
@@ -123,7 +123,7 @@ export function PDFMerger() {
   const downloadMerged = () => {
     if (!mergedUrl) return
     
-    const link = document.createElement('a')
+    const link = document.createElement('a') as HTMLAnchorElement
     link.href = mergedUrl
     link.download = 'merged.pdf'
     document.body.appendChild(link)
@@ -134,13 +134,13 @@ export function PDFMerger() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('title')}</h1>
-        <p className="text-sm sm:text-base text-neutral-600">{t('description')}</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('pdfMerger.title')}</h1>
+        <p className="text-sm sm:text-base text-neutral-600">{t('pdfMerger.description')}</p>
       </div>
 
       <div className="tool-card p-4 sm:p-6 mb-4 sm:mb-6">
         <label className="text-sm font-medium text-neutral-700 mb-3 block">
-          {t('uploadPDFFiles')}
+          {t('pdfMerger.uploadPDFFiles')}
         </label>
         <div className="flex flex-col sm:flex-row gap-3 mb-4">
           <input
@@ -157,7 +157,7 @@ export function PDFMerger() {
             className="btn-primary flex items-center justify-center gap-2 cursor-pointer min-h-[44px] text-sm sm:text-base"
           >
             <Upload className="w-4 h-4" />
-            {t('selectPDFFiles')}
+            {t('pdfMerger.selectPDFFiles')}
           </label>
           <button
             onClick={mergePDFs}
@@ -167,12 +167,12 @@ export function PDFMerger() {
             {isProcessing ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                {t('processing')}
+                {t('pdfMerger.processing')}
               </>
             ) : (
               <>
                 <FileText className="w-4 h-4" />
-                {t('mergePDFs')}
+                {t('pdfMerger.mergePDFs')}
               </>
             )}
           </button>
@@ -187,7 +187,7 @@ export function PDFMerger() {
         {pdfFiles.length > 0 && (
           <div className="space-y-2">
             <div className="text-xs sm:text-sm font-medium text-neutral-700 mb-2">
-              {t('fileList', { count: pdfFiles.length })} - {t('dragToReorder')}
+              {t('pdfMerger.fileList', { count: pdfFiles.length })} - {t('pdfMerger.dragToReorder')}
             </div>
             {pdfFiles.map((pdfFile, index) => (
               <div
@@ -226,7 +226,7 @@ export function PDFMerger() {
       {mergedUrl && (
         <div className="tool-card p-4 sm:p-6">
           <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4">
-            {t('mergeSuccess')}
+            {t('pdfMerger.mergeSuccess')}
           </h3>
           <div className="flex flex-col sm:flex-row gap-3">
             <button
@@ -234,7 +234,7 @@ export function PDFMerger() {
               className="btn-primary flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
             >
               <Download className="w-4 h-4" />
-              {t('downloadMergedPDF')}
+              {t('pdfMerger.downloadMergedPDF')}
             </button>
             <a
               href={mergedUrl}
@@ -243,7 +243,7 @@ export function PDFMerger() {
               className="btn-secondary flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
             >
               <FileText className="w-4 h-4" />
-              {t('preview')}
+              {t('pdfMerger.preview')}
             </a>
           </div>
         </div>

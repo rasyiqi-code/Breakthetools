@@ -5,7 +5,7 @@ import { Upload, Download, Image as ImageIcon, FileImage, Type, Loader2, Setting
 import { useTranslations } from 'next-intl'
 
 export function WatermarkMaker() {
-    const t = useTranslations('tools.watermarkMaker')
+    const t = useTranslations('tools')
     
     const [originalFile, setOriginalFile] = useState<File | null>(null)
     const [preview, setPreview] = useState<string>('')
@@ -24,7 +24,7 @@ export function WatermarkMaker() {
         if (!file) return
 
         if (!file.type.startsWith('image/')) {
-            alert(t('errors.invalidFileType'))
+            alert(t('watermarkMaker.errors.invalidFileType'))
             return
         }
 
@@ -39,7 +39,7 @@ export function WatermarkMaker() {
 
     const applyWatermark = () => {
         if (!preview || !watermarkText.trim()) {
-            alert(t('errors.noImageOrText'))
+            alert(t('watermarkMaker.errors.noImageOrText'))
             return
         }
 
@@ -49,8 +49,8 @@ export function WatermarkMaker() {
             const img = new Image()
             img.crossOrigin = 'anonymous'
             img.onload = () => {
-                const canvas = document.createElement('canvas')
-                const ctx = canvas.getContext('2d')
+                const canvas = document.createElement('watermarkMaker.canvas')
+                const ctx = canvas.getContext('watermarkMaker.2d')
                 if (!ctx) {
                     setIsProcessing(false)
                     return
@@ -143,7 +143,7 @@ export function WatermarkMaker() {
     const handleDownload = () => {
         if (!processedUrl) return
 
-        const link = document.createElement('a')
+        const link = document.createElement('watermarkMaker.a')
         link.href = processedUrl
         link.download = `watermarked-${Date.now()}.png`
         document.body.appendChild(link)
@@ -154,21 +154,21 @@ export function WatermarkMaker() {
     return (
         <div className="max-w-full sm:max-w-6xl mx-auto px-4">
             <div className="mb-4 sm:mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('title')}</h1>
-                <p className="text-sm sm:text-base text-neutral-600">{t('description')}</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('watermarkMaker.title')}</h1>
+                <p className="text-sm sm:text-base text-neutral-600">{t('watermarkMaker.description')}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="tool-card p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                         <Upload className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                        {t('uploadAndSettings')}
+                        {t('watermarkMaker.uploadAndSettings')}
                     </h3>
 
                     <div className="space-y-4">
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('selectImage')}
+                                {t('watermarkMaker.selectImage')}
                             </label>
                             <input
                                 ref={fileInputRef}
@@ -182,7 +182,7 @@ export function WatermarkMaker() {
                                 className="btn-secondary w-full flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
                             >
                                 <FileImage className="w-4 h-4" />
-                                {t('selectImage')}
+                                {t('watermarkMaker.selectImage')}
                             </button>
                             {originalFile && (
                                 <div className="mt-2 text-xs sm:text-sm text-neutral-600 break-words">
@@ -193,20 +193,20 @@ export function WatermarkMaker() {
 
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('watermarkText')}
+                                {t('watermarkMaker.watermarkText')}
                             </label>
                             <input
                                 type="text"
                                 value={watermarkText}
                                 onChange={(e) => setWatermarkText(e.target.value)}
-                                placeholder={t('watermarkTextPlaceholder')}
+                                placeholder={t('watermarkMaker.watermarkTextPlaceholder')}
                                 className="input-field w-full min-h-[44px] text-sm sm:text-base"
                             />
                         </div>
 
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('textColor')}
+                                {t('watermarkMaker.textColor')}
                             </label>
                             <div className="flex gap-2">
                                 <input
@@ -226,7 +226,7 @@ export function WatermarkMaker() {
 
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('textSize')}: {textSize}px
+                                {t('watermarkMaker.textSize')}: {textSize}px
                             </label>
                             <input
                                 type="range"
@@ -240,7 +240,7 @@ export function WatermarkMaker() {
 
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('opacity')}: {opacity}%
+                                {t('watermarkMaker.opacity')}: {opacity}%
                             </label>
                             <input
                                 type="range"
@@ -254,7 +254,7 @@ export function WatermarkMaker() {
 
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('position')}
+                                {t('watermarkMaker.position')}
                             </label>
                             <div className="grid grid-cols-3 gap-2">
                                 {(['top-left', 'top-right', 'center', 'bottom-left', 'bottom-right'] as const).map((pos) => (
@@ -267,7 +267,7 @@ export function WatermarkMaker() {
                                                 : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                                         }`}
                                     >
-                                        {t(`positions.${pos}`)}
+                                        {t(`watermarkMaker.positions.${pos}`)}
                                     </button>
                                 ))}
                             </div>
@@ -275,7 +275,7 @@ export function WatermarkMaker() {
 
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('rotation')}: {rotation}°
+                                {t('watermarkMaker.rotation')}: {rotation}°
                             </label>
                             <input
                                 type="range"
@@ -295,18 +295,18 @@ export function WatermarkMaker() {
                             {isProcessing ? (
                                 <>
                                     <Loader2 className="w-4 h-4 animate-spin" />
-                                    {t('processing')}
+                                    {t('watermarkMaker.processing')}
                                 </>
                             ) : (
                                 <>
                                     <Type className="w-4 h-4" />
-                                    {t('applyWatermark')}
+                                    {t('watermarkMaker.applyWatermark')}
                                 </>
                             )}
                         </button>
 
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 sm:p-3 text-xs sm:text-sm text-blue-800">
-                            💡 <strong>{t('tipsLabel')}:</strong> {t('tips')}
+                            💡 <strong>{t('watermarkMaker.tipsLabel')}:</strong> {t('watermarkMaker.tips')}
                         </div>
                     </div>
                 </div>
@@ -314,28 +314,28 @@ export function WatermarkMaker() {
                 <div className="tool-card p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                         <ImageIcon className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                        {t('previewAndDownload')}
+                        {t('watermarkMaker.previewAndDownload')}
                     </h3>
 
                     {preview ? (
                         <div className="space-y-4">
                             <div className="bg-neutral-50 p-3 sm:p-4 rounded-lg border border-neutral-200">
-                                <div className="text-xs text-neutral-600 mb-2">{t('original')}</div>
-                                <img src={preview} alt={t('original')} className="max-w-full h-auto rounded" />
+                                <div className="text-xs text-neutral-600 mb-2">{t('watermarkMaker.original')}</div>
+                                <img src={preview} alt={t('watermarkMaker.original')} className="max-w-full h-auto rounded" />
                             </div>
 
                             {processedUrl && (
                                 <>
                                     <div className="bg-primary-50 p-3 sm:p-4 rounded-lg border border-primary-200">
-                                        <div className="text-xs text-neutral-600 mb-2">{t('watermarked')}</div>
-                                        <img src={processedUrl} alt={t('processed')} className="max-w-full h-auto rounded" />
+                                        <div className="text-xs text-neutral-600 mb-2">{t('watermarkMaker.watermarked')}</div>
+                                        <img src={processedUrl} alt={t('watermarkMaker.processed')} className="max-w-full h-auto rounded" />
                                     </div>
                                     <button
                                         onClick={handleDownload}
                                         className="btn-primary w-full flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
                                     >
                                         <Download className="w-4 h-4" />
-                                        {t('downloadImage')}
+                                        {t('watermarkMaker.downloadImage')}
                                     </button>
                                 </>
                             )}
@@ -344,7 +344,7 @@ export function WatermarkMaker() {
                         <div className="flex items-center justify-center h-full min-h-[250px] sm:min-h-[300px] text-neutral-400">
                             <div className="text-center">
                                 <ImageIcon className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 opacity-50" />
-                                <p className="text-xs sm:text-sm">{t('selectImageToStart')}</p>
+                                <p className="text-xs sm:text-sm">{t('watermarkMaker.selectImageToStart')}</p>
                             </div>
                         </div>
                     )}
