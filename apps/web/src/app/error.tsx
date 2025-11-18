@@ -1,22 +1,23 @@
 'use client'
 
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { AlertCircle, RefreshCw, Home } from 'lucide-react'
 import Link from 'next/link'
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string }
+type ErrorProps = {
+  error: Error
   reset: () => void
-}) {
+}
+
+export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
-    // Log error to console in development
     if (process.env.NODE_ENV === 'development') {
       console.error('Application error:', error)
     }
   }, [error])
+
+  const errorMessage = error?.message || 'An unexpected error occurred'
+  const errorDigest = (error as any)?.digest
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-neutral-50">
@@ -27,12 +28,10 @@ export default function Error({
         <h2 className="text-xl font-bold text-neutral-900 mb-2 text-center">
           Something went wrong
         </h2>
-        <p className="text-neutral-600 mb-4 text-center">
-          {error?.message || 'An unexpected error occurred'}
-        </p>
-        {error?.digest && (
+        <p className="text-neutral-600 mb-4 text-center">{errorMessage}</p>
+        {errorDigest && (
           <p className="text-xs text-neutral-400 mb-4 text-center">
-            Error ID: {error.digest}
+            Error ID: {errorDigest}
           </p>
         )}
         <div className="flex flex-col gap-2">
