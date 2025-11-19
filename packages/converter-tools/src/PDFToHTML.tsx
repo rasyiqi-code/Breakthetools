@@ -2,8 +2,6 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, FileText, Loader2, Code } from 'lucide-react'
-import { useTranslations } from 'next-intl'
-
 // Dynamic import untuk pdfjs-dist (hanya di client-side)
 let pdfjsLib: any = null
 let isPdfjsInitialized = false
@@ -121,7 +119,6 @@ async function initializePdfjs() {
 }
 
 export function PDFToHTML() {
-  const t = useTranslations('tools')
   const [pdfFile, setPdfFile] = useState<File | null>(null)
   const [totalPages, setTotalPages] = useState(0)
   const [selectedPages, setSelectedPages] = useState<number[]>([])
@@ -144,7 +141,7 @@ export function PDFToHTML() {
     if (!file) return
 
     if (file.type !== 'application/pdf') {
-      setError(t('pdfToHtml.errors.invalidFile'))
+      setError('Please select a valid PDF file!')
       return
     }
 
@@ -171,7 +168,7 @@ export function PDFToHTML() {
       setSelectedPages(Array.from({ length: pdf.numPages }, (_, i) => i + 1))
     } catch (err: any) {
       console.error('PDF read error:', err)
-      setError(t('pdfToHtml.errors.readFailed') + (err.message ? ': ' + err.message : ''))
+      setError('Failed to read PDF' + (err.message ? ': ' + err.message : ''))
       setPdfFile(null)
     }
   }
@@ -190,7 +187,7 @@ export function PDFToHTML() {
 
   const convertToHTML = async () => {
     if (!pdfFile) {
-      setError(t('pdfToHtml.errors.noFile'))
+      setError('Please select a PDF file first!')
       return
     }
 
@@ -199,7 +196,7 @@ export function PDFToHTML() {
       : selectedPages.sort((a, b) => a - b)
 
     if (pagesToConvert.length === 0) {
-      setError(t('pdfToHtml.errors.noPages'))
+      setError('Please select at least one page!')
       return
     }
 
@@ -241,7 +238,7 @@ export function PDFToHTML() {
           const textContent = await page.getTextContent()
           
           htmlContent += `<div class="page">\n`
-          htmlContent += `<h2>${t('pdfToHtml.page')} ${pageNum}</h2>\n`
+          htmlContent += `<h2>Page ${pageNum}</h2>\n`
           
           // Render text with positioning
           let lastY = -1
@@ -279,7 +276,7 @@ export function PDFToHTML() {
       setHtmlOutput(htmlContent)
     } catch (err: any) {
       console.error('HTML conversion error:', err)
-      setError(t('pdfToHtml.errors.conversionFailed') + (err.message ? ': ' + err.message : ''))
+      setError('Failed to convert PDF to HTML' + (err.message ? ': ' + err.message : ''))
     } finally {
       setIsProcessing(false)
     }
@@ -302,16 +299,16 @@ export function PDFToHTML() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto w-full px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('pdfToHtml.title')}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">PDF to HTML</h1>
         <p className="text-sm sm:text-base text-neutral-600">
-          {t('pdfToHtml.description')}
+          Convert PDF pages to HTML format
         </p>
       </div>
 
       {/* File Upload */}
       <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
         <label className="block text-sm font-medium text-neutral-700 mb-3">
-          {t('pdfToHtml.selectPDF')}
+          Select PDF File
         </label>
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
@@ -327,11 +324,11 @@ export function PDFToHTML() {
               className="w-full sm:w-auto px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 min-h-[44px]"
             >
               <Upload className="w-4 h-4" />
-              {pdfFile ? pdfFile.name : t('pdfToHtml.chooseFile')}
+              {pdfFile ? pdfFile.name : 'Choose PDF File'}
             </button>
             {pdfFile && (
               <p className="text-xs text-neutral-500 mt-2">
-                {formatFileSize(pdfFile.size)} • {totalPages} {totalPages === 1 ? t('pdfToHtml.page') : t('pdfToHtml.pages')}
+                {formatFileSize(pdfFile.size)} • {totalPages} {totalPages === 1 ? 'Page' : 'Pages'}
               </p>
             )}
           </div>
@@ -348,7 +345,7 @@ export function PDFToHTML() {
         <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
           <div className="mb-4">
             <label className="block text-sm font-medium text-neutral-700 mb-3">
-              {t('pdfToHtml.selectPages')}
+              Select Pages to Convert
             </label>
             <div className="flex gap-3 mb-4">
               <button
@@ -362,7 +359,7 @@ export function PDFToHTML() {
                     : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                 }`}
               >
-                {t('pdfToHtml.allPages')}
+                All Pages
               </button>
               <button
                 onClick={() => setExtractMode('selected')}
@@ -372,7 +369,7 @@ export function PDFToHTML() {
                     : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                 }`}
               >
-                {t('pdfToHtml.selectedPages')}
+                Selected Pages
               </button>
             </div>
 
@@ -403,12 +400,12 @@ export function PDFToHTML() {
             {isProcessing ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                {t('pdfToHtml.processing')}
+                Processing...
               </>
             ) : (
               <>
                 <Code className="w-4 h-4" />
-                {t('pdfToHtml.convert')}
+                Convert to HTML
               </>
             )}
           </button>
@@ -419,23 +416,23 @@ export function PDFToHTML() {
       {htmlOutput && (
         <div className="tool-card p-4 sm:p-6 w-full">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-semibold text-neutral-900">{t('pdfToHtml.htmlOutput')}</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">HTML Output</h3>
             <button
               onClick={downloadHTML}
               className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 min-h-[44px]"
             >
               <Download className="w-4 h-4" />
-              {t('pdfToHtml.download')}
+              Download
             </button>
           </div>
           <textarea
             value={htmlOutput}
             readOnly
             className="w-full p-4 border border-neutral-300 rounded-lg font-mono text-xs sm:text-sm bg-neutral-50 min-h-[300px] max-h-[600px] overflow-y-auto"
-            placeholder={t('pdfToHtml.htmlOutputPlaceholder')}
+            placeholder="HTML output will appear here..."
           />
           <p className="text-xs text-neutral-500 mt-2">
-            {htmlOutput.length} {t('pdfToHtml.characters')}
+            {htmlOutput.length} characters
           </p>
         </div>
       )}

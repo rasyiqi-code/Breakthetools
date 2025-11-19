@@ -2,7 +2,6 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Image as ImageIcon, FileImage, Brain, Palette, Info } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 import { colorPsychology, getColorName } from './utils/colorPsychologyData'
 import { extractDominantColors, resizeImageForAnalysis } from './utils/colorExtraction'
 import { rgbToHsl } from '@breaktools/generator-tools'
@@ -20,7 +19,6 @@ interface ColorInfo {
 }
 
 export function ColorPsychology() {
-  const t = useTranslations('tools')
   const [originalFile, setOriginalFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string>('')
   const [colors, setColors] = useState<ColorInfo[]>([])
@@ -32,7 +30,7 @@ export function ColorPsychology() {
     if (!file) return
 
     if (!file.type.startsWith('image/')) {
-      alert(t('colorPsychology.errors.invalidFileType'))
+      alert('File must be an image!')
       return
     }
 
@@ -47,7 +45,7 @@ export function ColorPsychology() {
 
   const analyzeColors = () => {
     if (!preview) {
-      alert(t('colorPsychology.errors.noFileSelected'))
+      alert('Please select an image first!')
       return
     }
 
@@ -101,21 +99,21 @@ export function ColorPsychology() {
   return (
     <div className="max-w-full sm:max-w-6xl mx-auto px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('colorPsychology.title')}</h1>
-        <p className="text-sm sm:text-base text-neutral-600">{t('colorPsychology.description')}</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Color Psychology & Composition</h1>
+        <p className="text-sm sm:text-base text-neutral-600">Analyze color psychology and composition from images - All processing in browser</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div className="tool-card p-4 sm:p-6">
           <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
             <Upload className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-            {t('colorPsychology.uploadAndAnalyze')}
+            Upload & Analyze
           </h3>
 
           <div className="space-y-4">
             <div>
               <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                {t('colorPsychology.selectImage')}
+                Select Image
               </label>
               <input
                 ref={fileInputRef}
@@ -129,7 +127,7 @@ export function ColorPsychology() {
                 className="btn-secondary w-full flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
               >
                 <FileImage className="w-4 h-4" />
-                {t('colorPsychology.selectImage')}
+                Select Image
               </button>
               {originalFile && (
                 <div className="mt-2 text-xs sm:text-sm text-neutral-600 break-words">
@@ -140,7 +138,7 @@ export function ColorPsychology() {
 
             <div>
               <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                {t('colorPsychology.numColors')}: {numColors}
+                Number of Colors: {numColors}
               </label>
               <input
                 type="range"
@@ -158,13 +156,13 @@ export function ColorPsychology() {
               className="btn-primary w-full flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
             >
               <Brain className="w-4 h-4" />
-              {t('colorPsychology.analyzeColors')}
+              Analyze Color Psychology
             </button>
 
             {preview && (
               <div className="bg-neutral-50 p-3 sm:p-4 rounded-lg border border-neutral-200">
-                <div className="text-xs text-neutral-600 mb-2">{t('colorPsychology.preview')}</div>
-                <img src={preview} alt={t('colorPsychology.preview')} className="max-w-full h-auto rounded" />
+                <div className="text-xs text-neutral-600 mb-2">Preview</div>
+                <img src={preview} alt="Preview" className="max-w-full h-auto rounded" />
               </div>
             )}
           </div>
@@ -173,7 +171,7 @@ export function ColorPsychology() {
         <div className="tool-card p-4 sm:p-6">
           <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
             <Palette className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-            {t('colorPsychology.colorAnalysis')}
+            Color Analysis
           </h3>
 
           {colors.length > 0 ? (
@@ -199,7 +197,7 @@ export function ColorPsychology() {
                     <div>
                       <div className="text-xs font-semibold text-neutral-700 mb-1 flex items-center gap-1">
                         <Brain className="w-3 h-3" />
-                        {t('colorPsychology.emotionsAndFeelings')}
+                        Emotions & Feelings
                       </div>
                       <div className="flex flex-wrap gap-1">
                         {color.psychology.emotion.map((emotion, i) => (
@@ -216,7 +214,7 @@ export function ColorPsychology() {
                     <div>
                       <div className="text-xs font-semibold text-neutral-700 mb-1 flex items-center gap-1">
                         <Info className="w-3 h-3" />
-                        {t('colorPsychology.meaning')}
+                        Meaning
                       </div>
                       <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed">
                         {color.psychology.meaning}
@@ -225,7 +223,7 @@ export function ColorPsychology() {
 
                     <div>
                       <div className="text-xs font-semibold text-neutral-700 mb-1">
-                        {t('colorPsychology.bestUseCases')}
+                        Best Use Cases
                       </div>
                       <div className="flex flex-wrap gap-1">
                         {color.psychology.use.map((use, i) => (
@@ -246,7 +244,7 @@ export function ColorPsychology() {
             <div className="flex items-center justify-center h-full min-h-[250px] sm:min-h-[300px] text-neutral-400">
               <div className="text-center">
                 <Palette className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 opacity-50" />
-                <p className="text-xs sm:text-sm">{t('colorPsychology.selectImageAndAnalyze')}</p>
+                <p className="text-xs sm:text-sm">Select an image and click "Analyze"</p>
               </div>
             </div>
           )}
@@ -254,9 +252,9 @@ export function ColorPsychology() {
       </div>
 
       <div className="mt-4 sm:mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 text-xs sm:text-sm">
-        <h3 className="font-semibold text-blue-900 mb-2">💡 {t('colorPsychology.aboutTitle')}</h3>
+        <h3 className="font-semibold text-blue-900 mb-2">💡 About Color Psychology</h3>
         <p className="text-blue-800">
-          {t('colorPsychology.aboutDescription')}
+          Color psychology studies how colors affect emotions, behavior, and human perception. This analysis helps understand the message conveyed through the color palette in your image.
         </p>
       </div>
     </div>

@@ -2,8 +2,7 @@
 
 import { articles, fullArticles, i18nArticles } from '@/content/articles'
 import { ArticleContent, LegacyArticle } from '@/content/articles/types'
-import { Link } from '@/i18n/routing-client'
-import { useLocale, useTranslations } from 'next-intl'
+import Link from 'next/link'
 import { getArticleByLocale } from '@/content/articles/i18n'
 
 interface ToolArticleProps {
@@ -12,12 +11,10 @@ interface ToolArticleProps {
 }
 
 export function ToolArticle({ toolId, toolName }: ToolArticleProps) {
-    const locale = useLocale()
-
-    // Try to get i18n article first
+    // Try to get i18n article first (default to 'en')
     const i18nArticle = i18nArticles[toolId]
     const fullArticle = i18nArticle
-        ? getArticleByLocale(i18nArticles, toolId, locale)
+        ? getArticleByLocale(i18nArticles, toolId, 'en')
         : (fullArticles[toolId] as ArticleContent | undefined)
 
     const legacyArticle = articles[toolId] as LegacyArticle | undefined
@@ -141,7 +138,6 @@ export function ToolArticle({ toolId, toolName }: ToolArticleProps) {
 
     // Legacy article format
     if (legacyArticle) {
-        const t = useTranslations('articles')
         return (
             <article className="max-w-4xl mx-auto mt-12 sm:mt-16 px-[5px]">
                 <div className="bg-white rounded-lg shadow-sm border border-neutral-200 p-6 sm:p-8">
@@ -160,7 +156,7 @@ export function ToolArticle({ toolId, toolName }: ToolArticleProps) {
                     </div>
                     <div className="mt-8 pt-6 border-t border-neutral-200">
                         <p className="text-sm text-neutral-600">
-                            <strong>{t('tipsLabel')}:</strong> {t('defaultTips')}
+                            <strong>Tips:</strong> Make sure to save your work before processing. All processing happens in your browser for maximum privacy.
                         </p>
                     </div>
                 </div>
@@ -168,31 +164,30 @@ export function ToolArticle({ toolId, toolName }: ToolArticleProps) {
         )
     }
 
-    // Default fallback with i18n
-    const t = useTranslations('articles')
+    // Default fallback
     return (
         <article className="max-w-4xl mx-auto mt-12 sm:mt-16 px-[5px]">
             <div className="bg-white rounded-lg shadow-sm border border-neutral-200 p-6 sm:p-8">
                 <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-6">
-                    {t('defaultTitle', { toolName })}
+                    About {toolName}
                 </h2>
                 <div className="prose prose-neutral max-w-none">
                     <p className="text-neutral-700 leading-relaxed mb-4 text-sm sm:text-base">
-                        {t('defaultContent1', { toolName })}
+                        {toolName} is a free online tool that helps you {toolName.toLowerCase()} quickly and easily. No registration required, all processing happens in your browser.
                     </p>
                     <p className="text-neutral-700 leading-relaxed mb-4 text-sm sm:text-base">
-                        {t('defaultContent2', { toolName })}
+                        Our {toolName.toLowerCase()} tool is designed to be fast, secure, and user-friendly. Simply input your data and get instant results.
                     </p>
                     <p className="text-neutral-700 leading-relaxed mb-4 text-sm sm:text-base">
-                        {t('defaultContent3')}
+                        All processing happens locally in your browser, ensuring your data never leaves your device.
                     </p>
                     <p className="text-neutral-700 leading-relaxed mb-4 text-sm sm:text-base">
-                        {t('defaultContent4')}
+                        This tool is completely free to use with no hidden costs or registration requirements.
                     </p>
                 </div>
                 <div className="mt-8 pt-6 border-t border-neutral-200">
                     <p className="text-sm text-neutral-600">
-                        <strong>{t('tipsLabel')}:</strong> {t('defaultTips')}
+                        <strong>Tips:</strong> Make sure to save your work before processing. All processing happens in your browser for maximum privacy.
                     </p>
                 </div>
             </div>

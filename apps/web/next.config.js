@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const path = require('path')
-const createNextIntlPlugin = require('next-intl/plugin')
-
-const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 const nextConfig = {
   reactStrictMode: true,
@@ -10,10 +7,13 @@ const nextConfig = {
   outputFileTracingRoot: path.join(__dirname, '../../'),
   // Jangan gunakan output standalone di Windows untuk menghindari error symlink
   // output: 'standalone',
+  // Turbopack configuration - empty object untuk silence warning
+  turbopack: {},
   experimental: {
     serverActions: {
       bodySizeLimit: '2mb',
     },
+    // Removed serverComponentsExternalPackages - moved to serverExternalPackages at root level
   },
   // Optimasi kompresi
   compress: true,
@@ -51,9 +51,9 @@ const nextConfig = {
   },
   // External packages yang tidak bisa di-bundle (native modules atau server-only)
   serverExternalPackages: [
-    'canvas', 
-    'jsdom', 
-    '@tobyg74/tiktok-api-dl', 
+    'canvas',
+    'jsdom',
+    '@tobyg74/tiktok-api-dl',
     'qrcode',
     'exceljs',
     'jszip',
@@ -77,28 +77,24 @@ const nextConfig = {
     '@breaktools/time-tools',
     '@breaktools/converter-tools',
   ],
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, isEdgeRuntime }) => {
     // Ensure next-intl is resolved correctly for transpiled packages
     // This ensures all packages use the same instance of next-intl
     if (!config.resolve.alias) {
       config.resolve.alias = {}
     }
 
-    // Resolve next-intl to the same module for all packages (both server and client)
-    // This is critical for context sharing between transpiled packages and the main app
-    // Use exact match ($) to only resolve 'next-intl' import, not sub-modules like 'next-intl/routing'
-    try {
-      const nextIntlPath = require.resolve('next-intl', { paths: [__dirname] })
-      // Use $ for exact match - only matches 'next-intl' import, not 'next-intl/routing' etc
-      config.resolve.alias['next-intl$'] = nextIntlPath
-    } catch (e) {
-      // Fallback: let webpack resolve it normally
-      console.warn('Could not resolve next-intl path, using default resolution')
+    // Fix for Next.js 16.0.3 bug: next/dist/server/web/globals not available in Edge Runtime
+    // Middleware always uses webpack for Edge Runtime, even when dev uses Turbopack
+    // This is a known issue: https://github.com/vercel/next.js/issues/58140
+    if (isEdgeRuntime) {
+      // Provide empty module stub for Edge Runtime compatibility
+      config.resolve.alias['next/dist/server/web/globals'] = path.join(__dirname, 'src/lib/edge-globals-stub.js')
+      config.resolve.alias['next/dist/server/web/globals.js'] = path.join(__dirname, 'src/lib/edge-globals-stub.js')
     }
 
     if (!isServer) {
-      // For client-side, ensure next-intl is not externalized
-      // and all packages can access the same context
+      // For client-side configuration
       config.resolve.fallback = {
         ...config.resolve.fallback,
         canvas: false,
@@ -128,21 +124,15 @@ const nextConfig = {
         'rimraf',
         'jsonfile',
       ]
-      
+
       serverOnlyPackages.forEach(pkg => {
         config.resolve.alias[pkg] = false
       })
-      
-      // jspdf dan jspdf-autotable bisa digunakan di client-side, jadi jangan di-ignore
 
-      // Ensure next-intl is bundled for client-side
-      // This allows all packages to share the same context instance
-      // Note: Next.js sudah memiliki optimasi code splitting internal yang optimal
-      // Dynamic imports di ToolPageClient akan otomatis membuat separate chunks
+      // jspdf dan jspdf-autotable bisa digunakan di client-side, jadi jangan di-ignore
     }
 
     // Externalize canvas dan modul native untuk server-side
-    // Tapi JANGAN externalize next-intl untuk memastikan context tersedia untuk transpiled packages
     if (isServer) {
       config.externals = config.externals || []
       // Externalize server-only packages untuk server-side
@@ -163,26 +153,21 @@ const nextConfig = {
         'rimraf',
         'jsonfile',
       ]
-      
+
       config.externals.push(({ request }, callback) => {
         if (!request) {
           return callback()
         }
-        
+
         // Check if request matches any server-only pattern
-        const isServerOnly = serverOnlyPatterns.some(pattern => 
+        const isServerOnly = serverOnlyPatterns.some(pattern =>
           request === pattern || request.includes(pattern)
         )
-        
+
         if (isServerOnly) {
           return callback(null, `commonjs ${request}`)
         }
-        
-        // Jangan externalize next-intl untuk memastikan context tersedia
-        if (request === 'next-intl') {
-          return callback()
-        }
-        
+
         callback()
       })
     }
@@ -191,5 +176,5 @@ const nextConfig = {
   },
 }
 
-module.exports = withNextIntl(nextConfig)
+module.exports = nextConfig
 

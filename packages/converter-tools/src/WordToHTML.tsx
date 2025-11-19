@@ -2,10 +2,8 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, FileText, Loader2, Code } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 export function WordToHTML() {
-  const t = useTranslations('tools')
   const [wordFile, setWordFile] = useState<File | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
   const [htmlOutput, setHtmlOutput] = useState('')
@@ -37,7 +35,7 @@ export function WordToHTML() {
     )
 
     if (!hasValidType && !hasValidExtension) {
-      setError(t('wordToHtml.errors.invalidFile'))
+      setError('Please select a valid Word file (.docx or .doc)!')
       return
     }
 
@@ -48,7 +46,7 @@ export function WordToHTML() {
 
   const convertToHTML = async () => {
     if (!wordFile) {
-      setError(t('wordToHtml.errors.noFile'))
+      setError('Please select a Word file first!')
       return
     }
 
@@ -85,7 +83,7 @@ export function WordToHTML() {
       }
     } catch (err: any) {
       console.error('Word to HTML conversion error:', err)
-      setError(t('wordToHtml.errors.conversionFailed') + (err.message ? ': ' + err.message : ''))
+      setError('Failed to convert Word to HTML' + (err.message ? ': ' + err.message : ''))
     } finally {
       setIsProcessing(false)
     }
@@ -108,16 +106,16 @@ export function WordToHTML() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto w-full px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('wordToHtml.title')}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Word to HTML</h1>
         <p className="text-sm sm:text-base text-neutral-600">
-          {t('wordToHtml.description')}
+          Convert Word document (.docx) to HTML
         </p>
       </div>
 
       {/* File Upload */}
       <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
         <label className="block text-sm font-medium text-neutral-700 mb-3">
-          {t('wordToHtml.selectFile')}
+          Select Word File
         </label>
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
@@ -133,7 +131,7 @@ export function WordToHTML() {
               className="w-full sm:w-auto px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 min-h-[44px]"
             >
               <Upload className="w-4 h-4" />
-              {wordFile ? wordFile.name : t('wordToHtml.chooseFile')}
+              {wordFile ? wordFile.name : 'Choose Word File'}
             </button>
             {wordFile && (
               <p className="text-xs text-neutral-500 mt-2">
@@ -160,12 +158,12 @@ export function WordToHTML() {
             {isProcessing ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                {t('wordToHtml.processing')}
+                Processing...
               </>
             ) : (
               <>
                 <Code className="w-4 h-4" />
-                {t('wordToHtml.convert')}
+                Convert to HTML
               </>
             )}
           </button>
@@ -176,23 +174,23 @@ export function WordToHTML() {
       {htmlOutput && (
         <div className="tool-card p-4 sm:p-6 w-full">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-semibold text-neutral-900">{t('wordToHtml.htmlOutput')}</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">HTML Output</h3>
             <button
               onClick={downloadHTML}
               className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 min-h-[44px]"
             >
               <Download className="w-4 h-4" />
-              {t('wordToHtml.download')}
+              Download
             </button>
           </div>
           <textarea
             value={htmlOutput}
             readOnly
             className="w-full p-4 border border-neutral-300 rounded-lg font-mono text-xs sm:text-sm bg-neutral-50 min-h-[300px] max-h-[600px] overflow-y-auto"
-            placeholder={t('wordToHtml.htmlOutputPlaceholder')}
+            placeholder="HTML output will appear here..."
           />
           <p className="text-xs text-neutral-500 mt-2">
-            {htmlOutput.length} {t('wordToHtml.characters')}
+            {htmlOutput.length} characters
           </p>
         </div>
       )}

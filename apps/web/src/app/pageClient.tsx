@@ -2,11 +2,9 @@
 
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Link } from '@/i18n/routing-client'
-import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 import { toolCategories } from '@/config/tools'
 import { Sparkles, Zap, Shield, TrendingUp } from 'lucide-react'
-import { getToolName } from '@/lib/toolTranslations'
 
 // Lazy load CommandPalette untuk mengurangi initial bundle size
 const CommandPalette = dynamic(() => import('@/components/CommandPalette').then(mod => ({ default: mod.CommandPalette })), {
@@ -24,9 +22,6 @@ const CommandPalette = dynamic(() => import('@/components/CommandPalette').then(
 })
 
 export default function HomePageClient() {
-    const t = useTranslations('common')
-    const tNav = useTranslations('nav')
-    const tTools = useTranslations('tools')
     const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
 
     return (
@@ -36,10 +31,10 @@ export default function HomePageClient() {
                 {/* Logo & Title */}
                 <div className="text-center mb-8 sm:mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
                     <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-900 mb-3 sm:mb-4 tracking-tight">
-                        {t('appName')}
+                        Breaktools
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto px-2">
-                        {t('tagline')}
+                        Free and Fast Digital Tools
                     </p>
                 </div>
 
@@ -53,7 +48,7 @@ export default function HomePageClient() {
                     }`}>
                     <div className="text-center">
                         <div className="text-2xl sm:text-3xl font-bold text-primary-600">17+</div>
-                        <div className="text-xs sm:text-sm text-neutral-600">{tNav('tools')}</div>
+                        <div className="text-xs sm:text-sm text-neutral-600">Tools</div>
                     </div>
                     <div className="text-center">
                         <div className="text-2xl sm:text-3xl font-bold text-primary-600">100%</div>
@@ -99,7 +94,7 @@ export default function HomePageClient() {
                                         <span className="text-xs text-neutral-400">#{index + 1}</span>
                                     </div>
                                     <h3 className="font-semibold text-neutral-900 mb-1 group-hover:text-primary-600 transition-colors">
-                                        {getToolName(tool.id, tTools)}
+                                        {tool.name}
                                     </h3>
                                     <p className="text-sm text-neutral-600 line-clamp-2">
                                         {tool.description}
@@ -148,3 +143,4 @@ export default function HomePageClient() {
         </div>
     )
 }
+

@@ -2,12 +2,10 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, Image as ImageIcon, FileImage, Wand2, Loader2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 import { removeByColor, removeByEdge, removeAuto } from './utils/backgroundRemovalAlgorithms'
 import { hexToRgb } from './utils/backgroundRemovalUtils'
 
 export function BackgroundRemover() {
-    const t = useTranslations('tools')
     const [originalFile, setOriginalFile] = useState<File | null>(null)
     const [preview, setPreview] = useState<string>('')
     const [processedUrl, setProcessedUrl] = useState<string>('')
@@ -22,7 +20,7 @@ export function BackgroundRemover() {
         if (!file) return
 
         if (!file.type.startsWith('image/')) {
-            alert(t('backgroundRemover.errors.invalidFileType'))
+            alert('File must be an image!')
             return
         }
 
@@ -37,7 +35,7 @@ export function BackgroundRemover() {
 
     const removeBackground = () => {
         if (!preview) {
-            alert(t('backgroundRemover.errors.noFileSelected'))
+            alert('Please select an image first!')
             return
         }
 
@@ -101,21 +99,21 @@ export function BackgroundRemover() {
     return (
         <div className="max-w-full sm:max-w-6xl mx-auto px-4">
             <div className="mb-4 sm:mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('backgroundRemover.title')}</h1>
-                <p className="text-sm sm:text-base text-neutral-600">{t('backgroundRemover.description')}</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Background Remover</h1>
+                <p className="text-sm sm:text-base text-neutral-600">Remove background from images easily - All processing in browser</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="tool-card p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                         <Upload className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                        {t('backgroundRemover.uploadAndProcess')}
+                        Upload & Process
                     </h3>
 
                     <div className="space-y-4">
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('backgroundRemover.selectImage')}
+                                Select Image
                             </label>
                             <input
                                 ref={fileInputRef}
@@ -129,7 +127,7 @@ export function BackgroundRemover() {
                                 className="btn-secondary w-full flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
                             >
                                 <FileImage className="w-4 h-4" />
-                                {t('backgroundRemover.selectImage')}
+                                Select Image
                             </button>
                             {originalFile && (
                                 <div className="mt-2 text-xs sm:text-sm text-neutral-600 break-words">
@@ -140,7 +138,7 @@ export function BackgroundRemover() {
 
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('backgroundRemover.removalMode')}
+                                Removal Mode
                             </label>
                             <div className="flex flex-col sm:flex-row gap-2">
                                 {(['auto', 'color', 'edge'] as const).map((mode) => (
@@ -152,7 +150,7 @@ export function BackgroundRemover() {
                                             : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                                             }`}
                                     >
-                                        {t(`backgroundRemover.modes.${mode}`)}
+                                        {mode === 'auto' ? 'Auto' : mode === 'color' ? 'Color' : 'Edge'}
                                     </button>
                                 ))}
                             </div>
@@ -161,7 +159,7 @@ export function BackgroundRemover() {
                         {removalMode === 'color' && (
                             <div>
                                 <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                    {t('backgroundRemover.targetColor')}
+                                    Target Color
                                 </label>
                                 <div className="flex gap-2">
                                     <input
@@ -179,7 +177,7 @@ export function BackgroundRemover() {
                                 </div>
                                 <div className="mt-2">
                                     <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                        {t('backgroundRemover.tolerance')}: {tolerance}
+                                        Tolerance: {tolerance}
                                     </label>
                                     <input
                                         type="range"
@@ -201,18 +199,18 @@ export function BackgroundRemover() {
                             {isProcessing ? (
                                 <>
                                     <Loader2 className="w-4 h-4 animate-spin" />
-                                    {t('backgroundRemover.processing')}
+                                    Processing...
                                 </>
                             ) : (
                                 <>
                                     <Wand2 className="w-4 h-4" />
-                                    {t('backgroundRemover.removeBackground')}
+                                    Remove Background
                                 </>
                             )}
                         </button>
 
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 sm:p-3 text-xs sm:text-sm text-blue-800">
-                            💡 <strong>{t('backgroundRemover.tipsLabel')}:</strong> {t('backgroundRemover.tips')}
+                            💡 <strong>Tips:</strong> Auto mode works well for white/bright backgrounds. Color mode for removing specific colors. Edge mode for automatic detection.
                         </div>
                     </div>
                 </div>
@@ -220,22 +218,22 @@ export function BackgroundRemover() {
                 <div className="tool-card p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                         <ImageIcon className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                        {t('backgroundRemover.previewAndDownload')}
+                        Preview & Download
                     </h3>
 
                     {preview ? (
                         <div className="space-y-4">
                             <div className="bg-neutral-50 p-3 sm:p-4 rounded-lg border border-neutral-200">
-                                <div className="text-xs text-neutral-600 mb-2">{t('backgroundRemover.original')}</div>
-                                <img src={preview} alt={t('backgroundRemover.original')} className="max-w-full h-auto rounded" />
+                                <div className="text-xs text-neutral-600 mb-2">Original</div>
+                                <img src={preview} alt="Original" className="max-w-full h-auto rounded" />
                             </div>
 
                             {processedUrl && (
                                 <>
                                     <div className="bg-primary-50 p-3 sm:p-4 rounded-lg border border-primary-200">
-                                        <div className="text-xs text-neutral-600 mb-2">{t('backgroundRemover.backgroundRemoved')}</div>
+                                        <div className="text-xs text-neutral-600 mb-2">Background Removed</div>
                                         <div className="bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjZjBmMGYwIi8+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbGw9IiNmMGYwZjAiLz48L3N2Zz4=')] p-2 rounded">
-                                            <img src={processedUrl} alt={t('backgroundRemover.processed')} className="max-w-full h-auto rounded" />
+                                            <img src={processedUrl} alt="Processed" className="max-w-full h-auto rounded" />
                                         </div>
                                     </div>
                                     <button
@@ -243,7 +241,7 @@ export function BackgroundRemover() {
                                         className="btn-primary w-full flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
                                     >
                                         <Download className="w-4 h-4" />
-                                        {t('backgroundRemover.downloadImage')}
+                                        Download Image (PNG)
                                     </button>
                                 </>
                             )}
@@ -252,7 +250,7 @@ export function BackgroundRemover() {
                         <div className="flex items-center justify-center h-full min-h-[250px] sm:min-h-[300px] text-neutral-400">
                             <div className="text-center">
                                 <ImageIcon className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 opacity-50" />
-                                <p className="text-xs sm:text-sm">{t('backgroundRemover.selectImageToStart')}</p>
+                                <p className="text-xs sm:text-sm">Select an image to start</p>
                             </div>
                         </div>
                     )}

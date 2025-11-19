@@ -2,8 +2,6 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, FileText, Loader2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
-
 // Dynamic import untuk pdfjs-dist (hanya di client-side)
 let pdfjsLib: any = null
 let isPdfjsInitialized = false
@@ -121,7 +119,6 @@ async function initializePdfjs() {
 }
 
 export function PDFToText() {
-  const t = useTranslations('tools')
   const [pdfFile, setPdfFile] = useState<File | null>(null)
   const [totalPages, setTotalPages] = useState(0)
   const [selectedPages, setSelectedPages] = useState<number[]>([])
@@ -144,7 +141,7 @@ export function PDFToText() {
     if (!file) return
 
     if (file.type !== 'application/pdf') {
-      setError(t('pdfToText.errors.invalidFile'))
+      setError('Please select a valid PDF file!')
       return
     }
 
@@ -171,7 +168,7 @@ export function PDFToText() {
       setSelectedPages(Array.from({ length: pdf.numPages }, (_, i) => i + 1))
     } catch (err: any) {
       console.error('PDF read error:', err)
-      setError(t('pdfToText.errors.readFailed') + (err.message ? ': ' + err.message : ''))
+      setError('Failed to read PDF' + (err.message ? ': ' + err.message : ''))
       setPdfFile(null)
     }
   }
@@ -190,7 +187,7 @@ export function PDFToText() {
 
   const extractText = async () => {
     if (!pdfFile) {
-      setError(t('pdfToText.errors.noFile'))
+      setError('Please select a PDF file first!')
       return
     }
 
@@ -319,7 +316,7 @@ export function PDFToText() {
         const errorMsg = extractMode === 'all'
           ? `No pages available. Total pages: ${numPages}`
           : `No valid selected pages. Selected: ${selectedPages.join(', ')}, Total pages: ${numPages}`
-        setError(t('pdfToText.errors.noPages'))
+        setError('Please select at least one page!')
         console.error(errorMsg)
         setIsProcessing(false)
         return
@@ -406,7 +403,7 @@ export function PDFToText() {
             .join(' ')
 
           if (extractMode === 'all' && numPages > 1) {
-            allText += `--- ${t('pdfToText.page')} ${pageNum} ---\n\n${pageText}\n\n`
+            allText += `--- Page ${pageNum} ---\n\n${pageText}\n\n`
           } else {
             allText += pageText + '\n'
           }
@@ -435,7 +432,7 @@ export function PDFToText() {
       setExtractedText(allText.trim())
     } catch (err: any) {
       console.error('Text extraction error:', err)
-      setError(t('pdfToText.errors.extractionFailed') + (err.message ? ': ' + err.message : ''))
+      setError('Failed to extract text from PDF' + (err.message ? ': ' + err.message : ''))
     } finally {
       setIsProcessing(false)
     }
@@ -458,16 +455,16 @@ export function PDFToText() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto w-full px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('pdfToText.title')}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">PDF to Text</h1>
         <p className="text-sm sm:text-base text-neutral-600">
-          {t('pdfToText.description')}
+          Extract text from PDF to .txt file
         </p>
       </div>
 
       {/* File Upload */}
       <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
         <label className="block text-sm font-medium text-neutral-700 mb-3">
-          {t('pdfToText.selectPDF')}
+          Select PDF File
         </label>
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
@@ -483,11 +480,11 @@ export function PDFToText() {
               className="w-full sm:w-auto px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 min-h-[44px]"
             >
               <Upload className="w-4 h-4" />
-              {pdfFile ? pdfFile.name : t('pdfToText.chooseFile')}
+              {pdfFile ? pdfFile.name : 'Choose PDF File'}
             </button>
             {pdfFile && (
               <p className="text-xs text-neutral-500 mt-2">
-                {formatFileSize(pdfFile.size)} • {totalPages} {totalPages === 1 ? t('pdfToText.page') : t('pdfToText.pages')}
+                {formatFileSize(pdfFile.size)} • {totalPages} {totalPages === 1 ? 'Page' : 'Pages'}
               </p>
             )}
           </div>
@@ -504,7 +501,7 @@ export function PDFToText() {
         <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
           <div className="mb-4">
             <label className="block text-sm font-medium text-neutral-700 mb-3">
-              {t('pdfToText.selectPages')}
+              Select Pages to Extract
             </label>
             <div className="flex gap-3 mb-4">
               <button
@@ -517,7 +514,7 @@ export function PDFToText() {
                   : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                   }`}
               >
-                {t('pdfToText.allPages')}
+                All Pages
               </button>
               <button
                 onClick={() => setExtractMode('selected')}
@@ -526,7 +523,7 @@ export function PDFToText() {
                   : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                   }`}
               >
-                {t('pdfToText.selectedPages')}
+                Selected Pages
               </button>
             </div>
 
@@ -556,12 +553,12 @@ export function PDFToText() {
             {isProcessing ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                {t('pdfToText.processing')}
+                Processing...
               </>
             ) : (
               <>
                 <FileText className="w-4 h-4" />
-                {t('pdfToText.extractText')}
+                Extract Text
               </>
             )}
           </button>
@@ -572,23 +569,23 @@ export function PDFToText() {
       {extractedText && (
         <div className="tool-card p-4 sm:p-6 w-full">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-semibold text-neutral-900">{t('pdfToText.extractedText')}</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">Extracted Text</h3>
             <button
               onClick={downloadText}
               className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 min-h-[44px]"
             >
               <Download className="w-4 h-4" />
-              {t('pdfToText.download')}
+              Download
             </button>
           </div>
           <textarea
             value={extractedText}
             readOnly
             className="w-full p-4 border border-neutral-300 rounded-lg font-mono text-sm bg-neutral-50 min-h-[300px] max-h-[600px] overflow-y-auto"
-            placeholder={t('pdfToText.extractedTextPlaceholder')}
+            placeholder="Extracted text will appear here..."
           />
           <p className="text-xs text-neutral-500 mt-2">
-            {extractedText.length} {t('pdfToText.characters')}
+            {extractedText.length} characters
           </p>
         </div>
       )}

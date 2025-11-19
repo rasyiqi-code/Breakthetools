@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { Loader2, Download, PlayCircle, Music, Video, CheckCircle, Info } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 interface VideoInfo {
     title: string
@@ -22,7 +21,6 @@ interface FormatOption {
 }
 
 export function YouTubeDownloader() {
-    const t = useTranslations('tools')
     const [videoUrl, setVideoUrl] = useState('')
     const [videoInfo, setVideoInfo] = useState<VideoInfo | null>(null)
     const [isLoading, setIsLoading] = useState(false)
@@ -69,7 +67,7 @@ export function YouTubeDownloader() {
             const response = await fetch(oembedUrl)
 
             if (!response.ok) {
-                throw new Error(t('youtubeDownloader.errors.fetchFailed'))
+                throw new Error('Failed to fetch video information. Please check the URL and try again.')
             }
 
             const data = await response.json()
@@ -86,7 +84,7 @@ export function YouTubeDownloader() {
             })
             setError('')
         } catch (err: any) {
-            setError(err.message || t('youtubeDownloader.errors.fetchFailed'))
+            setError(err.message || 'Failed to fetch video information. Please check the URL and try again.')
             setVideoInfo(null)
         }
     }
@@ -102,7 +100,7 @@ export function YouTubeDownloader() {
         // Validate YouTube URL
         const videoId = extractVideoId(videoUrl.trim())
         if (!videoId) {
-            setError(t('youtubeDownloader.errors.invalidUrl'))
+            setError('Invalid YouTube URL. Please enter a valid YouTube video URL.')
             return
         }
 
@@ -140,7 +138,7 @@ export function YouTubeDownloader() {
         const formatLabel = formatOptions.find(f => f.format === format)?.label || format
         setSelectedFormat(format)
         setDownloadStatus('loading')
-        setStatusMessage(t('youtubeDownloader.preparingDownload', { format: formatLabel }))
+        setStatusMessage(`Preparing download ${formatLabel}...`)
     }
 
     // Handle iframe load - detect when Button API is ready
@@ -148,7 +146,7 @@ export function YouTubeDownloader() {
         if (selectedFormat && downloadStatus === 'loading') {
             setDownloadStatus('ready')
             const formatLabel = formatOptions.find(f => f.format === selectedFormat)?.label || selectedFormat
-            setStatusMessage(t('youtubeDownloader.downloadReady', { format: formatLabel }))
+            setStatusMessage(`Download ${formatLabel} ready`)
         }
     }
 
@@ -158,20 +156,20 @@ export function YouTubeDownloader() {
             const formatLabel = formatOptions.find(f => f.format === selectedFormat)?.label || selectedFormat
             if (downloadStatus === 'idle') {
                 setDownloadStatus('loading')
-                setStatusMessage(t('youtubeDownloader.preparingDownload', { format: formatLabel }))
+                setStatusMessage(`Preparing download ${formatLabel}...`)
             }
         } else {
             setDownloadStatus('idle')
             setStatusMessage('')
         }
-    }, [selectedFormat, downloadStatus, t])
+    }, [selectedFormat, downloadStatus])
 
     return (
         <div className="max-w-full sm:max-w-4xl lg:max-w-6xl mx-auto w-full px-4">
             <div className="mb-4 sm:mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('youtubeDownloader.title')}</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">YouTube Downloader</h1>
                 <p className="text-sm sm:text-base text-neutral-600 mb-2">
-                    {t('youtubeDownloader.description')}
+                    Download videos and audio from YouTube in various qualities
                 </p>
             </div>
 
@@ -188,7 +186,7 @@ export function YouTubeDownloader() {
                                     setVideoUrl(e.target.value)
                                     setError('')
                                 }}
-                                placeholder={t('youtubeDownloader.placeholder')}
+                                placeholder="Paste YouTube URL here..."
                                 className="w-full pl-9 sm:pl-10 pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                             />
                         </div>
@@ -200,12 +198,12 @@ export function YouTubeDownloader() {
                             {isLoading ? (
                                 <>
                                     <Loader2 className="w-4 h-4 animate-spin" />
-                                    {t('youtubeDownloader.loading')}
+                                    Loading...
                                 </>
                             ) : (
                                 <>
                                     <Download className="w-4 h-4" />
-                                    {t('youtubeDownloader.searchVideo')}
+                                    Search Video
                                 </>
                             )}
                         </button>
@@ -243,7 +241,7 @@ export function YouTubeDownloader() {
                                         {videoInfo.title}
                                     </h2>
                                     <p className="text-sm sm:text-base text-neutral-600 mb-2">
-                                        <span className="font-medium">{t('youtubeDownloader.channel')}:</span> {videoInfo.author}
+                                        <span className="font-medium">Channel:</span> {videoInfo.author}
                                     </p>
                                     <p className="text-xs sm:text-sm text-neutral-500 break-all">
                                         {videoInfo.fullUrl}
@@ -259,7 +257,7 @@ export function YouTubeDownloader() {
                         <div>
                             <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-3 sm:mb-4 flex items-center gap-2">
                                 <Music className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                                {t('youtubeDownloader.audioFormats')}
+                                Audio Formats
                             </h3>
                             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
                                 {formatOptions
@@ -282,7 +280,7 @@ export function YouTubeDownloader() {
                         <div>
                             <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-3 sm:mb-4 flex items-center gap-2">
                                 <Video className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                                {t('youtubeDownloader.videoFormats')}
+                                Video Formats
                             </h3>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3">
                                 {formatOptions
@@ -307,7 +305,7 @@ export function YouTubeDownloader() {
                         <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-neutral-50 rounded-lg border border-neutral-200">
                             <div className="flex items-center justify-between mb-3">
                                 <h4 className="text-xs sm:text-sm font-semibold text-neutral-700">
-                                    {t('youtubeDownloader.download')} {formatOptions.find(f => f.format === selectedFormat)?.label}
+                                    Download {formatOptions.find(f => f.format === selectedFormat)?.label}
                                 </h4>
                                 <button
                                     onClick={() => {
@@ -317,7 +315,7 @@ export function YouTubeDownloader() {
                                     }}
                                     className="text-xs sm:text-sm text-neutral-500 hover:text-neutral-700 p-1 min-h-[44px] min-w-[44px] flex items-center justify-center"
                                 >
-                                    {t('youtubeDownloader.close')}
+                                    Close
                                 </button>
                             </div>
 
@@ -341,7 +339,7 @@ export function YouTubeDownloader() {
                                         <p className="text-sm font-medium">{statusMessage}</p>
                                         {downloadStatus === 'ready' && (
                                             <p className="text-xs mt-1 opacity-75">
-                                                {t('youtubeDownloader.downloadReadyHint')}
+                                                Click the download button above to start downloading
                                             </p>
                                         )}
                                     </div>
@@ -366,14 +364,14 @@ export function YouTubeDownloader() {
                             {downloadStatus === 'ready' && (
                                 <div className="mt-3 text-xs text-neutral-500 text-center">
                                     <Info className="w-4 h-4 inline mr-1" />
-                                    {t('youtubeDownloader.downloadTroubleshoot')}
+                                    If download doesn't start, check popup blockers or try a different format
                                 </div>
                             )}
                         </div>
                     )}
 
                     <p className="text-xs text-neutral-500 mt-6 text-center">
-                        {t('youtubeDownloader.serviceInfo')}
+                        Downloads are handled by our secure service. No data is stored.
                     </p>
                 </div>
             )}
@@ -383,10 +381,10 @@ export function YouTubeDownloader() {
                 <div className="tool-card p-12 w-full text-center">
                     <PlayCircle className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
                     <h3 className="text-xl font-semibold text-neutral-700 mb-2">
-                        {t('youtubeDownloader.emptyState.title')}
+                        Enter a YouTube URL
                     </h3>
                     <p className="text-neutral-500">
-                        {t('youtubeDownloader.emptyState.description')}
+                        Paste a YouTube video URL above to get started
                     </p>
                 </div>
             )}

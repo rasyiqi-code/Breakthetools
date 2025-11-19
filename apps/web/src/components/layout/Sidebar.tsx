@@ -2,26 +2,13 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname as useNextPathname } from 'next/navigation'
-import { useLocale, useTranslations } from 'next-intl'
+import { usePathname } from 'next/navigation'
 import { toolCategories } from '@/config/tools'
 import { Search, ChevronDown, ChevronRight, Home, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { getToolName, getCategoryName } from '@/lib/toolTranslations'
 
 export function Sidebar() {
-  // Use Next.js standard hooks to avoid routing context issues
-  const fullPathname = useNextPathname() // This includes locale: /en/tools/...
-  const locale = useLocale()
-  const tTools = useTranslations('tools')
-  const tCategories = useTranslations('categories')
-  
-  // Extract pathname without locale prefix (same as createNavigation usePathname)
-  // fullPathname format: /en/tools/word-counter or /en/ or /en
-  // Remove locale prefix (first segment after /)
-  const pathname = fullPathname 
-    ? fullPathname.replace(/^\/[^/]+/, '') || '/' 
-    : '/'
+  const pathname = usePathname()
   const [searchQuery, setSearchQuery] = useState('')
   const [expandedCategories, setExpandedCategories] = useState<string[]>(
     toolCategories.map(cat => cat.id)
@@ -68,16 +55,6 @@ export function Sidebar() {
     // Dispatch event immediately for better responsiveness
     window.dispatchEvent(new CustomEvent('sidebar-toggle', { detail: false }))
   }
-  
-  // Helper function to build href with locale prefix
-  const getLocalizedHref = (href: string) => {
-    // If href starts with #, return as is (anchor link)
-    if (href.startsWith('#')) return href
-    // If href is absolute URL, return as is
-    if (href.startsWith('http')) return href
-    // Otherwise, prepend locale
-    return `/${locale}${href === '/' ? '' : href}`
-  }
 
   const filteredCategories = toolCategories.map(category => ({
     ...category,
@@ -121,7 +98,7 @@ export function Sidebar() {
 
           {/* Back to Home */}
           <Link
-            href={getLocalizedHref('/')}
+            href="/"
             onClick={closeSidebar}
             className="flex items-center gap-2 px-3 py-2 mb-4 text-sm text-neutral-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all"
           >
@@ -152,7 +129,7 @@ export function Sidebar() {
                   >
                     <div className="flex items-center space-x-2">
                       <category.icon className="w-4 h-4" />
-                      <span>{getCategoryName(category.id, tCategories)}</span>
+                      <span>{category.name}</span>
                     </div>
                     {isExpanded ? (
                       <ChevronDown className="w-4 h-4" />
@@ -169,7 +146,7 @@ export function Sidebar() {
                         return (
                           <Link
                             key={tool.id}
-                            href={getLocalizedHref(`/tools/${tool.id}`)}
+                            href={`/tools/${tool.id}`}
                             onClick={closeSidebar}
                             className={cn(
                               'flex items-center px-3 py-2 text-sm rounded transition-colors min-h-[44px]',
@@ -178,7 +155,7 @@ export function Sidebar() {
                                 : 'text-neutral-600 hover:bg-neutral-100'
                             )}
                           >
-                            {getToolName(tool.id, tTools)}
+                            {tool.name}
                           </Link>
                         )
                       })}

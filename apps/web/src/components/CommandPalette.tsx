@@ -4,8 +4,6 @@ import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { Search, ArrowRight, Clock, Star, Zap } from 'lucide-react'
 import { toolCategories } from '@/config/tools'
-import { useTranslations } from 'next-intl'
-import { getToolName, getCategoryName } from '@/lib/toolTranslations'
 
 type ToolItem = {
   id: string
@@ -25,16 +23,14 @@ export function CommandPalette({ onOpenChange }: CommandPaletteProps) {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
-  const tTools = useTranslations('tools')
-  const tCategories = useTranslations('categories')
 
-  // Flatten all tools dengan translations
+  // Flatten all tools
   const allTools: ToolItem[] = toolCategories.flatMap(category =>
     category.tools.map(tool => ({
       ...tool,
-      name: getToolName(tool.id, tTools),
-      description: tool.description, // TODO: bisa di-translate juga jika perlu
-      category: getCategoryName(category.id, tCategories),
+      name: tool.name,
+      description: tool.description,
+      category: category.name,
       categoryIcon: category.icon
     }))
   )
@@ -118,7 +114,7 @@ export function CommandPalette({ onOpenChange }: CommandPaletteProps) {
       console.warn('Failed to update recentTools', error)
     }
     
-    // Navigate immediately
+    // Navigate immediately with locale prefix
     router.push(`/tools/${tool.id}`)
   }
 

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { Calendar, Cake, Clock, TrendingUp } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 interface AgeResult {
     years: number
@@ -51,14 +50,13 @@ const getZodiacSign = (day: number, month: number): string => {
 }
 
 export function AgeCalculator() {
-    const t = useTranslations('tools')
 
     const [birthDate, setBirthDate] = useState('')
     const [result, setResult] = useState<AgeResult | null>(null)
 
     const calculateAge = () => {
         if (!birthDate) {
-            alert(t('ageCalculator.errors.noBirthDate') || 'Please enter your birth date!')
+            alert('Please enter your birth date!')
             return
         }
 
@@ -66,7 +64,7 @@ export function AgeCalculator() {
         const now = new Date()
 
         if (birth > now) {
-            alert(t('ageCalculator.errors.futureDate') || 'Birth date cannot be in the future!')
+            alert('Birth date cannot be in the future!')
             return
         }
 
@@ -137,21 +135,21 @@ export function AgeCalculator() {
     return (
         <div className="max-w-full sm:max-w-6xl mx-auto px-4">
             <div className="mb-4 sm:mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('ageCalculator.title')}</h1>
-                <p className="text-sm sm:text-base text-neutral-600">{t('ageCalculator.description')}</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Age Calculator</h1>
+                <p className="text-sm sm:text-base text-neutral-600">Calculate your exact age from birth date with detailed breakdown</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="tool-card p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                         <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                        {t('ageCalculator.input')}
+                        Input
                     </h3>
 
                     <div className="space-y-4">
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('ageCalculator.birthDate')}
+                                Birth Date
                             </label>
                             <input
                                 type="date"
@@ -160,7 +158,7 @@ export function AgeCalculator() {
                                 max={new Date().toISOString().split('T')[0]}
                                 className="input-field text-sm sm:text-base min-h-[44px] w-full"
                             />
-                            <p className="text-xs text-neutral-500 mt-1">{t('ageCalculator.dateHint')}</p>
+                            <p className="text-xs text-neutral-500 mt-1">Select your date of birth</p>
                         </div>
 
                         <button
@@ -168,11 +166,11 @@ export function AgeCalculator() {
                             className="btn-primary w-full min-h-[44px] text-sm sm:text-base"
                         >
                             <Cake className="w-4 h-4 inline mr-2" />
-                            {t('ageCalculator.calculate')}
+                            Calculate Age
                         </button>
 
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 sm:p-3 text-xs sm:text-sm text-blue-800">
-                            💡 <strong>{t('ageCalculator.tipsLabel')}:</strong> {t('ageCalculator.tips')}
+                            💡 <strong>Tips:</strong> This calculator shows your exact age including years, months, and days. It also displays your next birthday countdown and zodiac sign.
                         </div>
                     </div>
                 </div>
@@ -180,7 +178,7 @@ export function AgeCalculator() {
                 <div className="tool-card p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                         <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                        {t('ageCalculator.result')}
+                        Result
                     </h3>
 
                     {result ? (
@@ -188,30 +186,30 @@ export function AgeCalculator() {
                             {/* Main Age Display */}
                             <div className="bg-gradient-to-br from-primary-50 to-primary-100 border-2 border-primary-200 rounded-lg p-4 sm:p-6 text-center">
                                 <div className="text-xs sm:text-sm text-primary-700 mb-2 font-medium">
-                                    {t('ageCalculator.yourAge')}
+                                    Your Age
                                 </div>
                                 <div className="text-3xl sm:text-4xl font-bold text-primary-900 mb-1">
-                                    {result.years} {t('ageCalculator.years')}
+                                    {result.years} Years
                                 </div>
                                 <div className="text-base sm:text-lg text-primary-700">
-                                    {result.months} {t('ageCalculator.months')}, {result.days} {t('ageCalculator.days')}
+                                    {result.months} Months, {result.days} Days
                                 </div>
                             </div>
 
                             {/* Detailed Breakdown */}
                             <div className="space-y-3">
                                 <div className="flex justify-between items-center p-3 bg-neutral-50 rounded-lg border border-neutral-200">
-                                    <span className="text-sm font-medium text-neutral-700">{t('ageCalculator.totalDays')}</span>
+                                    <span className="text-sm font-medium text-neutral-700">Total Days</span>
                                     <span className="text-lg font-bold text-neutral-900">{result.totalDays.toLocaleString()}</span>
                                 </div>
 
                                 <div className="flex justify-between items-center p-3 bg-neutral-50 rounded-lg border border-neutral-200">
-                                    <span className="text-sm font-medium text-neutral-700">{t('ageCalculator.totalWeeks')}</span>
+                                    <span className="text-sm font-medium text-neutral-700">Total Weeks</span>
                                     <span className="text-lg font-bold text-neutral-900">{result.totalWeeks.toLocaleString()}</span>
                                 </div>
 
                                 <div className="flex justify-between items-center p-3 bg-neutral-50 rounded-lg border border-neutral-200">
-                                    <span className="text-sm font-medium text-neutral-700">{t('ageCalculator.totalMonths')}</span>
+                                    <span className="text-sm font-medium text-neutral-700">Total Months</span>
                                     <span className="text-lg font-bold text-neutral-900">{result.totalMonths.toLocaleString()}</span>
                                 </div>
                             </div>
@@ -220,24 +218,24 @@ export function AgeCalculator() {
                             <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 border-2 border-yellow-200 rounded-lg p-4 sm:p-6">
                                 <div className="flex items-center gap-2 mb-2">
                                     <Clock className="w-5 h-5 text-yellow-600" />
-                                    <h4 className="font-semibold text-yellow-900">{t('ageCalculator.nextBirthday')}</h4>
+                                    <h4 className="font-semibold text-yellow-900">Next Birthday</h4>
                                 </div>
                                 <div className="text-2xl sm:text-3xl font-bold text-yellow-900 mb-1">
-                                    {result.nextBirthdayDays} {t('ageCalculator.daysLeft')}
+                                    {result.nextBirthdayDays} Days Left
                                 </div>
                                 <div className="text-sm text-yellow-700">
-                                    {t('ageCalculator.onDate', { date: result.nextBirthdayDate })}
+                                    On {result.nextBirthdayDate}
                                 </div>
                             </div>
 
                             {/* Additional Info */}
                             <div className="grid grid-cols-2 gap-3">
                                 <div className="bg-neutral-50 rounded-lg p-3 border border-neutral-200">
-                                    <div className="text-xs text-neutral-500 mb-1">{t('ageCalculator.dayOfWeek')}</div>
-                                    <div className="text-sm font-semibold text-neutral-900">{t(`ageCalculator.dayNames.${result.dayOfWeek.toLowerCase()}`)}</div>
+                                    <div className="text-xs text-neutral-500 mb-1">Day of Week</div>
+                                    <div className="text-sm font-semibold text-neutral-900">{result.dayOfWeek}</div>
                                 </div>
                                 <div className="bg-neutral-50 rounded-lg p-3 border border-neutral-200">
-                                    <div className="text-xs text-neutral-500 mb-1">{t('ageCalculator.zodiacSign')}</div>
+                                    <div className="text-xs text-neutral-500 mb-1">Zodiac Sign</div>
                                     <div className="text-sm font-semibold text-neutral-900">{result.zodiac}</div>
                                 </div>
                             </div>
@@ -246,7 +244,7 @@ export function AgeCalculator() {
                         <div className="flex items-center justify-center h-full min-h-[300px] text-neutral-400">
                             <div className="text-center">
                                 <Cake className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 opacity-50" />
-                                <p className="text-xs sm:text-sm">{t('ageCalculator.enterBirthDate')}</p>
+                                <p className="text-xs sm:text-sm">Enter your birth date to calculate age</p>
                             </div>
                         </div>
                     )}

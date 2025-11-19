@@ -15,5 +15,8 @@
   "devDependencies": {
     "@types/node": "^20.19.25",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "next": "^16.0.3"
   }
 }

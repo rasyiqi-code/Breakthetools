@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTranslations } from 'next-intl'
 
 interface WordCountStats {
   characters: number
@@ -13,7 +12,6 @@ interface WordCountStats {
 }
 
 export function WordCounter() {
-  const t = useTranslations('tools')
   const [text, setText] = useState('')
   const [stats, setStats] = useState<WordCountStats>({
     characters: 0,
@@ -49,52 +47,52 @@ export function WordCounter() {
   return (
     <div className="max-w-full sm:max-w-4xl lg:max-w-6xl mx-auto px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('wordCounter.title')}</h1>
-        <p className="text-sm sm:text-base text-neutral-600">{t('wordCounter.description')}</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Word Counter</h1>
+        <p className="text-sm sm:text-base text-neutral-600">Count words, characters, paragraphs, and sentences in your text</p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
         <div className="tool-card p-3 sm:p-4">
           <div className="text-2xl sm:text-3xl font-bold text-primary-600">{stats.words.toLocaleString()}</div>
-          <div className="text-xs sm:text-sm text-neutral-600">{t('wordCounter.words')}</div>
+          <div className="text-xs sm:text-sm text-neutral-600">Words</div>
         </div>
         <div className="tool-card p-3 sm:p-4">
           <div className="text-2xl sm:text-3xl font-bold text-primary-600">{stats.characters.toLocaleString()}</div>
-          <div className="text-xs sm:text-sm text-neutral-600">{t('wordCounter.characters')}</div>
+          <div className="text-xs sm:text-sm text-neutral-600">Characters</div>
         </div>
         <div className="tool-card p-3 sm:p-4">
           <div className="text-2xl sm:text-3xl font-bold text-primary-600">{stats.charactersNoSpaces.toLocaleString()}</div>
-          <div className="text-xs sm:text-sm text-neutral-600">{t('wordCounter.charactersNoSpaces')}</div>
+          <div className="text-xs sm:text-sm text-neutral-600">Characters (no spaces)</div>
         </div>
         <div className="tool-card p-3 sm:p-4">
           <div className="text-2xl sm:text-3xl font-bold text-primary-600">{stats.sentences.toLocaleString()}</div>
-          <div className="text-xs sm:text-sm text-neutral-600">{t('wordCounter.sentences')}</div>
+          <div className="text-xs sm:text-sm text-neutral-600">Sentences</div>
         </div>
         <div className="tool-card p-3 sm:p-4">
           <div className="text-2xl sm:text-3xl font-bold text-primary-600">{stats.paragraphs.toLocaleString()}</div>
-          <div className="text-xs sm:text-sm text-neutral-600">{t('wordCounter.paragraphs')}</div>
+          <div className="text-xs sm:text-sm text-neutral-600">Paragraphs</div>
         </div>
         <div className="tool-card p-3 sm:p-4">
           <div className="text-2xl sm:text-3xl font-bold text-primary-600">{stats.readingTime}</div>
-          <div className="text-xs sm:text-sm text-neutral-600">{t('wordCounter.readingTime')}</div>
+          <div className="text-xs sm:text-sm text-neutral-600">Reading Time (min)</div>
         </div>
       </div>
 
       <div className="tool-card p-4 sm:p-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0 mb-4">
-          <label className="text-sm font-medium text-neutral-700">{t('wordCounter.enterOrPasteText')}</label>
+          <label className="text-sm font-medium text-neutral-700">Enter or Paste Your Text</label>
           <button
             onClick={handleClear}
             className="btn-secondary text-sm min-h-[44px] px-4"
             disabled={!text}
           >
-            {t('wordCounter.clear')}
+            Clear
           </button>
         </div>
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder={t('wordCounter.placeholder')}
+          placeholder="Type or paste your text here..."
           className="textarea-field text-sm sm:text-base"
           rows={12}
         />

@@ -2,8 +2,6 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, FileSpreadsheet, Loader2, AlertCircle } from 'lucide-react'
-import { useTranslations } from 'next-intl'
-
 // Dynamic import untuk pdfjs-dist (hanya di client-side)
 let pdfjsLib: any = null
 let isPdfjsInitialized = false
@@ -121,7 +119,6 @@ async function initializePdfjs() {
 }
 
 export function PDFToExcel() {
-    const t = useTranslations('tools')
     const [pdfFile, setPdfFile] = useState<File | null>(null)
     const [totalPages, setTotalPages] = useState(0)
     const [selectedPages, setSelectedPages] = useState<number[]>([])
@@ -145,7 +142,7 @@ export function PDFToExcel() {
         if (!file) return
 
         if (file.type !== 'application/pdf') {
-            setError(t('pdfToExcel.errors.invalidFile'))
+            setError('Please select a valid PDF file!')
             return
         }
 
@@ -173,7 +170,7 @@ export function PDFToExcel() {
             setSelectedPages(Array.from({ length: pdf.numPages }, (_, i) => i + 1))
         } catch (err: any) {
             console.error('PDF read error:', err)
-            setError(t('pdfToExcel.errors.readFailed') + (err.message ? ': ' + err.message : ''))
+            setError('Failed to read PDF' + (err.message ? ': ' + err.message : ''))
             setPdfFile(null)
         }
     }
@@ -224,7 +221,7 @@ export function PDFToExcel() {
 
     const convertToExcel = async () => {
         if (!pdfFile) {
-            setError(t('pdfToExcel.errors.noFile'))
+            setError('Please select a PDF file first!')
             return
         }
 
@@ -233,7 +230,7 @@ export function PDFToExcel() {
             : selectedPages.sort((a, b) => a - b)
 
         if (pagesToExtract.length === 0) {
-            setError(t('pdfToExcel.errors.noPages'))
+            setError('Please select at least one page!')
             return
         }
 
@@ -289,7 +286,7 @@ export function PDFToExcel() {
             }
 
             if (pagesData.length === 0) {
-                setWarning(t('pdfToExcel.warnings.noTables'))
+                setWarning('No tables detected in the selected pages. Please ensure your PDF contains structured tables.')
                 setIsProcessing(false)
                 return
             }
@@ -315,7 +312,7 @@ export function PDFToExcel() {
             setExcelUrl(url)
         } catch (err: any) {
             console.error('PDF to Excel conversion error:', err)
-            setError(t('pdfToExcel.errors.conversionFailed') + (err.message ? ': ' + err.message : ''))
+            setError('Failed to convert PDF to Excel' + (err.message ? ': ' + err.message : ''))
         } finally {
             setIsProcessing(false)
         }
@@ -336,14 +333,14 @@ export function PDFToExcel() {
     return (
         <div className="max-w-full sm:max-w-4xl mx-auto w-full px-4">
             <div className="mb-4 sm:mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('pdfToExcel.title')}</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">PDF to Excel</h1>
                 <p className="text-sm sm:text-base text-neutral-600">
-                    {t('pdfToExcel.description')}
+                    Extract tables from PDF to Excel (limited to PDFs with structured tables)
                 </p>
                 <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg flex items-start gap-2">
                     <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" />
                     <p className="text-xs sm:text-sm text-yellow-800">
-                        {t('pdfToExcel.limitedNote')}
+                        This tool works best with PDFs that contain well-structured tables. Complex layouts may not convert perfectly.
                     </p>
                 </div>
             </div>
@@ -351,7 +348,7 @@ export function PDFToExcel() {
             {/* File Upload */}
             <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
                 <label className="block text-sm font-medium text-neutral-700 mb-3">
-                    {t('pdfToExcel.selectPDF')}
+                    Select PDF File
                 </label>
                 <div className="flex flex-col sm:flex-row gap-3">
                     <div className="flex-1">
@@ -367,11 +364,11 @@ export function PDFToExcel() {
                             className="w-full sm:w-auto px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 min-h-[44px]"
                         >
                             <Upload className="w-4 h-4" />
-                            {pdfFile ? pdfFile.name : t('pdfToExcel.chooseFile')}
+                            {pdfFile ? pdfFile.name : 'Choose PDF File'}
                         </button>
                         {pdfFile && (
                             <p className="text-xs text-neutral-500 mt-2">
-                                {formatFileSize(pdfFile.size)} • {totalPages} {totalPages === 1 ? t('pdfToExcel.page') : t('pdfToExcel.pages')}
+                                {formatFileSize(pdfFile.size)} • {totalPages} {totalPages === 1 ? 'Page' : 'Pages'}
                             </p>
                         )}
                     </div>
@@ -393,7 +390,7 @@ export function PDFToExcel() {
                 <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-neutral-700 mb-3">
-                            {t('pdfToExcel.selectPages')}
+                            Select Pages to Extract
                         </label>
                         <div className="flex gap-3 mb-4">
                             <button
@@ -406,7 +403,7 @@ export function PDFToExcel() {
                                     : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                                     }`}
                             >
-                                {t('pdfToExcel.allPages')}
+                                All Pages
                             </button>
                             <button
                                 onClick={() => setExtractMode('selected')}
@@ -415,7 +412,7 @@ export function PDFToExcel() {
                                     : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                                     }`}
                             >
-                                {t('pdfToExcel.selectedPages')}
+                                Selected Pages
                             </button>
                         </div>
 
@@ -445,12 +442,12 @@ export function PDFToExcel() {
                         {isProcessing ? (
                             <>
                                 <Loader2 className="w-4 h-4 animate-spin" />
-                                {t('pdfToExcel.processing')}
+                                Processing...
                             </>
                         ) : (
                             <>
                                 <FileSpreadsheet className="w-4 h-4" />
-                                {t('pdfToExcel.convert')}
+                                Convert to Excel
                             </>
                         )}
                     </button>
@@ -461,17 +458,17 @@ export function PDFToExcel() {
             {excelUrl && (
                 <div className="tool-card p-4 sm:p-6 w-full">
                     <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-lg font-semibold text-neutral-900">{t('pdfToExcel.excelReady')}</h3>
+                        <h3 className="text-lg font-semibold text-neutral-900">Excel File Ready</h3>
                         <button
                             onClick={downloadExcel}
                             className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 min-h-[44px]"
                         >
                             <Download className="w-4 h-4" />
-                            {t('pdfToExcel.download')}
+                            Download
                         </button>
                     </div>
                     <p className="text-sm text-neutral-600">
-                        {t('pdfToExcel.downloadDescription')}
+                        Your Excel file is ready for download.
                     </p>
                 </div>
             )}

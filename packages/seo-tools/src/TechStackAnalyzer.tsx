@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Globe, Search, Copy, Check, Layers, Code, Server, Database, Cloud, Palette } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 type TechStackMode = 'analyze' | 'compose'
 
@@ -55,8 +54,17 @@ const techCategories: TechCategory[] = [
     }
 ]
 
+const categoryLabels: Record<string, string> = {
+    frontend: 'Frontend',
+    backend: 'Backend',
+    database: 'Database',
+    hosting: 'Hosting',
+    cms: 'CMS',
+    cdn: 'CDN',
+    other: 'Other',
+}
+
 export function TechStackAnalyzer() {
-    const t = useTranslations('tools')
 
     const [mode, setMode] = useState<TechStackMode>('analyze')
     const [url, setUrl] = useState('')
@@ -160,7 +168,7 @@ export function TechStackAnalyzer() {
 
     const analyzeTechStack = async () => {
         if (!url) {
-            setError(t('techStackAnalyzer.errors.noUrl'))
+            setError('Please enter a URL!')
             return
         }
 
@@ -180,7 +188,7 @@ export function TechStackAnalyzer() {
             const data = await response.json()
 
             if (!data.contents) {
-                throw new Error(t('techStackAnalyzer.errors.fetchFailed'))
+                throw new Error('Failed to fetch website data. Make sure the URL is valid and accessible.')
             }
 
             // Try to get headers (limited due to CORS)
@@ -195,7 +203,7 @@ export function TechStackAnalyzer() {
             const detected = detectTechStack(data.contents, headers)
             setAnalyzedStack(detected)
         } catch (err: any) {
-            setError(err.message || t('techStackAnalyzer.errors.analyzeFailed'))
+            setError(err.message || 'Failed to analyze tech stack. Please try again or use Compose mode to build manually.')
         } finally {
             setLoading(false)
         }
@@ -266,11 +274,11 @@ export function TechStackAnalyzer() {
                     <div className="flex items-center justify-center gap-2">
                         <Layers className="w-6 h-6 text-primary-600" />
                         <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900">
-                            {t('techStackAnalyzer.title')}
+                            Tech Stack Analyzer & Composer
                         </h1>
                     </div>
                     <p className="text-sm sm:text-base text-neutral-600">
-                        {t('techStackAnalyzer.description')}
+                        Analyze or compose tech stack from website - Useful for developers
                     </p>
                 </div>
 
@@ -283,7 +291,7 @@ export function TechStackAnalyzer() {
                             : 'text-neutral-600 hover:text-neutral-900'
                             }`}
                     >
-                        {t('techStackAnalyzer.analyzeMode')}
+                        Analyze
                     </button>
                     <button
                         onClick={() => setMode('compose')}
@@ -292,7 +300,7 @@ export function TechStackAnalyzer() {
                             : 'text-neutral-600 hover:text-neutral-900'
                             }`}
                     >
-                        {t('techStackAnalyzer.composeMode')}
+                        Compose
                     </button>
                 </div>
 
@@ -304,7 +312,7 @@ export function TechStackAnalyzer() {
                                 type="text"
                                 value={url}
                                 onChange={(e) => setUrl(e.target.value)}
-                                placeholder={t('techStackAnalyzer.urlPlaceholder')}
+                                placeholder="https://example.com"
                                 className="flex-1 px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                                 onKeyPress={(e) => e.key === 'Enter' && analyzeTechStack()}
                             />
@@ -314,7 +322,7 @@ export function TechStackAnalyzer() {
                                 className="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                             >
                                 <Search className="w-4 h-4" />
-                                {loading ? t('techStackAnalyzer.analyzing') : t('techStackAnalyzer.analyze')}
+                                {loading ? 'Analyzing...' : 'Analyze'}
                             </button>
                         </div>
 
@@ -326,7 +334,7 @@ export function TechStackAnalyzer() {
 
                         {loading && (
                             <div className="text-center py-8 text-neutral-500">
-                                {t('techStackAnalyzer.analyzingUrl')}
+                                Analyzing website tech stack...
                             </div>
                         )}
                     </div>
@@ -336,7 +344,7 @@ export function TechStackAnalyzer() {
                 {mode === 'compose' && (
                     <div className="space-y-6">
                         <p className="text-sm text-neutral-600">
-                            {t('techStackAnalyzer.composeDescription')}
+                            Select technologies to compose your tech stack. Click technologies to add/remove them.
                         </p>
 
                         <div className="space-y-4">
@@ -348,7 +356,7 @@ export function TechStackAnalyzer() {
                                     <div key={category.name} className="space-y-2">
                                         <label className="flex items-center gap-2 text-sm font-medium text-neutral-700">
                                             {category.icon}
-                                            {t(`categories.${category.name}`)}
+                                            {category.name === 'frontend' ? 'Frontend' : category.name === 'backend' ? 'Backend' : category.name === 'database' ? 'Database' : category.name === 'hosting' ? 'Hosting' : category.name === 'cms' ? 'CMS' : 'CDN'}
                                         </label>
                                         <div className="flex flex-wrap gap-2">
                                             {category.technologies.map(tech => (
@@ -377,7 +385,7 @@ export function TechStackAnalyzer() {
                         <div className="flex items-center justify-between">
                             <h2 className="text-lg font-semibold text-primary-900 flex items-center gap-2">
                                 <Palette className="w-5 h-5" />
-                                {t('techStackAnalyzer.techStack')}
+                                Tech Stack
                             </h2>
                             <button
                                 onClick={() => handleCopyBadges(currentStack!)}
@@ -386,12 +394,12 @@ export function TechStackAnalyzer() {
                                 {copied ? (
                                     <>
                                         <Check className="w-4 h-4" />
-                                        {t('techStackAnalyzer.copied')}
+                                        Copied!
                                     </>
                                 ) : (
                                     <>
                                         <Copy className="w-4 h-4" />
-                                        {t('techStackAnalyzer.copyBadges')}
+                                        Copy Badges
                                     </>
                                 )}
                             </button>
@@ -407,7 +415,7 @@ export function TechStackAnalyzer() {
                                     <div key={category} className="space-y-2">
                                         <div className="flex items-center gap-2 text-sm font-medium text-neutral-700">
                                             {categoryInfo?.icon}
-                                            {t(`categories.${category}`)}
+                                            {categoryLabels[category] || category}
                                         </div>
                                         <div className="flex flex-wrap gap-2">
                                             {techs.map((tech: string) => (
@@ -427,7 +435,7 @@ export function TechStackAnalyzer() {
                         {/* Badges Preview */}
                         <div className="mt-4 p-3 bg-white rounded border border-neutral-200">
                             <label className="block text-xs font-medium text-neutral-500 mb-2">
-                                {t('techStackAnalyzer.badgesPreview')}
+                                Badges Preview
                             </label>
                             <div className="flex flex-wrap gap-2">
                                 {Object.values(currentStack!).flat().map(tech => (
@@ -446,10 +454,10 @@ export function TechStackAnalyzer() {
                 {/* Tips */}
                 <div className="p-4 bg-neutral-50 rounded-lg border border-neutral-200">
                     <h3 className="text-sm font-semibold text-neutral-900 mb-2">
-                        {t('techStackAnalyzer.tipsLabel')}
+                        Tips
                     </h3>
                     <p className="text-sm text-neutral-600">
-                        {t('techStackAnalyzer.tips')}
+                        Use Analyze mode to automatically detect technologies from a website. Use Compose mode to manually build your tech stack and generate badges for README or documentation.
                     </p>
                 </div>
             </div>

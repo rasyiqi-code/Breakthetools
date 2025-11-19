@@ -2,12 +2,10 @@
 
 import { useState } from 'react'
 import { Percent, Calculator, TrendingUp, TrendingDown, ArrowRightLeft } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 type CalculationType = 'percentage-of' | 'percentage-change' | 'reverse-percentage'
 
 export function PercentageCalculator() {
-    const t = useTranslations('tools')
 
     const [calculationType, setCalculationType] = useState<CalculationType>('percentage-of')
     const [value1, setValue1] = useState('')
@@ -24,7 +22,7 @@ export function PercentageCalculator() {
         const num2 = parseFloat(value2)
 
         if (isNaN(num1) || isNaN(num2)) {
-            alert(t('percentageCalculator.errors.invalidInput') || 'Please enter valid numbers!')
+            alert('Please enter valid numbers!')
             return
         }
 
@@ -32,7 +30,7 @@ export function PercentageCalculator() {
             case 'percentage-of':
                 // What is X% of Y?
                 if (num1 < 0 || num1 > 100) {
-                    alert(t('percentageCalculator.errors.invalidPercentage') || 'Percentage must be between 0 and 100!')
+                    alert('Percentage must be between 0 and 100!')
                     return
                 }
                 const result1 = (num1 * num2) / 100
@@ -42,7 +40,7 @@ export function PercentageCalculator() {
             case 'percentage-change':
                 // What is the percentage change from X to Y?
                 if (num1 === 0) {
-                    alert(t('percentageCalculator.errors.zeroValue') || 'Original value cannot be zero!')
+                    alert('Original value cannot be zero!')
                     return
                 }
                 const change = num2 - num1
@@ -53,7 +51,7 @@ export function PercentageCalculator() {
             case 'reverse-percentage':
                 // If Y is X% of something, what is the original value?
                 if (num2 <= 0 || num2 > 100) {
-                    alert(t('percentageCalculator.errors.invalidPercentage') || 'Percentage must be between 1 and 100!')
+                    alert('Percentage must be between 1 and 100!')
                     return
                 }
                 const originalValue = (num1 * 100) / num2
@@ -73,27 +71,27 @@ export function PercentageCalculator() {
         switch (calculationType) {
             case 'percentage-of':
                 return {
-                    label1: t('percentageCalculator.percentage'),
-                    label2: t('percentageCalculator.ofNumber'),
+                    label1: 'Percentage (%)',
+                    label2: 'Of Number',
                     placeholder1: '25',
                     placeholder2: '200',
-                    description: t('percentageCalculator.percentageOfDescription')
+                    description: 'Calculate what percentage of a number equals another value'
                 }
             case 'percentage-change':
                 return {
-                    label1: t('percentageCalculator.originalValue'),
-                    label2: t('percentageCalculator.newValue'),
+                    label1: 'Original Value',
+                    label2: 'New Value',
                     placeholder1: '100',
                     placeholder2: '150',
-                    description: t('percentageCalculator.percentageChangeDescription')
+                    description: 'Calculate the percentage change from one value to another'
                 }
             case 'reverse-percentage':
                 return {
-                    label1: t('percentageCalculator.resultValue'),
-                    label2: t('percentageCalculator.isPercentage'),
+                    label1: 'Result Value',
+                    label2: 'Is (%)',
                     placeholder1: '75',
                     placeholder2: '25',
-                    description: t('percentageCalculator.reversePercentageDescription')
+                    description: 'If a value is X% of something, find the original value'
                 }
         }
     }
@@ -103,22 +101,22 @@ export function PercentageCalculator() {
     return (
         <div className="max-w-full sm:max-w-6xl mx-auto px-4">
             <div className="mb-4 sm:mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('percentageCalculator.title')}</h1>
-                <p className="text-sm sm:text-base text-neutral-600">{t('percentageCalculator.description')}</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Percentage Calculator</h1>
+                <p className="text-sm sm:text-base text-neutral-600">Calculate percentages, percentage changes, and reverse percentage calculations</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="tool-card p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                         <Calculator className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                        {t('percentageCalculator.input')}
+                        Input
                     </h3>
 
                     <div className="space-y-4">
                         {/* Calculation Type Selection */}
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('percentageCalculator.calculationType')}
+                                Calculation Type
                             </label>
                             <div className="space-y-2">
                                 <button
@@ -135,9 +133,9 @@ export function PercentageCalculator() {
                                 >
                                     <div className="flex items-center gap-2 mb-1">
                                         <Percent className="w-4 h-4" />
-                                        <span className="font-semibold">{t('percentageCalculator.percentageOf')}</span>
+                                        <span className="font-semibold">Percentage Of</span>
                                     </div>
-                                    <span className="text-xs text-neutral-500">{t('percentageCalculator.percentageOfHint')}</span>
+                                    <span className="text-xs text-neutral-500">What is X% of Y?</span>
                                 </button>
 
                                 <button
@@ -154,9 +152,9 @@ export function PercentageCalculator() {
                                 >
                                     <div className="flex items-center gap-2 mb-1">
                                         <TrendingUp className="w-4 h-4" />
-                                        <span className="font-semibold">{t('percentageCalculator.percentageChange')}</span>
+                                        <span className="font-semibold">Percentage Change</span>
                                     </div>
-                                    <span className="text-xs text-neutral-500">{t('percentageCalculator.percentageChangeHint')}</span>
+                                    <span className="text-xs text-neutral-500">Calculate percentage increase or decrease</span>
                                 </button>
 
                                 <button
@@ -173,9 +171,9 @@ export function PercentageCalculator() {
                                 >
                                     <div className="flex items-center gap-2 mb-1">
                                         <ArrowRightLeft className="w-4 h-4" />
-                                        <span className="font-semibold">{t('percentageCalculator.reversePercentage')}</span>
+                                        <span className="font-semibold">Reverse Percentage</span>
                                     </div>
-                                    <span className="text-xs text-neutral-500">{t('percentageCalculator.reversePercentageHint')}</span>
+                                    <span className="text-xs text-neutral-500">Find original value from percentage</span>
                                 </button>
                             </div>
                         </div>
@@ -219,11 +217,11 @@ export function PercentageCalculator() {
                             className="btn-primary w-full min-h-[44px] text-sm sm:text-base"
                         >
                             <Calculator className="w-4 h-4 inline mr-2" />
-                            {t('percentageCalculator.calculate')}
+                            Calculate
                         </button>
 
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 sm:p-3 text-xs sm:text-sm text-blue-800">
-                            💡 <strong>{t('percentageCalculator.tipsLabel')}:</strong> {t('percentageCalculator.tips')}
+                            💡 <strong>Tips:</strong> Use Percentage Of to find a portion of a number. Use Percentage Change to calculate increases or decreases. Use Reverse Percentage to find the original value when you know the result and percentage.
                         </div>
                     </div>
                 </div>
@@ -231,7 +229,7 @@ export function PercentageCalculator() {
                 <div className="tool-card p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                         <Percent className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                        {t('percentageCalculator.result')}
+                        Result
                     </h3>
 
                     {result ? (
@@ -239,13 +237,13 @@ export function PercentageCalculator() {
                             {calculationType === 'percentage-of' && result.value !== undefined && (
                                 <div className="bg-gradient-to-br from-primary-50 to-primary-100 border-2 border-primary-200 rounded-lg p-4 sm:p-6 text-center">
                                     <div className="text-xs sm:text-sm text-primary-700 mb-2 font-medium">
-                                        {t('percentageCalculator.result')}
+                                        Result
                                     </div>
                                     <div className="text-3xl sm:text-4xl font-bold text-primary-900 mb-2">
                                         {formatNumber(result.value)}
                                     </div>
                                     <div className="text-base sm:text-lg text-primary-700">
-                                        {t('isPercentageOf', { percentage: value1, number: value2, value: formatNumber(result.value) })}
+                                        {value1}% of {value2} is {formatNumber(result.value)}
                                     </div>
                                 </div>
                             )}
@@ -262,7 +260,7 @@ export function PercentageCalculator() {
                                             className={`text-xs sm:text-sm mb-2 font-medium ${result.changePercent >= 0 ? 'text-green-700' : 'text-red-700'
                                                 }`}
                                         >
-                                            {t('percentageCalculator.percentageChange')}
+                                            Percentage Change
                                         </div>
                                         <div
                                             className={`text-3xl sm:text-4xl font-bold mb-2 flex items-center justify-center gap-2 ${result.changePercent >= 0 ? 'text-green-900' : 'text-red-900'
@@ -279,7 +277,7 @@ export function PercentageCalculator() {
                                             className={`text-base sm:text-lg ${result.changePercent >= 0 ? 'text-green-700' : 'text-red-700'
                                                 }`}
                                         >
-                                            {result.changePercent >= 0 ? t('percentageCalculator.increase') : t('percentageCalculator.decrease')}
+                                            {result.changePercent >= 0 ? 'Increase' : 'Decrease'}
                                         </div>
                                     </div>
 
@@ -287,7 +285,7 @@ export function PercentageCalculator() {
                                         <div className="space-y-3">
                                             <div className="flex justify-between items-center">
                                                 <span className="text-sm font-medium text-neutral-700">
-                                                    {t('percentageCalculator.originalValue')}
+                                                    Original Value
                                                 </span>
                                                 <span className="text-lg font-bold text-neutral-900">
                                                     {formatNumber(parseFloat(value1))}
@@ -295,7 +293,7 @@ export function PercentageCalculator() {
                                             </div>
                                             <div className="flex justify-between items-center">
                                                 <span className="text-sm font-medium text-neutral-700">
-                                                    {t('percentageCalculator.newValue')}
+                                                    New Value
                                                 </span>
                                                 <span className="text-lg font-bold text-neutral-900">
                                                     {formatNumber(parseFloat(value2))}
@@ -304,7 +302,7 @@ export function PercentageCalculator() {
                                             <div className="border-t border-neutral-300 pt-3">
                                                 <div className="flex justify-between items-center">
                                                     <span className="text-sm font-medium text-neutral-700">
-                                                        {t('percentageCalculator.difference')}
+                                                        Difference
                                                     </span>
                                                     <span
                                                         className={`text-lg font-bold ${result.change! >= 0 ? 'text-green-600' : 'text-red-600'
@@ -323,13 +321,13 @@ export function PercentageCalculator() {
                             {calculationType === 'reverse-percentage' && result.value !== undefined && (
                                 <div className="bg-gradient-to-br from-primary-50 to-primary-100 border-2 border-primary-200 rounded-lg p-4 sm:p-6 text-center">
                                     <div className="text-xs sm:text-sm text-primary-700 mb-2 font-medium">
-                                        {t('percentageCalculator.originalValue')}
+                                        Original Value
                                     </div>
                                     <div className="text-3xl sm:text-4xl font-bold text-primary-900 mb-2">
                                         {formatNumber(result.value)}
                                     </div>
                                     <div className="text-base sm:text-lg text-primary-700">
-                                        {t('reverseResult', { value: value1, percentage: value2 })}
+                                        {value1} is {value2}% of the original value
                                     </div>
                                 </div>
                             )}
@@ -338,7 +336,7 @@ export function PercentageCalculator() {
                         <div className="flex items-center justify-center h-full min-h-[300px] text-neutral-400">
                             <div className="text-center">
                                 <Percent className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 opacity-50" />
-                                <p className="text-xs sm:text-sm">{t('percentageCalculator.enterValues')}</p>
+                                <p className="text-xs sm:text-sm">Enter values and click Calculate</p>
                             </div>
                         </div>
                     )}

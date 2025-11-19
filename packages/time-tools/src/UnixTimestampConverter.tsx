@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { Clock, Copy, Check, Calendar, Hash, RefreshCw } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 type ConversionType = 'timestamp-to-date' | 'date-to-timestamp'
 
@@ -15,7 +14,6 @@ interface ConversionResult {
 }
 
 export function UnixTimestampConverter() {
-    const t = useTranslations('tools')
 
     const [conversionType, setConversionType] = useState<ConversionType>('timestamp-to-date')
     const [timestampInput, setTimestampInput] = useState('')
@@ -39,7 +37,7 @@ export function UnixTimestampConverter() {
         }
 
         if (isNaN(timestamp) || timestamp < 0) {
-            setError(t('unixTimestampConverter.errors.invalidTimestamp'))
+            setError('Invalid timestamp! Please enter a valid Unix timestamp (seconds since 1970).')
             setResult(null)
             return
         }
@@ -47,7 +45,7 @@ export function UnixTimestampConverter() {
         // Check if timestamp is in reasonable range (before 1970 or too far in future)
         const maxTimestamp = 4102444800 // Year 2100
         if (timestamp > maxTimestamp) {
-            setError(t('unixTimestampConverter.errors.timestampTooLarge'))
+            setError('Timestamp is too large! Maximum supported year is 2100.')
             setResult(null)
             return
         }
@@ -56,7 +54,7 @@ export function UnixTimestampConverter() {
             const date = new Date(timestamp * 1000)
             
             if (isNaN(date.getTime())) {
-                setError(t('unixTimestampConverter.errors.invalidTimestamp'))
+                setError('Invalid timestamp! Please enter a valid Unix timestamp (seconds since 1970).')
                 setResult(null)
                 return
             }
@@ -99,10 +97,10 @@ export function UnixTimestampConverter() {
                 readableFormat
             })
         } catch (err) {
-            setError(t('unixTimestampConverter.errors.invalidTimestamp'))
+            setError('Invalid timestamp! Please enter a valid Unix timestamp (seconds since 1970).')
             setResult(null)
         }
-    }, [t])
+    }, [])
 
     const handleDateToTimestamp = useCallback((dateStr: string) => {
         setError(null)
@@ -125,7 +123,7 @@ export function UnixTimestampConverter() {
             }
 
             if (isNaN(date.getTime())) {
-                setError(t('unixTimestampConverter.errors.invalidDate'))
+                setError('Invalid date format! Please enter a valid date and time.')
                 setResult(null)
                 return
             }
@@ -170,10 +168,10 @@ export function UnixTimestampConverter() {
                 readableFormat
             })
         } catch (err) {
-            setError(t('unixTimestampConverter.errors.invalidDate'))
+            setError('Invalid date format! Please enter a valid date and time.')
             setResult(null)
         }
-    }, [t])
+    }, [])
 
     // Auto-update current timestamp every second
     useEffect(() => {
@@ -242,11 +240,11 @@ export function UnixTimestampConverter() {
                     <div className="flex items-center justify-center gap-2">
                         <Clock className="w-6 h-6 text-primary-600" />
                         <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900">
-                            {t('unixTimestampConverter.title')}
+                            Unix Timestamp Converter
                         </h1>
                     </div>
                     <p className="text-sm sm:text-base text-neutral-600">
-                        {t('unixTimestampConverter.description')}
+                        Convert between Unix timestamp and date format - Essential for developers
                     </p>
                 </div>
 
@@ -264,7 +262,7 @@ export function UnixTimestampConverter() {
                                 : 'text-neutral-600 hover:text-neutral-900'
                         }`}
                     >
-                        {t('unixTimestampConverter.timestampToDate')}
+                        Timestamp to Date
                     </button>
                     <button
                         onClick={() => {
@@ -278,7 +276,7 @@ export function UnixTimestampConverter() {
                                 : 'text-neutral-600 hover:text-neutral-900'
                         }`}
                     >
-                        {t('unixTimestampConverter.dateToTimestamp')}
+                        Date to Timestamp
                     </button>
                 </div>
 
@@ -286,7 +284,7 @@ export function UnixTimestampConverter() {
                 <div className="space-y-4">
                     <div className="space-y-2">
                         <label className="block text-sm font-medium text-neutral-700">
-                            {conversionType === 'timestamp-to-date' ? t('unixTimestampConverter.enterTimestamp') : t('unixTimestampConverter.enterDate')}
+                            {conversionType === 'timestamp-to-date' ? 'Enter Unix Timestamp' : 'Enter Date & Time'}
                         </label>
                         
                         {conversionType === 'timestamp-to-date' ? (
@@ -295,13 +293,13 @@ export function UnixTimestampConverter() {
                                     type="text"
                                     value={timestampInput}
                                     onChange={(e) => setTimestampInput(e.target.value)}
-                                    placeholder={t('unixTimestampConverter.timestampPlaceholder')}
+                                    placeholder="e.g., 1609459200"
                                     className="flex-1 px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                                 />
                                 <button
                                     onClick={handleCurrentTimestamp}
                                     className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors flex items-center gap-2"
-                                    title={t('unixTimestampConverter.useCurrentTimestamp')}
+                                    title="Use Current Timestamp"
                                 >
                                     <RefreshCw className="w-4 h-4" />
                                 </button>
@@ -317,7 +315,7 @@ export function UnixTimestampConverter() {
                                 <button
                                     onClick={handleCurrentDate}
                                     className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors flex items-center gap-2"
-                                    title={t('unixTimestampConverter.useCurrentDate')}
+                                    title="Use Current Date"
                                 >
                                     <RefreshCw className="w-4 h-4" />
                                 </button>
@@ -338,7 +336,7 @@ export function UnixTimestampConverter() {
                         <div className="flex items-center gap-2">
                             <Hash className="w-5 h-5 text-primary-600" />
                             <h2 className="text-lg font-semibold text-primary-900">
-                                {t('unixTimestampConverter.result')}
+                                Result
                             </h2>
                         </div>
 
@@ -347,7 +345,7 @@ export function UnixTimestampConverter() {
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
                                     <label className="text-sm font-medium text-neutral-700">
-                                        {t('unixTimestampConverter.unixTimestamp')}
+                                        Unix Timestamp
                                     </label>
                                     <button
                                         onClick={() => handleCopy(result.timestamp.toString(), 'timestamp')}
@@ -356,12 +354,12 @@ export function UnixTimestampConverter() {
                                         {copied === 'timestamp' ? (
                                             <>
                                                 <Check className="w-4 h-4" />
-                                                {t('unixTimestampConverter.copied')}
+                                                Copied!
                                             </>
                                         ) : (
                                             <>
                                                 <Copy className="w-4 h-4" />
-                                                {t('unixTimestampConverter.copy')}
+                                                Copy
                                             </>
                                         )}
                                     </button>
@@ -378,7 +376,7 @@ export function UnixTimestampConverter() {
                                 <div className="flex items-center justify-between">
                                     <label className="text-sm font-medium text-neutral-700 flex items-center gap-2">
                                         <Calendar className="w-4 h-4" />
-                                        {t('unixTimestampConverter.localDate')}
+                                        Local Date
                                     </label>
                                     <button
                                         onClick={() => handleCopy(result.dateLocal, 'local')}
@@ -387,12 +385,12 @@ export function UnixTimestampConverter() {
                                         {copied === 'local' ? (
                                             <>
                                                 <Check className="w-4 h-4" />
-                                                {t('unixTimestampConverter.copied')}
+                                                Copied!
                                             </>
                                         ) : (
                                             <>
                                                 <Copy className="w-4 h-4" />
-                                                {t('unixTimestampConverter.copy')}
+                                                Copy
                                             </>
                                         )}
                                     </button>
@@ -405,7 +403,7 @@ export function UnixTimestampConverter() {
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
                                     <label className="text-sm font-medium text-neutral-700">
-                                        {t('unixTimestampConverter.utcDate')}
+                                        UTC Date
                                     </label>
                                     <button
                                         onClick={() => handleCopy(result.dateUTC, 'utc')}
@@ -414,12 +412,12 @@ export function UnixTimestampConverter() {
                                         {copied === 'utc' ? (
                                             <>
                                                 <Check className="w-4 h-4" />
-                                                {t('unixTimestampConverter.copied')}
+                                                Copied!
                                             </>
                                         ) : (
                                             <>
                                                 <Copy className="w-4 h-4" />
-                                                {t('unixTimestampConverter.copy')}
+                                                Copy
                                             </>
                                         )}
                                     </button>
@@ -432,7 +430,7 @@ export function UnixTimestampConverter() {
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
                                     <label className="text-sm font-medium text-neutral-700">
-                                        {t('unixTimestampConverter.isoDate')}
+                                        ISO Date
                                     </label>
                                     <button
                                         onClick={() => handleCopy(result.dateISO, 'iso')}
@@ -441,12 +439,12 @@ export function UnixTimestampConverter() {
                                         {copied === 'iso' ? (
                                             <>
                                                 <Check className="w-4 h-4" />
-                                                {t('unixTimestampConverter.copied')}
+                                                Copied!
                                             </>
                                         ) : (
                                             <>
                                                 <Copy className="w-4 h-4" />
-                                                {t('unixTimestampConverter.copy')}
+                                                Copy
                                             </>
                                         )}
                                     </button>
@@ -458,7 +456,7 @@ export function UnixTimestampConverter() {
 
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-neutral-700">
-                                    {t('unixTimestampConverter.readableFormat')}
+                                    Readable Format
                                 </label>
                                 <div className="p-3 bg-white rounded border border-neutral-200 text-sm">
                                     {result.readableFormat}
@@ -472,7 +470,7 @@ export function UnixTimestampConverter() {
                                 <div className="flex items-center justify-between">
                                     <label className="text-sm font-medium text-neutral-700 flex items-center gap-2">
                                         <Hash className="w-4 h-4" />
-                                        {t('unixTimestampConverter.unixTimestamp')}
+                                        Unix Timestamp
                                     </label>
                                     <button
                                         onClick={() => handleCopy(result.timestamp.toString(), 'timestamp')}
@@ -481,12 +479,12 @@ export function UnixTimestampConverter() {
                                         {copied === 'timestamp' ? (
                                             <>
                                                 <Check className="w-4 h-4" />
-                                                {t('unixTimestampConverter.copied')}
+                                                Copied!
                                             </>
                                         ) : (
                                             <>
                                                 <Copy className="w-4 h-4" />
-                                                {t('unixTimestampConverter.copy')}
+                                                Copy
                                             </>
                                         )}
                                     </button>
@@ -502,10 +500,10 @@ export function UnixTimestampConverter() {
                 {/* Tips */}
                 <div className="p-4 bg-neutral-50 rounded-lg border border-neutral-200">
                     <h3 className="text-sm font-semibold text-neutral-900 mb-2">
-                        {t('unixTimestampConverter.tipsLabel')}
+                        Tips
                     </h3>
                     <p className="text-sm text-neutral-600">
-                        {t('unixTimestampConverter.tips')}
+                        Unix timestamp is the number of seconds since January 1, 1970 (UTC). You can enter timestamp in seconds (10 digits) or milliseconds (13 digits). The tool automatically detects and converts both formats.
                     </p>
                 </div>
             </div>

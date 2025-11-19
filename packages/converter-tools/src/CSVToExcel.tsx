@@ -2,10 +2,8 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, FileSpreadsheet, Loader2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 export function CSVToExcel() {
-  const t = useTranslations('tools')
   const [csvFile, setCsvFile] = useState<File | null>(null)
   const [sheetName, setSheetName] = useState('Sheet1')
   const [isProcessing, setIsProcessing] = useState(false)
@@ -35,7 +33,7 @@ export function CSVToExcel() {
     )
 
     if (!hasValidType && !hasValidExtension) {
-      setError(t('csvToExcel.errors.invalidFile'))
+      setError('Please select a valid CSV file!')
       return
     }
 
@@ -50,12 +48,12 @@ export function CSVToExcel() {
 
   const convertToExcel = async () => {
     if (!csvFile) {
-      setError(t('csvToExcel.errors.noFile'))
+      setError('Please select a CSV file first!')
       return
     }
 
     if (!sheetName.trim()) {
-      setError(t('csvToExcel.errors.noSheetName'))
+      setError('Please enter a sheet name!')
       return
     }
 
@@ -101,20 +99,20 @@ export function CSVToExcel() {
             setExcelUrl(url)
           } catch (err: any) {
             console.error('CSV to Excel conversion error:', err)
-            setError(t('csvToExcel.errors.conversionFailed') + (err.message ? ': ' + err.message : ''))
+            setError('Failed to convert CSV to Excel' + (err.message ? ': ' + err.message : ''))
           } finally {
             setIsProcessing(false)
           }
         },
         error: (error: Error) => {
           console.error('CSV parsing error:', error)
-          setError(t('csvToExcel.errors.parseFailed') + (error.message ? ': ' + error.message : ''))
+          setError('Failed to parse CSV file' + (error.message ? ': ' + error.message : ''))
           setIsProcessing(false)
         },
       })
     } catch (err: any) {
       console.error('CSV to Excel conversion error:', err)
-      setError(t('csvToExcel.errors.conversionFailed') + (err.message ? ': ' + err.message : ''))
+      setError('Failed to convert CSV to Excel' + (err.message ? ': ' + err.message : ''))
       setIsProcessing(false)
     }
   }
@@ -134,16 +132,16 @@ export function CSVToExcel() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto w-full px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('csvToExcel.title')}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">CSV to Excel</h1>
         <p className="text-sm sm:text-base text-neutral-600">
-          {t('csvToExcel.description')}
+          Convert CSV file to Excel spreadsheet
         </p>
       </div>
 
       {/* File Upload */}
       <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
         <label className="block text-sm font-medium text-neutral-700 mb-3">
-          {t('csvToExcel.selectFile')}
+          Select CSV File
         </label>
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
@@ -159,7 +157,7 @@ export function CSVToExcel() {
               className="w-full sm:w-auto px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 min-h-[44px]"
             >
               <Upload className="w-4 h-4" />
-              {csvFile ? csvFile.name : t('csvToExcel.chooseFile')}
+              {csvFile ? csvFile.name : 'Choose CSV File'}
             </button>
             {csvFile && (
               <p className="text-xs text-neutral-500 mt-2">
@@ -179,13 +177,13 @@ export function CSVToExcel() {
       {csvFile && (
         <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
           <label className="block text-sm font-medium text-neutral-700 mb-3">
-            {t('csvToExcel.sheetName')}
+            Sheet Name
           </label>
           <input
             type="text"
             value={sheetName}
             onChange={(e) => setSheetName(e.target.value)}
-            placeholder={t('csvToExcel.sheetNamePlaceholder')}
+            placeholder="Enter sheet name"
             className="w-full px-4 py-2.5 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[44px]"
           />
         </div>
@@ -202,12 +200,12 @@ export function CSVToExcel() {
             {isProcessing ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                {t('csvToExcel.processing')}
+                Processing...
               </>
             ) : (
               <>
                 <FileSpreadsheet className="w-4 h-4" />
-                {t('csvToExcel.convert')}
+                Convert to Excel
               </>
             )}
           </button>
@@ -218,17 +216,17 @@ export function CSVToExcel() {
       {excelUrl && (
         <div className="tool-card p-4 sm:p-6 w-full">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-semibold text-neutral-900">{t('csvToExcel.excelReady')}</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">Excel File Ready</h3>
             <button
               onClick={downloadExcel}
               className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 min-h-[44px]"
             >
               <Download className="w-4 h-4" />
-              {t('csvToExcel.download')}
+              Download
             </button>
           </div>
           <p className="text-sm text-neutral-600">
-            {t('csvToExcel.downloadDescription')}
+            Your Excel file is ready for download.
           </p>
         </div>
       )}

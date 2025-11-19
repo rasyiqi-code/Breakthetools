@@ -2,8 +2,6 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, FileText, Loader2, AlertCircle } from 'lucide-react'
-import { useTranslations } from 'next-intl'
-
 // Dynamic import untuk pdfjs-dist (hanya di client-side)
 let pdfjsLib: any = null
 let isPdfjsInitialized = false
@@ -121,7 +119,6 @@ async function initializePdfjs() {
 }
 
 export function PDFToWord() {
-    const t = useTranslations('tools')
     const [pdfFile, setPdfFile] = useState<File | null>(null)
     const [isProcessing, setIsProcessing] = useState(false)
     const [error, setError] = useState('')
@@ -140,7 +137,7 @@ export function PDFToWord() {
         if (!file) return
 
         if (file.type !== 'application/pdf') {
-            setError(t('pdfToWord.errors.invalidFile'))
+            setError('Please select a valid PDF file!')
             return
         }
 
@@ -150,7 +147,7 @@ export function PDFToWord() {
 
     const convertToWord = async () => {
         if (!pdfFile) {
-            setError(t('pdfToWord.errors.noFile'))
+            setError('Please select a PDF file first!')
             return
         }
 
@@ -203,7 +200,7 @@ export function PDFToWord() {
             }
 
             if (pagesData.length === 0) {
-                setError(t('pdfToWord.errors.noTextFound'))
+                setError('No text content found in the PDF. The PDF may contain only images or scanned pages. Please use a PDF with selectable text.')
                 setIsProcessing(false)
                 return
             }
@@ -220,7 +217,7 @@ export function PDFToWord() {
 
             if (!response.ok) {
                 // Try to get error message from response
-                let errorMessage = t('pdfToWord.errors.serverError')
+                let errorMessage = 'Server error occurred. Please try again later.'
                 try {
                     const errorData = await response.json()
                     if (errorData.error) {
@@ -252,7 +249,7 @@ export function PDFToWord() {
             URL.revokeObjectURL(url)
         } catch (err: any) {
             console.error('PDF to Word conversion error:', err)
-            setError(t('pdfToWord.errors.conversionFailed') + (err.message ? ': ' + err.message : ''))
+            setError('Failed to convert PDF to Word' + (err.message ? ': ' + err.message : ''))
         } finally {
             setIsProcessing(false)
         }
@@ -261,14 +258,14 @@ export function PDFToWord() {
     return (
         <div className="max-w-full sm:max-w-4xl mx-auto w-full px-4">
             <div className="mb-4 sm:mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('pdfToWord.title')}</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">PDF to Word</h1>
                 <p className="text-sm sm:text-base text-neutral-600">
-                    {t('pdfToWord.description')}
+                    Convert PDF to Word document (.docx)
                 </p>
                 <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg flex items-start gap-2">
                     <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" />
                     <p className="text-xs sm:text-sm text-yellow-800">
-                        {t('pdfToWord.serverSideNote')}
+                        This conversion requires server-side processing. Please ensure the API endpoint is configured.
                     </p>
                 </div>
             </div>
@@ -276,7 +273,7 @@ export function PDFToWord() {
             {/* File Upload */}
             <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
                 <label className="block text-sm font-medium text-neutral-700 mb-3">
-                    {t('pdfToWord.selectPDF')}
+                    Select PDF File
                 </label>
                 <div className="flex flex-col sm:flex-row gap-3">
                     <div className="flex-1">
@@ -292,7 +289,7 @@ export function PDFToWord() {
                             className="w-full sm:w-auto px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 min-h-[44px]"
                         >
                             <Upload className="w-4 h-4" />
-                            {pdfFile ? pdfFile.name : t('pdfToWord.chooseFile')}
+                            {pdfFile ? pdfFile.name : 'Choose PDF File'}
                         </button>
                         {pdfFile && (
                             <p className="text-xs text-neutral-500 mt-2">
@@ -319,12 +316,12 @@ export function PDFToWord() {
                         {isProcessing ? (
                             <>
                                 <Loader2 className="w-4 h-4 animate-spin" />
-                                {t('pdfToWord.processing')}
+                                Processing...
                             </>
                         ) : (
                             <>
                                 <FileText className="w-4 h-4" />
-                                {t('pdfToWord.convert')}
+                                Convert to Word
                             </>
                         )}
                     </button>

@@ -1,10 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslations } from 'next-intl'
 
 export function CaseConverter() {
-  const t = useTranslations('tools')
   const [text, setText] = useState('')
 
   const convertCase = (type: string) => {
@@ -63,16 +61,16 @@ export function CaseConverter() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('caseConverter.title')}</h1>
-        <p className="text-sm sm:text-base text-neutral-600">{t('caseConverter.description')}</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Case Converter</h1>
+        <p className="text-sm sm:text-base text-neutral-600">Change text format with various styles</p>
       </div>
 
       <div className="tool-card p-4 sm:p-6 mb-4 sm:mb-6">
-        <label className="text-sm font-medium text-neutral-700 mb-3 block">{t('caseConverter.enterText')}</label>
+        <label className="text-sm font-medium text-neutral-700 mb-3 block">Enter Text</label>
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder={t('caseConverter.placeholder')}
+          placeholder="Type or paste your text here..."
           className="textarea-field text-sm sm:text-base"
           rows={10}
         />
@@ -84,63 +82,63 @@ export function CaseConverter() {
           className="btn-secondary py-2.5 sm:py-3 text-xs sm:text-sm min-h-[44px]"
           disabled={!text}
         >
-          {t('caseConverter.cases.uppercase')}
+          UPPERCASE
         </button>
         <button
           onClick={() => convertCase('lowercase')}
           className="btn-secondary py-2.5 sm:py-3 text-xs sm:text-sm min-h-[44px]"
           disabled={!text}
         >
-          {t('caseConverter.cases.lowercase')}
+          lowercase
         </button>
         <button
           onClick={() => convertCase('titlecase')}
           className="btn-secondary py-2.5 sm:py-3 text-xs sm:text-sm min-h-[44px]"
           disabled={!text}
         >
-          {t('caseConverter.cases.titlecase')}
+          Title Case
         </button>
         <button
           onClick={() => convertCase('sentencecase')}
           className="btn-secondary py-2.5 sm:py-3 text-xs sm:text-sm min-h-[44px]"
           disabled={!text}
         >
-          {t('caseConverter.cases.sentencecase')}
+          Sentence case
         </button>
         <button
           onClick={() => convertCase('camelcase')}
           className="btn-secondary py-2.5 sm:py-3 text-xs sm:text-sm min-h-[44px]"
           disabled={!text}
         >
-          {t('caseConverter.cases.camelcase')}
+          camelCase
         </button>
         <button
           onClick={() => convertCase('pascalcase')}
           className="btn-secondary py-2.5 sm:py-3 text-xs sm:text-sm min-h-[44px]"
           disabled={!text}
         >
-          {t('caseConverter.cases.pascalcase')}
+          PascalCase
         </button>
         <button
           onClick={() => convertCase('snakecase')}
           className="btn-secondary py-2.5 sm:py-3 text-xs sm:text-sm min-h-[44px]"
           disabled={!text}
         >
-          {t('caseConverter.cases.snakecase')}
+          snake_case
         </button>
         <button
           onClick={() => convertCase('kebabcase')}
           className="btn-secondary py-2.5 sm:py-3 text-xs sm:text-sm min-h-[44px]"
           disabled={!text}
         >
-          {t('caseConverter.cases.kebabcase')}
+          kebab-case
         </button>
         <button
           onClick={() => convertCase('toggle')}
           className="btn-secondary py-2.5 sm:py-3 text-xs sm:text-sm min-h-[44px]"
           disabled={!text}
         >
-          {t('caseConverter.cases.toggle')}
+          tOGGLE cASE
         </button>
       </div>
     </div>

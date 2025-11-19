@@ -2,10 +2,8 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, FileText, Loader2, Code2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 export function WordToMarkdown() {
-  const t = useTranslations('tools')
   const [wordFile, setWordFile] = useState<File | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
   const [markdownOutput, setMarkdownOutput] = useState('')
@@ -37,7 +35,7 @@ export function WordToMarkdown() {
     )
 
     if (!hasValidType && !hasValidExtension) {
-      setError(t('wordToMarkdown.errors.invalidFile'))
+      setError('Please select a valid Word file (.docx or .doc)!')
       return
     }
 
@@ -48,7 +46,7 @@ export function WordToMarkdown() {
 
   const convertToMarkdown = async () => {
     if (!wordFile) {
-      setError(t('wordToMarkdown.errors.noFile'))
+      setError('Please select a Word file first!')
       return
     }
 
@@ -121,7 +119,7 @@ export function WordToMarkdown() {
       setMarkdownOutput(markdown)
     } catch (err: any) {
       console.error('Word to Markdown conversion error:', err)
-      setError(t('wordToMarkdown.errors.conversionFailed') + (err.message ? ': ' + err.message : ''))
+      setError('Failed to convert Word to Markdown' + (err.message ? ': ' + err.message : ''))
     } finally {
       setIsProcessing(false)
     }
@@ -144,16 +142,16 @@ export function WordToMarkdown() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto w-full px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('wordToMarkdown.title')}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Word to Markdown</h1>
         <p className="text-sm sm:text-base text-neutral-600">
-          {t('wordToMarkdown.description')}
+          Convert Word document (.docx) to Markdown
         </p>
       </div>
 
       {/* File Upload */}
       <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
         <label className="block text-sm font-medium text-neutral-700 mb-3">
-          {t('wordToMarkdown.selectFile')}
+          Select Word File
         </label>
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
@@ -169,7 +167,7 @@ export function WordToMarkdown() {
               className="w-full sm:w-auto px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 min-h-[44px]"
             >
               <Upload className="w-4 h-4" />
-              {wordFile ? wordFile.name : t('wordToMarkdown.chooseFile')}
+              {wordFile ? wordFile.name : 'Choose Word File'}
             </button>
             {wordFile && (
               <p className="text-xs text-neutral-500 mt-2">
@@ -196,12 +194,12 @@ export function WordToMarkdown() {
             {isProcessing ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                {t('wordToMarkdown.processing')}
+                Processing...
               </>
             ) : (
               <>
                 <Code2 className="w-4 h-4" />
-                {t('wordToMarkdown.convert')}
+                Convert to Markdown
               </>
             )}
           </button>
@@ -212,23 +210,23 @@ export function WordToMarkdown() {
       {markdownOutput && (
         <div className="tool-card p-4 sm:p-6 w-full">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-semibold text-neutral-900">{t('wordToMarkdown.markdownOutput')}</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">Markdown Output</h3>
             <button
               onClick={downloadMarkdown}
               className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 min-h-[44px]"
             >
               <Download className="w-4 h-4" />
-              {t('wordToMarkdown.download')}
+              Download
             </button>
           </div>
           <textarea
             value={markdownOutput}
             readOnly
             className="w-full p-4 border border-neutral-300 rounded-lg font-mono text-xs sm:text-sm bg-neutral-50 min-h-[300px] max-h-[600px] overflow-y-auto"
-            placeholder={t('wordToMarkdown.markdownOutputPlaceholder')}
+            placeholder="Markdown output will appear here..."
           />
           <p className="text-xs text-neutral-500 mt-2">
-            {markdownOutput.length} {t('wordToMarkdown.characters')}
+            {markdownOutput.length} characters
           </p>
         </div>
       )}

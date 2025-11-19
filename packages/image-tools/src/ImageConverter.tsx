@@ -2,11 +2,8 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, Image as ImageIcon, FileImage } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 export function ImageConverter() {
-  const t = useTranslations('tools')
-  const tCommon = useTranslations('common')
   const [originalFile, setOriginalFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string>('')
   const [targetFormat, setTargetFormat] = useState<'jpeg' | 'png' | 'webp'>('jpeg')
@@ -19,7 +16,7 @@ export function ImageConverter() {
     if (!file) return
 
     if (!file.type.startsWith('image/')) {
-      alert(t('imageConverter.errors.invalidFileType'))
+      alert('File must be an image!')
       return
     }
 
@@ -34,7 +31,7 @@ export function ImageConverter() {
 
   const convertImage = () => {
     if (!originalFile || !preview) {
-      alert(t('imageConverter.errors.noFileSelected'))
+      alert('Please select an image first!')
       return
     }
 
@@ -78,21 +75,21 @@ export function ImageConverter() {
   return (
     <div className="max-w-full sm:max-w-4xl lg:max-w-6xl mx-auto px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('imageConverter.title')}</h1>
-        <p className="text-sm sm:text-base text-neutral-600">{t('imageConverter.description')}</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Image Converter</h1>
+        <p className="text-sm sm:text-base text-neutral-600">Convert image formats (JPG, PNG, WebP) - All processing in your browser</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div className="tool-card p-4 sm:p-6">
           <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
             <Upload className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-            {t('imageConverter.uploadAndConvert')}
+            Upload & Convert
           </h3>
 
           <div className="space-y-4">
             <div>
               <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                {t('imageConverter.selectImage')}
+                Select Image
               </label>
               <input
                 ref={fileInputRef}
@@ -106,7 +103,7 @@ export function ImageConverter() {
                 className="btn-secondary w-full flex items-center justify-center gap-2 min-h-[44px]"
               >
                 <FileImage className="w-4 h-4" />
-                <span className="text-sm sm:text-base">{t('imageConverter.selectImage')}</span>
+                <span className="text-sm sm:text-base">Select Image</span>
               </button>
               {originalFile && (
                 <div className="mt-2 text-xs sm:text-sm text-neutral-600">
@@ -117,23 +114,23 @@ export function ImageConverter() {
 
             <div>
               <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                {t('imageConverter.targetFormat')}
+                Target Format
               </label>
               <select
                 value={targetFormat}
                 onChange={(e) => setTargetFormat(e.target.value as 'jpeg' | 'png' | 'webp')}
                 className="input-field text-sm sm:text-base min-h-[44px]"
               >
-                <option value="jpeg">{t('imageConverter.formats.jpeg')}</option>
-                <option value="png">{t('imageConverter.formats.png')}</option>
-                <option value="webp">{t('imageConverter.formats.webp')}</option>
+                <option value="jpeg">JPEG / JPG</option>
+                <option value="png">PNG</option>
+                <option value="webp">WebP</option>
               </select>
             </div>
 
             {(targetFormat === 'jpeg' || targetFormat === 'webp') && (
               <div>
                 <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                  {t('imageConverter.quality')}: {quality}%
+                  Quality: {quality}%
                 </label>
                 <input
                   type="range"
@@ -151,7 +148,7 @@ export function ImageConverter() {
               disabled={!originalFile}
               className="btn-primary w-full min-h-[44px] text-sm sm:text-base"
             >
-              {t('imageConverter.convertImage')}
+              Convert Image
             </button>
           </div>
         </div>
@@ -159,28 +156,28 @@ export function ImageConverter() {
         <div className="tool-card p-4 sm:p-6">
           <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
             <ImageIcon className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-            {t('imageConverter.previewAndDownload')}
+            Preview & Download
           </h3>
 
           {preview ? (
             <div className="space-y-4">
               <div className="bg-neutral-50 p-3 sm:p-4 rounded-lg border border-neutral-200">
-                <div className="text-xs text-neutral-600 mb-2">{t('imageConverter.original')}</div>
-                <img src={preview} alt={t('imageConverter.original')} className="max-w-full h-auto rounded" />
+                <div className="text-xs text-neutral-600 mb-2">Original</div>
+                <img src={preview} alt="Original" className="max-w-full h-auto rounded" />
               </div>
 
               {convertedUrl && (
                 <>
                   <div className="bg-primary-50 p-3 sm:p-4 rounded-lg border border-primary-200">
-                    <div className="text-xs text-neutral-600 mb-2">{t('imageConverter.converted')} ({targetFormat.toUpperCase()})</div>
-                    <img src={convertedUrl} alt={t('imageConverter.converted')} className="max-w-full h-auto rounded" />
+                    <div className="text-xs text-neutral-600 mb-2">Converted ({targetFormat.toUpperCase()})</div>
+                    <img src={convertedUrl} alt="Converted" className="max-w-full h-auto rounded" />
                   </div>
                   <button
                     onClick={handleDownload}
                     className="btn-primary w-full flex items-center justify-center gap-2 min-h-[44px]"
                   >
                     <Download className="w-4 h-4" />
-                    <span className="text-sm sm:text-base">{t('imageConverter.downloadImage')}</span>
+                    <span className="text-sm sm:text-base">Download Image</span>
                   </button>
                 </>
               )}
@@ -189,7 +186,7 @@ export function ImageConverter() {
             <div className="flex items-center justify-center h-full min-h-[200px] sm:min-h-[300px] text-neutral-400">
               <div className="text-center">
                 <ImageIcon className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 opacity-50" />
-                <p className="text-sm sm:text-base">{t('imageConverter.selectImageToStart')}</p>
+                <p className="text-sm sm:text-base">Select an image to start</p>
               </div>
             </div>
           )}

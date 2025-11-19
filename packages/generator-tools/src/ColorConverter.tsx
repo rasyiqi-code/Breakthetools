@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { Palette, Copy, Check } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 import {
   hexToRgb,
   rgbToHex,
@@ -23,7 +22,6 @@ interface ColorValues {
 }
 
 export function ColorConverter() {
-  const t = useTranslations('tools')
   const [inputType, setInputType] = useState<'hex' | 'rgb' | 'hsl' | 'cmyk'>('hex')
   const [inputValue, setInputValue] = useState('')
   const [colorValues, setColorValues] = useState<ColorValues | null>(null)
@@ -32,7 +30,7 @@ export function ColorConverter() {
 
   const parseInput = () => {
     if (!inputValue.trim()) {
-      setError(t('colorConverter.errors.enterColorValue'))
+      setError('Please enter a color value first!')
       setColorValues(null)
       return
     }
@@ -44,7 +42,7 @@ export function ColorConverter() {
         case 'hex': {
           const rgbResult = hexToRgb(inputValue.trim())
           if (!rgbResult) {
-            throw new Error(t('colorConverter.errors.invalidHex'))
+            throw new Error('Invalid HEX format. Use format #RRGGBB or RRGGBB')
           }
           rgb = rgbResult
           break
@@ -53,7 +51,7 @@ export function ColorConverter() {
         case 'rgb': {
           const rgbMatch = inputValue.match(/(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/)
           if (!rgbMatch) {
-            throw new Error(t('colorConverter.errors.invalidRgb'))
+            throw new Error('Invalid RGB format. Use format: R, G, B (example: 255, 0, 0)')
           }
           rgb = {
             r: Math.max(0, Math.min(255, parseInt(rgbMatch[1]))),
@@ -66,7 +64,7 @@ export function ColorConverter() {
         case 'hsl': {
           const hslMatch = inputValue.match(/(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%/)
           if (!hslMatch) {
-            throw new Error(t('colorConverter.errors.invalidHsl'))
+            throw new Error('Invalid HSL format. Use format: H, S%, L% (example: 0, 100%, 50%)')
           }
           rgb = hslToRgb(
             Math.max(0, Math.min(360, parseInt(hslMatch[1]))),
@@ -79,7 +77,7 @@ export function ColorConverter() {
         case 'cmyk': {
           const cmykMatch = inputValue.match(/(\d+)%\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,\s*(\d+)%/)
           if (!cmykMatch) {
-            throw new Error(t('colorConverter.errors.invalidCmyk'))
+            throw new Error('Invalid CMYK format. Use format: C%, M%, Y%, K% (example: 0%, 100%, 100%, 0%)')
           }
           rgb = cmykToRgb(
             Math.max(0, Math.min(100, parseInt(cmykMatch[1]))),
@@ -103,7 +101,7 @@ export function ColorConverter() {
       })
       setError('')
     } catch (err: any) {
-      setError(err.message || t('colorConverter.errors.invalidColorFormat'))
+      setError(err.message || 'Invalid color format')
       setColorValues(null)
     }
   }
@@ -123,13 +121,13 @@ export function ColorConverter() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('colorConverter.title')}</h1>
-        <p className="text-sm sm:text-base text-neutral-600">{t('colorConverter.description')}</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Color Converter</h1>
+        <p className="text-sm sm:text-base text-neutral-600">Convert colors between HEX, RGB, HSL, and CMYK</p>
       </div>
 
       <div className="tool-card p-4 sm:p-6 mb-4 sm:mb-6">
         <label className="text-sm font-medium text-neutral-700 mb-3 block">
-          {t('colorConverter.inputFormat')}
+          Input Format
         </label>
         <div className="flex flex-wrap gap-2 mb-4">
           {(['hex', 'rgb', 'hsl', 'cmyk'] as const).map((type) => (
@@ -147,7 +145,7 @@ export function ColorConverter() {
         </div>
 
         <label className="text-sm font-medium text-neutral-700 mb-3 block">
-          {t('colorConverter.enterColor')} ({inputType.toUpperCase()})
+          Enter Color ({inputType.toUpperCase()})
         </label>
         <div className="flex flex-col sm:flex-row gap-3 mb-4">
           <input
@@ -159,7 +157,7 @@ export function ColorConverter() {
                 setTimeout(() => parseInput(), 300)
               }
             }}
-            placeholder={t(`colorConverter.placeholders.${inputType}`)}
+            placeholder={inputType === 'hex' ? '#FF0000 or FF0000' : inputType === 'rgb' ? '255, 0, 0' : inputType === 'hsl' ? '0, 100%, 50%' : '0%, 100%, 100%, 0%'}
             className="flex-1 px-3 sm:px-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 font-mono text-sm sm:text-base min-h-[44px]"
           />
           <button
@@ -167,7 +165,7 @@ export function ColorConverter() {
             className="btn-primary flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
           >
             <Palette className="w-4 h-4" />
-            {t('colorConverter.convert')}
+            Convert
           </button>
         </div>
 
@@ -182,7 +180,7 @@ export function ColorConverter() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {/* Color Preview */}
           <div className="tool-card p-4 sm:p-6">
-            <h2 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4">{t('colorConverter.colorPreview')}</h2>
+            <h2 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4">Color Preview</h2>
             <div
               className="w-full h-24 sm:h-32 rounded-lg border-2 border-neutral-200 mb-4"
               style={{ backgroundColor: colorValues.hex }}

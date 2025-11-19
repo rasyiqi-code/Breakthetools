@@ -2,10 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Ruler, RotateCw, Maximize2, Minimize2, Settings, Info, RotateCcw } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 export function DigitalRuler() {
-    const t = useTranslations('tools')
 
     const [unit, setUnit] = useState<'cm' | 'in'>('cm')
     const [dpi, setDpi] = useState(96) // Default DPI
@@ -185,7 +183,7 @@ export function DigitalRuler() {
         }
 
         setDpi(newDPI)
-        alert(t('autoCalibrated', { dpi: newDPI }) || `Auto-calibrated to ${newDPI} DPI based on your device. For more accuracy, use manual calibration with a credit card.`)
+        alert(`Auto-calibrated to ${newDPI} DPI based on your device. For more accuracy, use manual calibration with a credit card.`)
     }
 
     // Calibration using known object (like credit card)
@@ -193,11 +191,7 @@ export function DigitalRuler() {
         const creditCardWidthCM = 8.56
         const creditCardWidthIN = 3.375
 
-        const instruction = unit === 'cm'
-            ? t('calibrationInstruction', { width: creditCardWidthCM, unit: 'cm' })
-            : t('calibrationInstruction', { width: creditCardWidthIN, unit: 'in' })
-
-        alert(instruction || `Place a credit card (${unit === 'cm' ? creditCardWidthCM : creditCardWidthIN} ${unit} wide) on your screen and adjust the DPI slider until the ruler matches the card width.`)
+        alert(`Place a credit card (${unit === 'cm' ? creditCardWidthCM : creditCardWidthIN} ${unit} wide) on your screen and adjust the DPI slider until the ruler matches the card width.`)
     }
 
     // Render ruler marks
@@ -299,10 +293,10 @@ export function DigitalRuler() {
 
             <div className="mt-4 text-center">
                 <p className="text-xs sm:text-sm text-neutral-600">
-                    {t('digitalRuler.instruction')}
+                    Measure physical objects by placing them on your screen. Adjust DPI for accuracy.
                 </p>
                 <p className="text-xs text-neutral-500 mt-1">
-                    {t('digitalRuler.currentSize', { length: currentRulerLength || rulerLength, unit })}
+                    Current size: {currentRulerLength || rulerLength} {unit}
                 </p>
             </div>
         </div>
@@ -363,10 +357,10 @@ export function DigitalRuler() {
                 <button
                     onClick={handleFullscreen}
                     className="fixed top-4 right-4 z-10 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 text-sm font-semibold transition-all shadow-xl hover:shadow-2xl border border-red-400"
-                    title={t('digitalRuler.exitFullscreen')}
+                    title="Exit Fullscreen"
                 >
                     <Minimize2 className="w-4 h-4 inline mr-2" />
-                    {t('digitalRuler.exitFullscreen')}
+                    Exit Fullscreen
                 </button>
 
                 {/* Fullscreen ruler - centered dengan spacing yang baik */}
@@ -409,21 +403,21 @@ export function DigitalRuler() {
     return (
         <div className="max-w-full sm:max-w-6xl mx-auto px-4">
             <div className="mb-4 sm:mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('digitalRuler.title')}</h1>
-                <p className="text-sm sm:text-base text-neutral-600">{t('digitalRuler.description')}</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Digital Ruler</h1>
+                <p className="text-sm sm:text-base text-neutral-600">Measure physical objects by placing them on your screen - Perfect for when you forget to bring a ruler</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="tool-card p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                         <Settings className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                        {t('digitalRuler.settings')}
+                        Settings
                     </h3>
 
                     <div className="space-y-4">
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('digitalRuler.unit')}
+                                Unit
                             </label>
                             <div className="flex gap-2">
                                 {(['cm', 'in'] as const).map((u) => (
@@ -446,7 +440,7 @@ export function DigitalRuler() {
 
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('digitalRuler.orientation')}
+                                Orientation
                             </label>
                             <div className="flex gap-2">
                                 {(['horizontal', 'vertical'] as const).map((o) => (
@@ -458,7 +452,7 @@ export function DigitalRuler() {
                                             : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                                             }`}
                                     >
-                                        {t(`digitalRuler.orientations.${o}`)}
+                                        {o === 'horizontal' ? 'Horizontal' : 'Vertical'}
                                     </button>
                                 ))}
                             </div>
@@ -466,7 +460,7 @@ export function DigitalRuler() {
 
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('digitalRuler.rulerLength')}: {rulerLength} {unit}
+                                Ruler Length: {rulerLength} {unit}
                             </label>
                             <input
                                 type="range"
@@ -484,7 +478,7 @@ export function DigitalRuler() {
 
                         <div>
                             <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                                {t('digitalRuler.screenDPI')}: {dpi} DPI
+                                Screen DPI: {dpi} DPI
                             </label>
                             <input
                                 type="range"
@@ -499,7 +493,7 @@ export function DigitalRuler() {
                                 <span>150 DPI</span>
                             </div>
                             <p className="text-xs text-neutral-600 mt-2">
-                                {t('digitalRuler.dpiNote')}
+                                Adjust DPI to match your screen for accurate measurements. Use auto-calibrate or manual calibration with a credit card.
                             </p>
                         </div>
 
@@ -509,14 +503,14 @@ export function DigitalRuler() {
                                 className="flex-1 py-2 sm:py-3 px-4 rounded-lg font-medium transition-colors min-h-[44px] text-sm sm:text-base bg-primary-600 text-white hover:bg-primary-700"
                             >
                                 <RotateCcw className="w-4 h-4 inline mr-2" />
-                                {t('digitalRuler.autoCalibrate')}
+                                Auto Calibrate
                             </button>
                             <button
                                 onClick={handleCalibration}
                                 className="flex-1 py-2 sm:py-3 px-4 rounded-lg font-medium transition-colors min-h-[44px] text-sm sm:text-base bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200"
                             >
                                 <Info className="w-4 h-4 inline mr-2" />
-                                {t('digitalRuler.calibrate')}
+                                Calibrate
                             </button>
                         </div>
 
@@ -527,18 +521,18 @@ export function DigitalRuler() {
                             {isFullscreen ? (
                                 <>
                                     <Minimize2 className="w-4 h-4 inline mr-2" />
-                                    {t('digitalRuler.exitFullscreen')}
+                                    Exit Fullscreen
                                 </>
                             ) : (
                                 <>
                                     <Maximize2 className="w-4 h-4 inline mr-2" />
-                                    {t('digitalRuler.enterFullscreen')}
+                                    Enter Fullscreen
                                 </>
                             )}
                         </button>
 
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 sm:p-3 text-xs sm:text-sm text-blue-800">
-                            💡 <strong>{t('digitalRuler.tipsLabel')}:</strong> {t('digitalRuler.tips')}
+                            💡 <strong>Tips:</strong> Use auto-calibrate for quick setup. For precise measurements, use manual calibration with a credit card (8.56 cm or 3.375 inches wide).
                         </div>
                     </div>
                 </div>
@@ -546,7 +540,7 @@ export function DigitalRuler() {
                 <div className="tool-card p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                         <Ruler className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-                        {t('digitalRuler.rulerDisplay')}
+                        Ruler Display
                     </h3>
 
                     {rulerContent}

@@ -1,16 +1,15 @@
 'use client'
 
 import React from 'react'
-import { AlertCircle, RefreshCw } from 'lucide-react'
+
+interface ErrorBoundaryProps {
+  children: React.ReactNode
+  fallback?: React.ReactNode
+}
 
 interface ErrorBoundaryState {
   hasError: boolean
   error: Error | null
-}
-
-interface ErrorBoundaryProps {
-  children: React.ReactNode
-  fallback?: React.ComponentType<{ error: Error | null; resetError: () => void }>
 }
 
 export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -27,42 +26,42 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     console.error('ErrorBoundary caught an error:', error, errorInfo)
   }
 
-  resetError = () => {
-    this.setState({ hasError: false, error: null })
-  }
-
   render() {
     if (this.state.hasError) {
       if (this.props.fallback) {
-        const Fallback = this.props.fallback
-        return <Fallback error={this.state.error} resetError={this.resetError} />
+        return this.props.fallback
       }
 
       return (
-        <div className="min-h-screen flex items-center justify-center px-4">
-          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6">
-            <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-red-100 rounded-full">
-              <AlertCircle className="w-6 h-6 text-red-600" />
-            </div>
-            <h2 className="text-xl font-bold text-neutral-900 mb-2 text-center">
+        <div className="flex items-center justify-center min-h-[400px] px-4">
+          <div className="text-center max-w-md">
+            <div className="text-6xl mb-4">⚠️</div>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-2">
               Something went wrong
             </h2>
-            <p className="text-neutral-600 mb-4 text-center">
-              {this.state.error?.message || 'An unexpected error occurred'}
+            <p className="text-neutral-600 mb-4">
+              We encountered an error while loading this tool. Please try refreshing the page.
             </p>
             <button
-              onClick={this.resetError}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+              onClick={() => {
+                this.setState({ hasError: false, error: null })
+                window.location.reload()
+              }}
+              className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
             >
-              <RefreshCw className="w-4 h-4" />
-              Try again
+              Reload Page
             </button>
-            <button
-              onClick={() => window.location.href = '/'}
-              className="w-full mt-2 px-4 py-2 text-neutral-600 hover:text-neutral-900 transition-colors"
-            >
-              Go to homepage
-            </button>
+            {process.env.NODE_ENV === 'development' && this.state.error && (
+              <details className="mt-4 text-left">
+                <summary className="cursor-pointer text-sm text-neutral-500">
+                  Error Details
+                </summary>
+                <pre className="mt-2 p-4 bg-neutral-100 rounded text-xs overflow-auto">
+                  {this.state.error.toString()}
+                  {this.state.error.stack}
+                </pre>
+              </details>
+            )}
           </div>
         </div>
       )

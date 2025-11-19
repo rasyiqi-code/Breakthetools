@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react'
 import { Upload, Download, X, GripVertical, FileText, Loader2 } from 'lucide-react'
 import { PDFDocument } from 'pdf-lib'
-import { useTranslations } from 'next-intl'
 
 interface PDFFile {
   file: File
@@ -13,7 +12,6 @@ interface PDFFile {
 }
 
 export function PDFMerger() {
-  const t = useTranslations('tools')
   const [pdfFiles, setPdfFiles] = useState<PDFFile[]>([])
   const [isProcessing, setIsProcessing] = useState(false)
   const [mergedUrl, setMergedUrl] = useState<string>('')
@@ -34,7 +32,7 @@ export function PDFMerger() {
     const pdfFiles = files.filter(file => file.type === 'application/pdf')
     
     if (pdfFiles.length === 0) {
-      setError(t('pdfMerger.errors.selectPDFFirst'))
+      setError('Please select PDF files first!')
       return
     }
 
@@ -87,7 +85,7 @@ export function PDFMerger() {
 
   const mergePDFs = async () => {
     if (pdfFiles.length === 0) {
-      setError(t('pdfMerger.errors.selectAtLeastOne'))
+      setError('Please select at least one PDF file!')
       return
     }
 
@@ -114,7 +112,7 @@ export function PDFMerger() {
       
       setMergedUrl(url)
     } catch (err: any) {
-      setError(t('pdfMerger.errors.mergeFailed') + ' ' + (err.message || t('pdfMerger.errors.ensureValidPDF')))
+      setError('Failed to merge PDFs: ' + (err.message || 'Please ensure all files are valid PDFs'))
     } finally {
       setIsProcessing(false)
     }
@@ -134,13 +132,13 @@ export function PDFMerger() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('pdfMerger.title')}</h1>
-        <p className="text-sm sm:text-base text-neutral-600">{t('pdfMerger.description')}</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">PDF Merger</h1>
+        <p className="text-sm sm:text-base text-neutral-600">Merge multiple PDF files into one - All processing in browser</p>
       </div>
 
       <div className="tool-card p-4 sm:p-6 mb-4 sm:mb-6">
         <label className="text-sm font-medium text-neutral-700 mb-3 block">
-          {t('pdfMerger.uploadPDFFiles')}
+          Upload PDF Files
         </label>
         <div className="flex flex-col sm:flex-row gap-3 mb-4">
           <input
@@ -157,7 +155,7 @@ export function PDFMerger() {
             className="btn-primary flex items-center justify-center gap-2 cursor-pointer min-h-[44px] text-sm sm:text-base"
           >
             <Upload className="w-4 h-4" />
-            {t('pdfMerger.selectPDFFiles')}
+            Select PDF Files
           </label>
           <button
             onClick={mergePDFs}
@@ -167,12 +165,12 @@ export function PDFMerger() {
             {isProcessing ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                {t('pdfMerger.processing')}
+                Processing...
               </>
             ) : (
               <>
                 <FileText className="w-4 h-4" />
-                {t('pdfMerger.mergePDFs')}
+                Merge PDFs
               </>
             )}
           </button>
@@ -187,7 +185,7 @@ export function PDFMerger() {
         {pdfFiles.length > 0 && (
           <div className="space-y-2">
             <div className="text-xs sm:text-sm font-medium text-neutral-700 mb-2">
-              {t('pdfMerger.fileList', { count: pdfFiles.length })} - {t('pdfMerger.dragToReorder')}
+              {pdfFiles.length} file{pdfFiles.length !== 1 ? 's' : ''} - Drag to reorder
             </div>
             {pdfFiles.map((pdfFile, index) => (
               <div
@@ -226,7 +224,7 @@ export function PDFMerger() {
       {mergedUrl && (
         <div className="tool-card p-4 sm:p-6">
           <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4">
-            {t('pdfMerger.mergeSuccess')}
+            Merge Successful!
           </h3>
           <div className="flex flex-col sm:flex-row gap-3">
             <button
@@ -234,7 +232,7 @@ export function PDFMerger() {
               className="btn-primary flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
             >
               <Download className="w-4 h-4" />
-              {t('pdfMerger.downloadMergedPDF')}
+              Download Merged PDF
             </button>
             <a
               href={mergedUrl}
@@ -243,7 +241,7 @@ export function PDFMerger() {
               className="btn-secondary flex items-center justify-center gap-2 min-h-[44px] text-sm sm:text-base"
             >
               <FileText className="w-4 h-4" />
-              {t('pdfMerger.preview')}
+              Preview
             </a>
           </div>
         </div>

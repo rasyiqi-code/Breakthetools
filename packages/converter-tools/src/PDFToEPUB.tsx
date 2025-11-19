@@ -2,8 +2,6 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, Book, Loader2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
-
 // Dynamic import untuk pdfjs-dist (hanya di client-side)
 let pdfjsLib: any = null
 let isPdfjsInitialized = false
@@ -121,7 +119,6 @@ async function initializePdfjs() {
 }
 
 export function PDFToEPUB() {
-    const t = useTranslations('tools')
     const [pdfFile, setPdfFile] = useState<File | null>(null)
     const [totalPages, setTotalPages] = useState(0)
     const [selectedPages, setSelectedPages] = useState<number[]>([])
@@ -146,7 +143,7 @@ export function PDFToEPUB() {
         if (!file) return
 
         if (file.type !== 'application/pdf') {
-            setError(t('pdfToEpub.errors.invalidFile'))
+            setError('Please select a valid PDF file!')
             return
         }
 
@@ -175,7 +172,7 @@ export function PDFToEPUB() {
             setSelectedPages(Array.from({ length: pdf.numPages }, (_, i) => i + 1))
         } catch (err: any) {
             console.error('PDF read error:', err)
-            setError(t('pdfToEpub.errors.readFailed') + (err.message ? ': ' + err.message : ''))
+            setError('Failed to read PDF' + (err.message ? ': ' + err.message : ''))
             setPdfFile(null)
         }
     }
@@ -194,12 +191,12 @@ export function PDFToEPUB() {
 
     const convertToEPUB = async () => {
         if (!pdfFile) {
-            setError(t('pdfToEpub.errors.noFile'))
+            setError('Please select a PDF file first!')
             return
         }
 
         if (!title.trim()) {
-            setError(t('pdfToEpub.errors.noTitle'))
+            setError('Please enter a title for the EPUB!')
             return
         }
 
@@ -208,7 +205,7 @@ export function PDFToEPUB() {
             : selectedPages.sort((a, b) => a - b)
 
         if (pagesToExtract.length === 0) {
-            setError(t('pdfToEpub.errors.noPages'))
+            setError('Please select at least one page!')
             return
         }
 
@@ -257,8 +254,8 @@ export function PDFToEPUB() {
 
                     if (pageText) {
                         chapters.push({
-                            title: `${t('pdfToEpub.page')} ${pageNum}`,
-                            data: `<h1>${t('pdfToEpub.page')} ${pageNum}</h1><p>${pageText.split('\n').join('</p><p>')}</p>`,
+                            title: `Page ${pageNum}`,
+                            data: `<h1>Page ${pageNum}</h1><p>${pageText.split('\n').join('</p><p>')}</p>`,
                         })
                     }
                 } catch (pageError: any) {
@@ -269,7 +266,7 @@ export function PDFToEPUB() {
             }
 
             if (chapters.length === 0) {
-                throw new Error(t('pdfToEpub.errors.noText'))
+                throw new Error('No text found in the selected pages!')
             }
 
             // Create EPUB
@@ -287,7 +284,7 @@ export function PDFToEPUB() {
                 try {
                     // Skip epub-gen import entirely - it's server-only and causes webpack errors
                     // Directly use manual EPUB generation
-                    generateManualEPUB()
+                        generateManualEPUB()
 
                     function generateManualEPUB() {
                         // Create a simplified EPUB structure manually
@@ -326,7 +323,7 @@ export function PDFToEPUB() {
             setEpubUrl(url)
         } catch (err: any) {
             console.error('PDF to EPUB conversion error:', err)
-            setError(t('pdfToEpub.errors.conversionFailed') + (err.message ? ': ' + err.message : ''))
+            setError('Failed to convert PDF to EPUB' + (err.message ? ': ' + err.message : ''))
         } finally {
             setIsProcessing(false)
         }
@@ -347,16 +344,16 @@ export function PDFToEPUB() {
     return (
         <div className="max-w-full sm:max-w-4xl mx-auto w-full px-4">
             <div className="mb-4 sm:mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('pdfToEpub.title')}</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">PDF to EPUB</h1>
                 <p className="text-sm sm:text-base text-neutral-600">
-                    {t('pdfToEpub.description')}
+                    Convert PDF to EPUB format for e-readers
                 </p>
             </div>
 
             {/* File Upload */}
             <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
                 <label className="block text-sm font-medium text-neutral-700 mb-3">
-                    {t('pdfToEpub.selectPDF')}
+                    Select PDF File
                 </label>
                 <div className="flex flex-col sm:flex-row gap-3">
                     <div className="flex-1">
@@ -372,11 +369,11 @@ export function PDFToEPUB() {
                             className="w-full sm:w-auto px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 min-h-[44px]"
                         >
                             <Upload className="w-4 h-4" />
-                            {pdfFile ? pdfFile.name : t('pdfToEpub.chooseFile')}
+                            {pdfFile ? pdfFile.name : 'Choose PDF File'}
                         </button>
                         {pdfFile && (
                             <p className="text-xs text-neutral-500 mt-2">
-                                {formatFileSize(pdfFile.size)} • {totalPages} {totalPages === 1 ? t('pdfToEpub.page') : t('pdfToEpub.pages')}
+                                {formatFileSize(pdfFile.size)} • {totalPages} {totalPages === 1 ? 'Page' : 'Pages'}
                             </p>
                         )}
                     </div>
@@ -392,30 +389,30 @@ export function PDFToEPUB() {
             {pdfFile && (
                 <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
                     <label className="block text-sm font-medium text-neutral-700 mb-3">
-                        {t('pdfToEpub.metadata')}
+                        EPUB Metadata
                     </label>
                     <div className="space-y-4">
                         <div>
                             <label className="block text-xs text-neutral-600 mb-1">
-                                {t('pdfToEpub.metadataTitle')} *
+                                Title *
                             </label>
                             <input
                                 type="text"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
-                                placeholder={t('pdfToEpub.titlePlaceholder')}
+                                placeholder="Enter book title"
                                 className="w-full px-4 py-2.5 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[44px]"
                             />
                         </div>
                         <div>
                             <label className="block text-xs text-neutral-600 mb-1">
-                                {t('pdfToEpub.metadataAuthor')}
+                                Author
                             </label>
                             <input
                                 type="text"
                                 value={author}
                                 onChange={(e) => setAuthor(e.target.value)}
-                                placeholder={t('pdfToEpub.authorPlaceholder')}
+                                placeholder="Enter author name"
                                 className="w-full px-4 py-2.5 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[44px]"
                             />
                         </div>
@@ -428,7 +425,7 @@ export function PDFToEPUB() {
                 <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-neutral-700 mb-3">
-                            {t('pdfToEpub.selectPages')}
+                            Select Pages to Convert
                         </label>
                         <div className="flex gap-3 mb-4">
                             <button
@@ -441,7 +438,7 @@ export function PDFToEPUB() {
                                     : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                                     }`}
                             >
-                                {t('pdfToEpub.allPages')}
+                                All Pages
                             </button>
                             <button
                                 onClick={() => setExtractMode('selected')}
@@ -450,7 +447,7 @@ export function PDFToEPUB() {
                                     : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                                     }`}
                             >
-                                {t('pdfToEpub.selectedPages')}
+                                Selected Pages
                             </button>
                         </div>
 
@@ -480,12 +477,12 @@ export function PDFToEPUB() {
                         {isProcessing ? (
                             <>
                                 <Loader2 className="w-4 h-4 animate-spin" />
-                                {t('pdfToEpub.processing')}
+                                Processing...
                             </>
                         ) : (
                             <>
                                 <Book className="w-4 h-4" />
-                                {t('pdfToEpub.convert')}
+                                Convert to EPUB
                             </>
                         )}
                     </button>
@@ -496,17 +493,17 @@ export function PDFToEPUB() {
             {epubUrl && (
                 <div className="tool-card p-4 sm:p-6 w-full">
                     <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-lg font-semibold text-neutral-900">{t('pdfToEpub.epubReady')}</h3>
+                        <h3 className="text-lg font-semibold text-neutral-900">EPUB File Ready</h3>
                         <button
                             onClick={downloadEPUB}
                             className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 min-h-[44px]"
                         >
                             <Download className="w-4 h-4" />
-                            {t('pdfToEpub.download')}
+                            Download
                         </button>
                     </div>
                     <p className="text-sm text-neutral-600">
-                        {t('pdfToEpub.downloadDescription')}
+                        Your EPUB file is ready for download.
                     </p>
                 </div>
             )}

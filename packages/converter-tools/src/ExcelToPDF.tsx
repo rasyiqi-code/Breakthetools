@@ -2,10 +2,8 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, FileSpreadsheet, Loader2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 export function ExcelToPDF() {
-  const t = useTranslations('tools')
   const [excelFile, setExcelFile] = useState<File | null>(null)
   const [selectedSheet, setSelectedSheet] = useState<string>('')
   const [sheets, setSheets] = useState<string[]>([])
@@ -38,7 +36,7 @@ export function ExcelToPDF() {
     )
 
     if (!hasValidType && !hasValidExtension) {
-      setError(t('excelToPdf.errors.invalidFile'))
+      setError('Please select a valid Excel file (.xlsx or .xls)!')
       return
     }
 
@@ -76,13 +74,13 @@ export function ExcelToPDF() {
       }
     } catch (err: any) {
       console.error('Error reading Excel file:', err)
-      setError(t('excelToPdf.errors.readFailed') + (err.message ? ': ' + err.message : ''))
+      setError('Failed to read Excel file' + (err.message ? ': ' + err.message : ''))
     }
   }
 
   const convertToPDF = async () => {
     if (!excelFile || !selectedSheet) {
-      setError(t('excelToPdf.errors.noFileOrSheet'))
+      setError('Please select a file and sheet!')
       return
     }
 
@@ -109,7 +107,7 @@ export function ExcelToPDF() {
       const { rows } = await response.json()
 
       if (!Array.isArray(rows) || rows.length === 0) {
-        throw new Error(t('excelToPdf.errors.noData'))
+        throw new Error('No data found in the selected sheet!')
       }
 
       // Dynamic import jsPDF and autoTable to create PDF from table data
@@ -235,7 +233,7 @@ export function ExcelToPDF() {
       setPdfUrl(url)
     } catch (err: any) {
       console.error('Excel to PDF conversion error:', err)
-      setError(t('excelToPdf.errors.conversionFailed') + (err.message ? ': ' + err.message : ''))
+      setError('Failed to convert Excel to PDF' + (err.message ? ': ' + err.message : ''))
     } finally {
       setIsProcessing(false)
     }
@@ -256,16 +254,16 @@ export function ExcelToPDF() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto w-full px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('excelToPdf.title')}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Excel to PDF</h1>
         <p className="text-sm sm:text-base text-neutral-600">
-          {t('excelToPdf.description')}
+          Convert Excel spreadsheet to PDF
         </p>
       </div>
 
       {/* File Upload */}
       <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
         <label className="block text-sm font-medium text-neutral-700 mb-3">
-          {t('excelToPdf.selectFile')}
+          Select Excel File
         </label>
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
@@ -281,7 +279,7 @@ export function ExcelToPDF() {
               className="w-full sm:w-auto px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 min-h-[44px]"
             >
               <Upload className="w-4 h-4" />
-              {excelFile ? excelFile.name : t('excelToPdf.chooseFile')}
+              {excelFile ? excelFile.name : 'Choose Excel File'}
             </button>
             {excelFile && (
               <p className="text-xs text-neutral-500 mt-2">
@@ -301,7 +299,7 @@ export function ExcelToPDF() {
       {sheets.length > 0 && (
         <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
           <label className="block text-sm font-medium text-neutral-700 mb-3">
-            {t('excelToPdf.selectSheet')}
+            Select Sheet
           </label>
           <select
             value={selectedSheet}
@@ -328,12 +326,12 @@ export function ExcelToPDF() {
             {isProcessing ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                {t('excelToPdf.processing')}
+                Processing...
               </>
             ) : (
               <>
                 <FileSpreadsheet className="w-4 h-4" />
-                {t('excelToPdf.convert')}
+                Convert to PDF
               </>
             )}
           </button>
@@ -344,17 +342,17 @@ export function ExcelToPDF() {
       {pdfUrl && (
         <div className="tool-card p-4 sm:p-6 w-full">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-semibold text-neutral-900">{t('excelToPdf.pdfReady')}</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">PDF File Ready</h3>
             <button
               onClick={downloadPDF}
               className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 min-h-[44px]"
             >
               <Download className="w-4 h-4" />
-              {t('excelToPdf.download')}
+              Download
             </button>
           </div>
           <p className="text-sm text-neutral-600">
-            {t('excelToPdf.downloadDescription')}
+            Your PDF file is ready for download.
           </p>
         </div>
       )}

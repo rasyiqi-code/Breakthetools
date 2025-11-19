@@ -2,10 +2,8 @@
 
 import { useState } from 'react'
 import { Dice6, Copy, Check, RefreshCw, Trash2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 export function RandomNumberGenerator() {
-  const t = useTranslations('tools')
 
   const [min, setMin] = useState('1')
   const [max, setMax] = useState('100')
@@ -22,22 +20,22 @@ export function RandomNumberGenerator() {
     const countNum = parseInt(count)
 
     if (isNaN(minNum) || isNaN(maxNum) || isNaN(countNum)) {
-      alert(t('randomNumberGenerator.errors.invalidInput') || 'Please enter valid numbers!')
+      alert('Please enter valid numbers!')
       return
     }
 
     if (minNum > maxNum) {
-      alert(t('randomNumberGenerator.errors.minMaxError') || 'Minimum value must be less than or equal to maximum value!')
+      alert('Minimum value must be less than or equal to maximum value!')
       return
     }
 
     if (countNum < 1 || countNum > 1000) {
-      alert(t('randomNumberGenerator.errors.countError') || 'Count must be between 1 and 1000!')
+      alert('Count must be between 1 and 1000!')
       return
     }
 
     if (!allowDuplicate && countNum > (maxNum - minNum + 1)) {
-      alert(t('randomNumberGenerator.errors.noDuplicateError') || 'Cannot generate unique numbers. Range is too small for the count!')
+      alert('Cannot generate unique numbers. Range is too small for the count!')
       return
     }
 
@@ -96,25 +94,25 @@ export function RandomNumberGenerator() {
   return (
     <div className="max-w-full sm:max-w-6xl mx-auto px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('randomNumberGenerator.title')}</h1>
-        <p className="text-sm sm:text-base text-neutral-600">{t('randomNumberGenerator.description')}</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Random Number Generator</h1>
+        <p className="text-sm sm:text-base text-neutral-600">Generate random numbers with customizable range and count</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div className="tool-card p-4 sm:p-6">
           <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
             <Dice6 className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-            {t('randomNumberGenerator.settings')}
+            Settings
           </h3>
 
           <div className="space-y-4">
             <div>
               <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                {t('randomNumberGenerator.range')}
+                Range
               </label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="text-xs text-neutral-500 mb-1 block">{t('randomNumberGenerator.min')}</label>
+                  <label className="text-xs text-neutral-500 mb-1 block">Min</label>
                   <input
                     type="number"
                     step="any"
@@ -125,7 +123,7 @@ export function RandomNumberGenerator() {
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-neutral-500 mb-1 block">{t('randomNumberGenerator.max')}</label>
+                  <label className="text-xs text-neutral-500 mb-1 block">Max</label>
                   <input
                     type="number"
                     step="any"
@@ -140,7 +138,7 @@ export function RandomNumberGenerator() {
 
             <div>
               <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                {t('randomNumberGenerator.count')}: {count}
+                Count: {count}
               </label>
               <input
                 type="range"
@@ -158,7 +156,7 @@ export function RandomNumberGenerator() {
 
             <div>
               <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                {t('randomNumberGenerator.numberType')}
+                Number Type
               </label>
               <div className="flex gap-2">
                 {(['integer', 'decimal'] as const).map((type) => (
@@ -171,7 +169,7 @@ export function RandomNumberGenerator() {
                         : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                     }`}
                   >
-                    {t(`randomNumberGenerator.numberTypes.${type}`)}
+                    {type === 'integer' ? 'Integer' : 'Decimal'}
                   </button>
                 ))}
               </div>
@@ -180,7 +178,7 @@ export function RandomNumberGenerator() {
             {numberType === 'decimal' && (
               <div>
                 <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                  {t('randomNumberGenerator.decimalPlaces')}: {decimals}
+                  Decimal Places: {decimals}
                 </label>
                 <input
                   type="range"
@@ -205,9 +203,9 @@ export function RandomNumberGenerator() {
                   onChange={(e) => setAllowDuplicate(e.target.checked)}
                   className="w-4 h-4 accent-primary-500"
                 />
-                <span className="text-sm text-neutral-700">{t('randomNumberGenerator.allowDuplicates')}</span>
+                <span className="text-sm text-neutral-700">Allow Duplicates</span>
               </label>
-              <p className="text-xs text-neutral-500 mt-1 ml-6">{t('randomNumberGenerator.allowDuplicatesHint')}</p>
+              <p className="text-xs text-neutral-500 mt-1 ml-6">If disabled, all numbers will be unique (requires range ≥ count)</p>
             </div>
 
             <button
@@ -215,11 +213,11 @@ export function RandomNumberGenerator() {
               className="btn-primary w-full min-h-[44px] text-sm sm:text-base"
             >
               <Dice6 className="w-4 h-4 inline mr-2" />
-              {t('randomNumberGenerator.generate')}
+              Generate Numbers
             </button>
 
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 sm:p-3 text-xs sm:text-sm text-blue-800">
-              💡 <strong>{t('randomNumberGenerator.tipsLabel')}:</strong> {t('randomNumberGenerator.tips')}
+              💡 <strong>Tips:</strong> Use integer mode for whole numbers. Use decimal mode for floating point numbers. Disable duplicates to get unique numbers only (useful for lotteries and selections).
             </div>
           </div>
         </div>
@@ -227,7 +225,7 @@ export function RandomNumberGenerator() {
         <div className="tool-card p-4 sm:p-6">
           <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
             <Dice6 className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
-            {t('randomNumberGenerator.results')}
+            Results
           </h3>
 
           {results.length > 0 ? (
@@ -240,12 +238,12 @@ export function RandomNumberGenerator() {
                   {copied ? (
                     <>
                       <Check className="w-4 h-4 inline mr-2" />
-                      {t('randomNumberGenerator.copied')}
+                      Copied!
                     </>
                   ) : (
                     <>
                       <Copy className="w-4 h-4 inline mr-2" />
-                      {t('randomNumberGenerator.copy')}
+                      Copy All
                     </>
                   )}
                 </button>
@@ -254,7 +252,7 @@ export function RandomNumberGenerator() {
                   className="px-4 py-2 bg-neutral-100 text-neutral-700 rounded-lg hover:bg-neutral-200 transition-colors min-h-[44px] text-sm sm:text-base"
                 >
                   <Trash2 className="w-4 h-4 inline mr-2" />
-                  {t('randomNumberGenerator.clear')}
+                  Clear
                 </button>
               </div>
 
@@ -272,22 +270,22 @@ export function RandomNumberGenerator() {
               </div>
 
               <div className="bg-primary-50 border border-primary-200 rounded-lg p-3">
-                <div className="text-xs text-primary-700 mb-2 font-medium">{t('randomNumberGenerator.statistics')}</div>
+                <div className="text-xs text-primary-700 mb-2 font-medium">Statistics</div>
                 <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
                   <div>
-                    <span className="text-primary-600">{t('randomNumberGenerator.count')}:</span>{' '}
+                    <span className="text-primary-600">Count:</span>{' '}
                     <span className="font-semibold text-primary-900">{results.length}</span>
                   </div>
                   <div>
-                    <span className="text-primary-600">{t('randomNumberGenerator.min')}:</span>{' '}
+                    <span className="text-primary-600">Min:</span>{' '}
                     <span className="font-semibold text-primary-900">{formatNumber(Math.min(...results))}</span>
                   </div>
                   <div>
-                    <span className="text-primary-600">{t('randomNumberGenerator.max')}:</span>{' '}
+                    <span className="text-primary-600">Max:</span>{' '}
                     <span className="font-semibold text-primary-900">{formatNumber(Math.max(...results))}</span>
                   </div>
                   <div>
-                    <span className="text-primary-600">{t('randomNumberGenerator.average')}:</span>{' '}
+                    <span className="text-primary-600">Average:</span>{' '}
                     <span className="font-semibold text-primary-900">
                       {formatNumber(results.reduce((a, b) => a + b, 0) / results.length)}
                     </span>
@@ -299,7 +297,7 @@ export function RandomNumberGenerator() {
             <div className="flex items-center justify-center h-full min-h-[300px] text-neutral-400">
               <div className="text-center">
                 <Dice6 className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 opacity-50" />
-                <p className="text-xs sm:text-sm">{t('randomNumberGenerator.clickGenerate')}</p>
+                <p className="text-xs sm:text-sm">Click Generate to create random numbers</p>
               </div>
             </div>
           )}

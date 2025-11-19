@@ -2,10 +2,8 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, FileText, Loader2, AlertCircle } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 export function PowerPointToPDF() {
-  const t = useTranslations('tools')
   const [pptFile, setPptFile] = useState<File | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
   const [error, setError] = useState('')
@@ -35,7 +33,7 @@ export function PowerPointToPDF() {
     )
 
     if (!hasValidType && !hasValidExtension) {
-      setError(t('powerpointToPdf.errors.invalidFile'))
+      setError('Please select a valid PowerPoint file (.pptx or .ppt)!')
       return
     }
 
@@ -45,7 +43,7 @@ export function PowerPointToPDF() {
 
   const convertToPDF = async () => {
     if (!pptFile) {
-      setError(t('powerpointToPdf.errors.noFile'))
+      setError('Please select a PowerPoint file first!')
       return
     }
 
@@ -64,7 +62,7 @@ export function PowerPointToPDF() {
 
       if (!response.ok) {
         // Try to get error message from response
-        let errorMessage = t('powerpointToPdf.errors.serverError')
+        let errorMessage = 'Server error occurred. Please try again later.'
         try {
           const errorData = await response.json()
           if (errorData.error) {
@@ -87,7 +85,7 @@ export function PowerPointToPDF() {
         // Response is JSON error
         const errorData = await response.json()
         console.error('API returned error:', errorData)
-        throw new Error(errorData.error || t('powerpointToPdf.errors.serverError'))
+        throw new Error(errorData.error || 'Server error occurred. Please try again later.')
       }
 
       // Response should be PDF blob
@@ -115,7 +113,7 @@ export function PowerPointToPDF() {
       setError('')
     } catch (err: any) {
       console.error('PowerPoint to PDF conversion error:', err)
-      let errorMessage = t('powerpointToPdf.errors.conversionFailed')
+      let errorMessage = 'Failed to convert PowerPoint to PDF'
       
       const errMsg = err.message || ''
       
@@ -143,9 +141,9 @@ export function PowerPointToPDF() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto w-full px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('powerpointToPdf.title')}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">PowerPoint to PDF</h1>
         <p className="text-sm sm:text-base text-neutral-600">
-          {t('powerpointToPdf.description')}
+          Convert PowerPoint presentation to PDF
         </p>
       </div>
 
@@ -187,7 +185,7 @@ export function PowerPointToPDF() {
       {/* File Upload - Disabled */}
       <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6 opacity-50 pointer-events-none">
         <label className="block text-sm font-medium text-neutral-700 mb-3">
-          {t('powerpointToPdf.selectFile')}
+          Select PowerPoint File
         </label>
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
@@ -204,7 +202,7 @@ export function PowerPointToPDF() {
               className="w-full sm:w-auto px-4 py-2.5 bg-neutral-100 text-neutral-500 rounded-lg font-medium flex items-center justify-center gap-2 min-h-[44px] cursor-not-allowed"
             >
               <Upload className="w-4 h-4" />
-              {t('powerpointToPdf.chooseFile')}
+              Choose PowerPoint File
             </button>
           </div>
         </div>
@@ -217,7 +215,7 @@ export function PowerPointToPDF() {
           className="w-full px-4 py-2.5 bg-neutral-400 text-white rounded-lg font-medium flex items-center justify-center gap-2 min-h-[44px] cursor-not-allowed"
         >
           <FileText className="w-4 h-4" />
-          {t('powerpointToPdf.convert')}
+          Convert to PDF
         </button>
       </div>
     </div>

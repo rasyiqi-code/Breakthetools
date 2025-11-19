@@ -2,10 +2,8 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, FileSpreadsheet, Loader2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 export function ExcelToCSV() {
-  const t = useTranslations('tools')
   const [excelFile, setExcelFile] = useState<File | null>(null)
   const [selectedSheet, setSelectedSheet] = useState<string>('')
   const [sheets, setSheets] = useState<string[]>([])
@@ -39,7 +37,7 @@ export function ExcelToCSV() {
     )
 
     if (!hasValidType && !hasValidExtension) {
-      setError(t('excelToCsv.errors.invalidFile'))
+      setError('Please select a valid Excel file (.xlsx or .xls)!')
       return
     }
 
@@ -77,13 +75,13 @@ export function ExcelToCSV() {
       }
     } catch (err: any) {
       console.error('Error reading Excel file:', err)
-      setError(t('excelToCsv.errors.readFailed') + (err.message ? ': ' + err.message : ''))
+      setError('Failed to read Excel file' + (err.message ? ': ' + err.message : ''))
     }
   }
 
   const convertToCSV = async () => {
     if (!excelFile || !selectedSheet) {
-      setError(t('excelToCsv.errors.noFileOrSheet'))
+      setError('Please select a file and sheet!')
       return
     }
 
@@ -116,7 +114,7 @@ export function ExcelToCSV() {
       setCsvOutput(csv)
     } catch (err: any) {
       console.error('Excel to CSV conversion error:', err)
-      setError(t('excelToCsv.errors.conversionFailed') + (err.message ? ': ' + err.message : ''))
+      setError('Failed to convert Excel to CSV' + (err.message ? ': ' + err.message : ''))
     } finally {
       setIsProcessing(false)
     }
@@ -139,16 +137,16 @@ export function ExcelToCSV() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto w-full px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('excelToCsv.title')}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Excel to CSV</h1>
         <p className="text-sm sm:text-base text-neutral-600">
-          {t('excelToCsv.description')}
+          Convert Excel spreadsheet to CSV
         </p>
       </div>
 
       {/* File Upload */}
       <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
         <label className="block text-sm font-medium text-neutral-700 mb-3">
-          {t('excelToCsv.selectFile')}
+          Select Excel File
         </label>
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
@@ -164,7 +162,7 @@ export function ExcelToCSV() {
               className="w-full sm:w-auto px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 min-h-[44px]"
             >
               <Upload className="w-4 h-4" />
-              {excelFile ? excelFile.name : t('excelToCsv.chooseFile')}
+              {excelFile ? excelFile.name : 'Choose Excel File'}
             </button>
             {excelFile && (
               <p className="text-xs text-neutral-500 mt-2">
@@ -184,7 +182,7 @@ export function ExcelToCSV() {
       {sheets.length > 0 && (
         <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
           <label className="block text-sm font-medium text-neutral-700 mb-3">
-            {t('excelToCsv.selectSheet')}
+            Select Sheet
           </label>
           <select
             value={selectedSheet}
@@ -211,12 +209,12 @@ export function ExcelToCSV() {
             {isProcessing ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                {t('excelToCsv.processing')}
+                Processing...
               </>
             ) : (
               <>
                 <FileSpreadsheet className="w-4 h-4" />
-                {t('excelToCsv.convert')}
+                Convert to CSV
               </>
             )}
           </button>
@@ -227,23 +225,23 @@ export function ExcelToCSV() {
       {csvOutput && (
         <div className="tool-card p-4 sm:p-6 w-full">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-semibold text-neutral-900">{t('excelToCsv.csvOutput')}</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">CSV Output</h3>
             <button
               onClick={downloadCSV}
               className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 min-h-[44px]"
             >
               <Download className="w-4 h-4" />
-              {t('excelToCsv.download')}
+              Download
             </button>
           </div>
           <textarea
             value={csvOutput}
             readOnly
             className="w-full p-4 border border-neutral-300 rounded-lg font-mono text-xs sm:text-sm bg-neutral-50 min-h-[300px] max-h-[600px] overflow-y-auto"
-            placeholder={t('excelToCsv.csvOutputPlaceholder')}
+            placeholder="CSV output will appear here..."
           />
           <p className="text-xs text-neutral-500 mt-2">
-            {csvOutput.length} {t('excelToCsv.characters')}
+            {csvOutput.length} characters
           </p>
         </div>
       )}

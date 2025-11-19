@@ -2,10 +2,8 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Download, FileText, Loader2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 
 export function WordToPDF() {
-  const t = useTranslations('tools')
   const [wordFile, setWordFile] = useState<File | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
   const [pdfUrl, setPdfUrl] = useState<string>('')
@@ -38,7 +36,7 @@ export function WordToPDF() {
     )
 
     if (!hasValidType && !hasValidExtension) {
-      setError(t('wordToPdf.errors.invalidFile'))
+      setError('Please select a valid Word file (.docx or .doc)!')
       return
     }
 
@@ -49,7 +47,7 @@ export function WordToPDF() {
 
   const convertToPDF = async () => {
     if (!wordFile) {
-      setError(t('wordToPdf.errors.noFile'))
+      setError('Please select a Word file first!')
       return
     }
 
@@ -125,7 +123,7 @@ export function WordToPDF() {
       setPdfUrl(url)
     } catch (err: any) {
       console.error('Word to PDF conversion error:', err)
-      setError(t('wordToPdf.errors.conversionFailed') + (err.message ? ': ' + err.message : ''))
+      setError('Failed to convert Word to PDF' + (err.message ? ': ' + err.message : ''))
     } finally {
       setIsProcessing(false)
     }
@@ -146,16 +144,16 @@ export function WordToPDF() {
   return (
     <div className="max-w-full sm:max-w-4xl mx-auto w-full px-4">
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">{t('wordToPdf.title')}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Word to PDF</h1>
         <p className="text-sm sm:text-base text-neutral-600">
-          {t('wordToPdf.description')}
+          Convert Word document (.docx) to PDF
         </p>
       </div>
 
       {/* File Upload */}
       <div className="tool-card p-4 sm:p-6 w-full mb-4 sm:mb-6">
         <label className="block text-sm font-medium text-neutral-700 mb-3">
-          {t('wordToPdf.selectFile')}
+          Select Word File
         </label>
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
@@ -171,7 +169,7 @@ export function WordToPDF() {
               className="w-full sm:w-auto px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 min-h-[44px]"
             >
               <Upload className="w-4 h-4" />
-              {wordFile ? wordFile.name : t('wordToPdf.chooseFile')}
+              {wordFile ? wordFile.name : 'Choose Word File'}
             </button>
             {wordFile && (
               <p className="text-xs text-neutral-500 mt-2">
@@ -198,12 +196,12 @@ export function WordToPDF() {
             {isProcessing ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                {t('wordToPdf.processing')}
+                Processing...
               </>
             ) : (
               <>
                 <FileText className="w-4 h-4" />
-                {t('wordToPdf.convert')}
+                Convert to PDF
               </>
             )}
           </button>
@@ -214,17 +212,17 @@ export function WordToPDF() {
       {pdfUrl && (
         <div className="tool-card p-4 sm:p-6 w-full">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-semibold text-neutral-900">{t('wordToPdf.pdfReady')}</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">PDF File Ready</h3>
             <button
               onClick={downloadPDF}
               className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 min-h-[44px]"
             >
               <Download className="w-4 h-4" />
-              {t('wordToPdf.download')}
+              Download
             </button>
           </div>
           <p className="text-sm text-neutral-600">
-            {t('wordToPdf.downloadDescription')}
+            Your PDF file is ready for download.
           </p>
         </div>
       )}
